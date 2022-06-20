@@ -1,0 +1,11 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/css/gentelella.css": "/css/gentelella.css",
+    "/js/gentelella.js": "/js/gentelella.js",
+    "/css/sweetalert2.css": "/css/sweetalert2.css",
+    "/js/sweetalert2.js": "/js/sweetalert2.js",
+    "/css/dataTables.bootstrap.min.css": "/css/dataTables.bootstrap.min.css",
+    "/js/dataTables.bootstrap.min.js": "/js/dataTables.bootstrap.min.js",
+    "/js/jquery.dataTables.min.js": "/js/jquery.dataTables.min.js"
+}

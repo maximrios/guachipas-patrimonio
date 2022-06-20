@@ -1,0 +1,15 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito);
+.x_title h2 {
+  font-size: 20px;
+}
+
+.form-horizontal.form-label-left label {
+  text-align: left;
+}
+
+.mail_list .left {
+  width: 15% !important;
+}
+.mail_list .right {
+  width: 80% !important;
+}
