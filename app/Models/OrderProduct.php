@@ -12,6 +12,7 @@ class OrderProduct extends Model
     protected $fillable = [
         'order_id',
         'product_id',
+        'order_product_found_id',
         'order_product_status_id',
         'order_product_origin_id',
         'valuation',
@@ -45,5 +46,10 @@ class OrderProduct extends Model
     public function status()
     {
         return $this->belongsTo('App\Models\OrderProductStatus', 'order_product_status_id', 'id');
+    }
+
+    public function found()
+    {
+        return $this->belongsTo('App\Models\OrderProductFound', 'order_product_found_id', 'id');
     }
 }

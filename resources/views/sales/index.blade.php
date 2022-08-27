@@ -31,7 +31,7 @@
                                 <th>Unidad Organizacional</th>
                                 <th>Expediente</th>
                                 <th>Fecha de emisión</th>
-                                <th></th>
+                                <th width="75px"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,14 +47,7 @@
                                     <td>{{ $sale->file }}</td>
                                     <td>{{ $sale->generated_at }}</td>
                                     <td>
-                                        <a class="btn btn-info" href="{{ route('sales.print', ['sale' => $sale])}}" target="_blank">Imprimir</a>
                                         <a class="btn btn-info" href="{{ route('sales.show', ['sale' => $sale->id])}}">Detalle</a>
-                                        <a class="btn btn-warning" href="{{ route('sales.edit', ['sale' => $sale->id])}}">Editar</a>
-                                        <form method="POST" action="{{ route('sales.destroy', ['sale' => $sale->id]) }}" style="display:inline-block;">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button class="btn btn-danger btn-delete" data-message="Está por eliminar la baja # {{ $sale->id }}. Desea continuar?">Eliminar</button>
-                                        </form>
                                     </td>
                                 </tr>    
                             @endforeach

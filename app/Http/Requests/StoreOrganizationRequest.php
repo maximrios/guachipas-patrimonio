@@ -24,7 +24,7 @@ class StoreOrganizationRequest extends FormRequest
     public function attributes()
     {
         return [
-            'organization_id' => 'Organismo',
+            'parent_id' => 'Organismo',
             'code' => 'Código',
             "name" => 'Unidad Organizacional',
         ];
@@ -39,7 +39,7 @@ class StoreOrganizationRequest extends FormRequest
     {
         
         $rules = [
-            "organization_id" => 'required',
+            "parent_id" => 'required',
             'code' => 'required',
             "name" => 'required|min:4|max:100',
         ];

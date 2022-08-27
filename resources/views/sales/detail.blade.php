@@ -15,17 +15,6 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Planilla de Baja <small></small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Settings 1</a>
-                                <a class="dropdown-item" href="#">Settings 2</a>
-                            </div>
-                        </li>
-                        <li><a class="close-link"><i class="fa fa-close"></i></a></li>
-                    </ul>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -40,13 +29,12 @@
                         <div class="row invoice-info">
                             <div class="col-sm-4 invoice-col">
                                 <div>
-                                    <strong>Carácter: </strong>
+                                    <strong>Carácter: </strong><span>{{ $sale->character }}</span>
                                     <br>
-                                    <strong>Institución: </strong>
+                                    <strong>Institución: </strong><span>{{ $sale->institution }}</span>
                                     <br>
-                                    <strong>Jurisdicción: </strong>
+                                    <strong>Jurisdicción: </strong><span>{{ $sale->organization_name }}</span>
                                     <br>
-                                    <strong>Unid. De Organización: </strong>
                                 </div>
                             </div>
                             <div class="col-sm-4 invoice-col">
@@ -57,10 +45,23 @@
                                 </div>
                             </div>
                             <div class="col-sm-4 invoice-col">
-                                <b>Planilla #{{ Str::padLeft($sale->id, 6, '0') }}</b>
+                                <b>Planilla # {{ $sale->number }}</b>
                                 <br>
                                 <br>
                                 <b>Fecha:</b> {{ $sale->created_at }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <a class="btn btn-default pull-right" href="{{ route('sales.print', ['sale' => $sale])}}" target="_blank">Ver planilla de alta</a>
+                                <a class="btn btn-warning pull-right" href="{{ route('sales.edit', ['sale' => $sale->id])}}">Editar</a>
+                                @if($sale->status_id === 1)
+                                    <form method="POST" action="{{ route('sales.destroy', ['sale' => $sale->id]) }}" style="display:inline;">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class="btn btn-danger btn-delete pull-right" data-message="Está por eliminar la baja # {{ $sale->id }}. Desea continuar?">Eliminar</button>
+                                    </form>
+                                @endif
                             </div>
                         </div>
                         <div class="row">
@@ -110,12 +111,6 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                            </div>
-                        </div>
-                        <div class="row no-print">
-                            <div class=" ">
-                                <a href="{{ url('sales') }}" class="btn btn-default">Cancelar</a>
-                                <a href="{{ route('sales.print', ['sale' => $sale]) }}" class="btn btn-primary pull-right" style="margin-right: 5px;" target="_blank"><i class="fa fa-download"></i> Generar Planilla de Alta</a>
                             </div>
                         </div>
                     </section>

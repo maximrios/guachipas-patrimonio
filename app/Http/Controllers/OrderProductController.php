@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreOrderProductRequest;
+use App\Http\Requests\UpdateOrderProductRequest;
 use App\Models\Order;
 use App\Models\OrderProduct;
+use App\Models\OrderProductFound;
 use Illuminate\Http\Request;
 use App\Models\OrderProductOrigin;
 use App\Models\OrderProductStatus;
@@ -29,6 +31,7 @@ class OrderProductController extends Controller
      */
     public function create(Order $order)
     {
+        $founds = OrderProductFound::all();
         $statuses = OrderProductStatus::all();
         $origins = OrderProductOrigin::all();
         $products = Product::all();
@@ -36,7 +39,8 @@ class OrderProductController extends Controller
             ->with('order', $order)
             ->with('products', $products)
             ->with('statuses', $statuses)
-            ->with('origins', $origins);
+            ->with('origins', $origins)
+            ->with('founds', $founds);
     }
 
     /**
@@ -50,7 +54,14 @@ class OrderProductController extends Controller
         $orderProduct = new OrderProduct($request->validated());
         $orderProduct->save();
         if($orderProduct) {
-            return redirect(route('orders.show', [$orderProduct->order_id]));
+            if($request->input('continue')){
+                $order = Order::findOrFail($orderProduct->order_id);
+                return redirect(route('orderProducts.create', ['order' => $order]));
+            }
+            else {
+                return redirect(route('orders.show', [$orderProduct->order_id]));
+            }
+                
         }
         else {
             return redirect(route('orders.index'))->with([
@@ -74,12 +85,24 @@ class OrderProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\OrderProducts  $orderProducts
+     * @param  \App\Models\OrderProduct  $orderProduct
      * @return \Illuminate\Http\Response
      */
-    public function edit(OrderProduct $orderProducts)
+    public function edit(OrderProduct $orderProduct)
     {
-        //
+        $order = $orderProduct->order;
+        $founds = OrderProductFound::all();
+        $statuses = OrderProductStatus::all();
+        $origins = OrderProductOrigin::all();
+        $products = Product::all();
+
+        return view('orderProducts.edit')
+            ->with('order', $order)
+            ->with('products', $products)
+            ->with('statuses', $statuses)
+            ->with('origins', $origins)
+            ->with('founds', $founds)
+            ->with('orderProduct', $orderProduct);
     }
 
     /**
@@ -89,9 +112,10 @@ class OrderProductController extends Controller
      * @param  \App\Models\OrderProducts  $orderProducts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OrderProduct $orderProduct)
+    public function update(UpdateOrderProductRequest $request, OrderProduct $orderProduct)
     {
-        //
+        $orderProduct->update($request->validated());
+        return redirect(route('orders.show', [$orderProduct->order_id]));
     }
 
     /**

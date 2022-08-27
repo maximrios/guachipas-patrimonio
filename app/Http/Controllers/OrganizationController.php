@@ -13,10 +13,13 @@ class OrganizationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($parent_id = 1)
     {
-        $organizations = Organization::all();
+        $organization_id = $parent_id ?? 1;
+        $parent = Organization::findOrFail($organization_id);
+        $organizations = $parent->children;
         return view('organizations.index')
+            ->with('parent', $parent)
             ->with('organizations', $organizations);
     }
 
@@ -25,11 +28,12 @@ class OrganizationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Organization $organization)
     {
-        $organizations = Organization::all();
+        $parent = $organization;
         return view('organizations.create')
-            ->with('organizations', $organizations);
+            ->with('parent', $parent);
+
     }
 
     /**
@@ -61,7 +65,11 @@ class OrganizationController extends Controller
      */
     public function show(Organization $organization)
     {
-        //
+        $parent = $organization;
+        $organizations = $parent->children;
+        return view('organizations.index')
+            ->with('parent', $parent)
+            ->with('organizations', $organizations);
     }
 
     /**
@@ -85,13 +93,14 @@ class OrganizationController extends Controller
      */
     public function update(Request $request, Organization $organization)
     {
-        $provider->update($request->validated());
-        if($provider) {
-            return redirect(route('providers.index', [$provider->id]));
+        $organization->name = $request->input('name');
+        $organization->save();
+        if($organization) {
+            return redirect(route('organizations.index', [$organization->id]));
         }
         else {
-            return redirect(route('providers.index'))->with([
-                'message' => 'Ocurrio un error al registrar la orden',
+            return redirect(route('organizations.index'))->with([
+                'message' => 'Ocurrio un error al registrar el organismo',
                 'type' => 'danger',
             ]);    
         }

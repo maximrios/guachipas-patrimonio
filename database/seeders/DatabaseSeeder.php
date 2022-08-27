@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategorySeeder::class,
             OrderOriginSeeder::class,
+            OrderProductFoundTableSeeder::class,
             OrderProductOriginSeeder::class,
             OrderProductStatusSeeder::class,
             OrderStatusSeeder::class,

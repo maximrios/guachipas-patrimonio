@@ -12,8 +12,8 @@ function add() {
             dataType: 'html'
         })
         .done(function(data){
-            //$("#exampleModal").html(data);
-            $("#exampleModal").modal("show");
+            $("#myModal").html(data);
+            //$("#exampleModal").modal("show");
         });
     });
 }

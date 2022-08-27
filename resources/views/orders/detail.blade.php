@@ -46,8 +46,9 @@
                                 </div>
                             </div>
                             <div class="col-sm-4 invoice-col">
-                                <b>Planilla #{{ Str::padLeft($order->id, 6, '0') }}</b>
+                                <b>Planilla #{{ $order->number }}</b>
                                 <br>
+                                <b>Estado:</b> {{ $order->status->name }}
                                 <br>
                                 <b>Fecha:</b> {{ $order->created_at }}
                             </div>
@@ -60,10 +61,24 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <a href="{{ url('orders') }}" class="btn btn-default">Volver</a>
-                                <a href="{{ route('orders.print', ['order' => $order]) }}" class="btn btn-default pull-right" style="margin-right: 5px;" target="_blank"><i class="fa fa-print"></i> Ver planilla de alta</a>
+                                @if($products->count() > 0 && $order->status_id === 2)
+                                    <a href="{{ route('inventories.order', ['order' => $order]) }}" class="btn btn-primary pull-right" style="margin-right: 5px;" target="_blank"><i class="fa fa-barcode"></i> Imprimir etiquetas</a>
+                                @endif
                                 @if($products->count() > 0 && $order->status_id === 1)
                                     <a href="{{ route('orders.approve', ['order' => $order]) }}" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-check"></i> Confirmar planilla</a>
                                 @endif
+                                <a href="{{ route('orders.print', ['order' => $order]) }}" class="btn btn-default pull-right" style="margin-right: 5px;" target="_blank"><i class="fa fa-print"></i> Ver planilla de alta</a>
+
+                                <a href="{{ route('orders.edit', ['order' => $order]) }}" class="btn btn-warning pull-right" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Editar</a>
+
+                                @if($order->status_id === 1)
+                                    <form method="POST" action="{{ route('orders.destroy', ['order' => $order->id]) }}" style="display:inline;">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class="btn btn-danger btn-delete pull-right" data-message="Está por eliminar la orden # {{ $order->id }}. Desea continuar?"><i class="fa fa-trash-o"></i> Eliminar</button>
+                                    </form>
+                                @endif
+                                
                             </div>
                         </div>
                         <div class="row">
@@ -91,7 +106,7 @@
                                             <th>Precio U.</th>
                                             <th>Precio Total</th>
                                             @if($order->status_id === 1)
-                                                <th></th>
+                                                <th width="150px"></th>
                                             @endif
                                         </tr>
                                     </thead>
@@ -110,7 +125,8 @@
                                                 <td>{{ $product->total_price }}</td>
                                                 @if($order->status_id === 1)
                                                     <td>
-                                                        <form method="POST" action="{{ route('orderProducts.destroy', ['orderProduct' => $product->id]) }}">
+                                                        <a href="{{ route('orderProducts.edit', ['orderProduct' => $product]) }}" class="btn btn-warning btn-sm">Editar</a>
+                                                        <form method="POST" action="{{ route('orderProducts.destroy', ['orderProduct' => $product->id]) }}" style="display:inline;">
                                                             @method('DELETE')
                                                             @csrf
                                                             <button type="submit" class="btn btn-danger btn-sm btn-delete" data-message="¿Esta por eliminar el registro. Desea continuar?" >

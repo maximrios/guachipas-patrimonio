@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Order;
 use Barryvdh\DomPDF\PDF;
 use App\Models\Inventory;
 use App\Models\OrderProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Picqer\Barcode\BarcodeGeneratorPNG;
 
 class InventoryController extends Controller
@@ -127,7 +129,8 @@ class InventoryController extends Controller
     {
         $inventories = Inventory::selectRaw('inventories.id, CONCAT("MATRICULA N°: ", inventories.registration, " - ", products.name) as text')
             ->join('products', 'inventories.product_id', 'products.id')
-            ->where('registration', 'like', '%'.$request->term.'%')->orderBy('products.name')->get();
+            ->where('registration', 'like', '%'.$request->term.'%')
+            ->orWhere('products.name', 'like', '%'.$request->term.'%')->orderBy('products.name')->get();
         return response()->json(['status' => 200, 'results' => $inventories]);
     }
 
@@ -137,4 +140,29 @@ class InventoryController extends Controller
         $product = $inventory->product;
         return response()->json(['status' => 200, 'data' => $inventory, 'product' => $product]);
     }
+
+    public function order(Order $order) 
+    {
+
+        $inventories = Inventory::where('order_id', $order->id)->get();
+        $data = [];
+        foreach($inventories as $inventory) {
+
+            $code = $inventory->product->nomenclator.''.$inventory->registration;
+            $generatorPNG = new BarcodeGeneratorPNG;
+            $barcode = base64_encode($generatorPNG->getBarcode($code, $generatorPNG::TYPE_CODE_128));
+            
+            $data['inventories'][] = [
+                //'inventory' => $inventory,
+                'code' => $code,
+                'barcode' => $barcode,
+            ];
+
+        }
+   
+        $pdf = \PDF::loadView('inventories.order', $data)->setPaper('A4', 'portrait');
+    
+        return $pdf->stream('etiquetas.pdf');
+    }
+
 }

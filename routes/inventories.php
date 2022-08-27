@@ -18,6 +18,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('inventories/list', [InventoryController::class, 'list'])->name('inventories.list');
     Route::get('inventories/print', [InventoryController::class, 'print'])->name('inventories.print');
     Route::get('inventories/code/{inventory}', [InventoryController::class, 'code'])->name('inventories.code');
+    Route::get('inventories/order/{order}', [InventoryController::class, 'order'])->name('inventories.order');
     Route::post('inventories/check', [InventoryController::class, 'check'])->name('inventories.check');
     Route::resource('inventories', InventoryController::class);
 

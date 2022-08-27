@@ -25,7 +25,8 @@ class StoreOrderProductRequest extends FormRequest
     {
         return [
             'order_id' => 'Usuario',
-            'product_id' => 'Producto',
+            'product_id' => 'Clasificación',
+            'order_product_found_id' => 'Fondo',
             'order_product_status_id' => 'Estado',
             'order_product_origin_id' => 'Procedencia',
             'valuation' => 'Método de valuación',
@@ -51,6 +52,7 @@ class StoreOrderProductRequest extends FormRequest
         $rules = [
             'order_id' => 'required',
             'product_id' => 'required',
+            'order_product_found_id' => 'required',
             'order_product_status_id' => 'required',
             'order_product_origin_id' => 'required',
             'valuation' => 'required',

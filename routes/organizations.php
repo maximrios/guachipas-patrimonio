@@ -16,6 +16,7 @@ use App\Http\Controllers\OrganizationController;
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('organizations/list', [OrganizationController::class, 'list'])->name('organizations.list');
-    Route::resource('organizations', OrganizationController::class);
+    Route::get('organizations/create/{organization}', [OrganizationController::class, 'create'])->name('organizations.create');
+    Route::resource('organizations', OrganizationController::class, ['except' => ['create']]);
 
 });

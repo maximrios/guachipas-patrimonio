@@ -51,6 +51,16 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label class="control-label col-md-3 col-sm-3" for="order_product_found_id">Fondos</label>
+                            <div class="col-md-9 col-sm-9 ">
+								<select id="order_product_found_id" name="order_product_found_id" class="form-control">
+                                    @foreach ($founds as $found)
+										<option value="{{ $found->id }}">{{ $found->id }} - {{ $found->name }}</option>
+									@endforeach
+                            	</select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label class="control-label col-md-3 col-sm-3" for="order_product_origin_id">Procedencia</label>
                             <div class="col-md-9 col-sm-9 ">
 								<select id="order_product_origin_id" name="order_product_origin_id" class="form-control">
@@ -101,7 +111,14 @@
                         <div class="form-group row">
                             <label class="control-label col-md-3 col-sm-3" for="total_price">Precio total</label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input type="text" id="total_price" name="total_price" value="0" class="form-control" placeholder="Precio total" readonly>
+                                <input type="text" id="total_price" name="total_price" value="0" class="form-control" placeholder="Precio total">
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <div class="form-group row">
+                            <label class="control-label col-md-3 col-sm-3" for="continue">Guardar y continuar</label>
+                            <div class="col-md-9 col-sm-9 ">
+                                <input type="checkbox" id="continue" name="continue" value="1" checked>
                             </div>
                         </div>
                         <div class="ln_solid"></div>

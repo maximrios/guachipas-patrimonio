@@ -24,19 +24,19 @@
                         <div class="form-group row">
                             <label class="control-label col-md-3 col-sm-3 ">Carácter</label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input type="text" id="character" name="character" class="form-control" placeholder="Carácter">
+                                <input type="text" id="character" name="character" class="form-control" value="ADMINISTRACIÓN CENTRAL" placeholder="Carácter" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-md-3 col-sm-3 ">Institución</label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input type="text" id="institution" name="institution" class="form-control" placeholder="Institución">
+                                <input type="text" id="institution" name="institution" class="form-control" value="PODER EJECUTIVO" placeholder="Institución" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-md-3 col-sm-3 ">Jurisdicción</label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input type="text" id="organization" name="organization" class="form-control" placeholder="Jurisdicción">
+                                <input type="text" id="organization_name" name="organization_name" class="form-control" placeholder="Jurisdicción" value="MINISTERIO DE SALUD PÚBLICA" readonly>
                             </div>
                         </div>
                         <div class="form-group row">

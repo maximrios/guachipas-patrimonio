@@ -50,7 +50,7 @@ class OrderController extends Controller
         $order = new Order($request->validated());
         $order->save();
         if($order) {
-            return redirect(route('orders.index', [$order->id]));
+            return redirect(route('orders.show', ['order' => $order]));
         }
         else {
             return redirect(route('orders.index'))->with([
@@ -158,7 +158,7 @@ class OrderController extends Controller
                 $inventory->description = $product->description;
                 $inventory->organization_id = $order->organization_id;
                 $inventory->registration = $registration++;
-                $inventory->order_id = $product->id;
+                $inventory->order_id = $order->id;
                 $inventory->sale_id = 0;
                 $inventory->current_organization = $order->organization_id;
                 $inventory->status_id = $product->order_product_status_id;

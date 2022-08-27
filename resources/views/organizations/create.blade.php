@@ -41,10 +41,10 @@
                                 <input type="text" id="name" name="name" class="form-control" placeholder="Unidad Organizacional">
                             </div>
                         </div>
-                        <input type="hidden" name="organization_id" value="0">
+                        <input type="hidden" name="parent_id" value="{{ $parent->id }}">
                         <div class="ln_solid"></div>
                         <div class="form-group row">
-                            <a href="{{ url('organizations') }}" class="btn btn-default">Cancelar</a>
+                            <a href="{{ route('organizations.show', ['organization' => $parent->id]) }}" class="btn btn-default">Cancelar</a>
                             <button type="submit" class="btn btn-primary pull-right">Guardar</button>
                         </div>
                     </form>

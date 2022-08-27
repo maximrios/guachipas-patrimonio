@@ -61,7 +61,8 @@ class RouteServiceProvider extends ServiceProvider
             'organizations',
             'inventories',
             'providers',
-            'assignments'
+            'assignments',
+            'assignmentProducts'
         ];
 
         foreach($routes as $route)

@@ -6,7 +6,7 @@
         <h3>Inventario <small></small></h3>
     </div>
     <div class="title_right">
-        <a href="{{ url('inventories/print') }}" class="btn btn-primary pull-right" target="_blank">Imprimir</a>&nbsp;
+        <!--<a href="{{ url('inventories/print') }}" class="btn btn-primary pull-right" target="_blank">Imprimir</a>&nbsp;-->
     </div>
 </div>
 <div class="clearfix"></div>
@@ -21,11 +21,11 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>N° Matrícula</th>
+                            <th width="90px">Matrícula N°</th>
                             <th>Nombre</th>
-                            <th>Estado</th>
                             <th>Sector</th>
-                            <th></th>
+                            <th width="70px">Estado</th>
+                            <th width="120px"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,10 +36,10 @@
                                     <strong>{{ $inventory->product->nomenclator }}</strong><br>
                                     {{ $inventory->product->name }}
                                 </td>
-                                <td>{{ $inventory->status->name }}</td>
                                 <td>{{ $inventory->organization->name }}</td>
+                                <td>{{ $inventory->status->name }}</td>
                                 <td>
-                                    <a href="{{ route('inventories.code', ['inventory' => $inventory]) }}" target="_blank" class="btn btn-primary">Etiquetas</a>
+                                    <a href="{{ route('inventories.code', ['inventory' => $inventory]) }}" target="_blank" class="btn btn-primary btn-sm"><i class="fa fa-barcode"></i>&nbsp;Imprimir etiquetas</a>
                                 </td>
                             </tr>    
                         @endforeach

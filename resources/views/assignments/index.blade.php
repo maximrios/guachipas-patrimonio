@@ -21,19 +21,20 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>N° Matrícula</th>
                             <th>Fecha</th>
-                            <th>Nombre</th>
+                            <th>Asignado</th>
+                            <th>Unidad organizacional</th>
+                            <th width="75px"></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($assignments as $assignment)
                             <tr>
-                                <td>{{ $assignment->inventory->registration }}</td>
                                 <td>{{ $assignment->created_at }}</td>
+                                <td>{{ $assignment->assign_to }}</td>
+                                <td>{{ $assignment->organization->name }}</td>
                                 <td>
-                                    <strong>{{ $assignment->inventory->product->nomenclator() }}</strong><br>
-                                    {{ $assignment->inventory->product->name }}
+                                    <a class="btn btn-info btn-sm" href="{{ route('assignments.show', ['assignment' => $assignment->id])}}">Detalle</a>
                                 </td>
                             </tr>    
                         @endforeach

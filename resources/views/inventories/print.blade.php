@@ -238,10 +238,13 @@
                     <td>{{ $inventory->product->subspecies[0] }}</td>
                     <td>{{ $inventory->product->subspecies[1] }}</td>
                     <!-- Cantidad 4-->
-                    <td class="separator-left"></td>
-                    <td></td>
-                    <td></td>
-                    <td>1</td>
+                    @php
+                        $quantity = str_pad(1, 4, '0', STR_PAD_LEFT);
+                    @endphp
+                    <td class="separator-left">{{ $quantity[0] }}</td>
+                    <td>{{ $quantity[1] }}</td>
+                    <td>{{ $quantity[2] }}</td>
+                    <td>{{ $quantity[3] }}</td>
                     <!-- Matriculas 10-->
                     <td class="separator-left">{{ $inventory->registration[0] }}</td>
                     <td>{{ $inventory->registration[1] }}</td>
@@ -257,9 +260,9 @@
                     <td class="separator-left"></td>
 
                     <!--  Right 38-->
-                    <td class="separator-left" colspan="28">{{ Str::substr($inventory->orderProduct->description, 0, 60) }}</td>
-                    <td class="separator-left" colspan="5">{{ $inventory->orderProduct->unit_price }}</td>
-                    <td colspan="5">{{ $inventory->orderProduct->total_price }}</td>
+                    <td class="separator-left" colspan="28">{{ Str::substr($inventory->product->description, 0, 60) }}</td>
+                    <td class="separator-left" colspan="5"></td>
+                    <td colspan="5"></td>
                 </tr>
                 @if($i % 29 === 0 && $i<$total)
                     <div class="page_break"></div>

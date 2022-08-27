@@ -29,9 +29,6 @@
                                 <th>Fecha de emisión</th>
                                 <th>Estado</th>
                                 <th style="width:75px;"></th>
-                                <th style="width:75px;"></th>
-                                <th style="width:75px;"></th>
-                                <th style="width:75px;"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,20 +41,8 @@
                                     <td>{{ $order->generated_at }}</td>
                                     <td>{{ $order->status->name }}</td>
                                     <td>
-                                        <a class="btn btn-primary btn-sm" href="{{ route('orders.print', ['order' => $order])}}" target="_blank">Imprimir</a>
-                                    </td>
-                                    <td>
                                         <a class="btn btn-info btn-sm" href="{{ route('orders.show', ['order' => $order->id])}}">Detalle</a>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-warning btn-sm" href="{{ route('orders.edit', ['order' => $order->id])}}">Editar</a>
-                                    </td>
-                                    <td>
-                                        <form method="POST" action="{{ route('orders.destroy', ['order' => $order->id]) }}" style="display:inline-block;">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button class="btn btn-danger btn-delete btn-sm" data-message="Está por eliminar la orden # {{ $order->id }}. Desea continuar?">Eliminar</button>
-                                        </form>
+                                        
                                     </td>
                                 </tr>    
                             @endforeach

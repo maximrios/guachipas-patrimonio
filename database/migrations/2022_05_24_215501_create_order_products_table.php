@@ -17,6 +17,7 @@ class CreateOrderProductsTable extends Migration
             $table->bigInteger('id', true)->unsigned();
             $table->foreignId('order_id');
             $table->foreignId('product_id');
+            $table->foreignId('order_product_found_id');
             $table->foreignId('order_product_status_id');
             $table->foreignId('order_product_origin_id');
             $table->tinyInteger('valuation');

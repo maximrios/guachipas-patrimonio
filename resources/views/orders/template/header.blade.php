@@ -102,7 +102,7 @@
             <td class="border-none"></td>
             <td colspan="35" class="border-none align-left"><b>Institución:</b> {{ $order->institution }}</td>
 
-            <td colspan="38" class="border-none align-left"><strong>PLANILLA DE ALTA N°</strong>......... <strong>- EJERCICIO</strong> ..........</td>
+            <td colspan="38" class="border-none align-left"><strong>PLANILLA DE ALTA N°</strong> {{ $order->number }} <strong>- EJERCICIO</strong> {{ $order->year }}</td>
         </tr>
         <tr class="clean">
             <td class="border-none"></td>

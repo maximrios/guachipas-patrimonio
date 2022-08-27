@@ -15,9 +15,9 @@ class CreateOrganizationsTable extends Migration
     {
         Schema::create('organizations', function (Blueprint $table) {
             $table->bigInteger('id', true)->unsigned();
-            $table->foreignId('organization_id')->nullable()->default(0);
             $table->string('code', 191)->nullable();
             $table->string('name', 191);
+            $table->nestedSet();
 			$table->timestamps();
 			$table->softDeletes();
         });

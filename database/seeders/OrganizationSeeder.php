@@ -17,9 +17,11 @@ class OrganizationSeeder extends Seeder
         DB::table('organizations')->insert(
             array (
                 'id' => 1,
-                'organization_id' => 0,
                 'code' => '5',
                 'name' => 'Hospital San Bernardo',
+                'parent_id' => 0,
+                '_lft' => 1,
+                '_rgt' => 2
             ),
         );
     }

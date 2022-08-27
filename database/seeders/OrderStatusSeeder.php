@@ -14,19 +14,22 @@ class OrderStatusSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('order_statuses')->insert(
+        DB::table('order_statuses')->insert([
             array (
                 'id' => 1,
                 'name' => 'Pendiente',
+                'slug' => 'pending',
             ),
             array (
                 'id' => 2,
                 'name' => 'Aprobada',
+                'slug' => 'approve',
             ),
             array (
                 'id' => 3,
                 'name' => 'Cancelada',
+                'slug' => 'cancelled',
             ),
-        );
+        ]);
     }
 }

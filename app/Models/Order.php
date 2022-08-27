@@ -35,4 +35,14 @@ class Order extends Model
     {
         return $this->hasMany('App\Models\OrderProduct', 'order_id', 'id');
     }
+
+    public function getNumberAttribute()
+    {
+        return str_pad($this->id, 6, '0', STR_PAD_LEFT);
+    }
+
+    public function getYearAttribute()
+    {
+        return date('Y', strtotime($this->created_at));
+    }
 }

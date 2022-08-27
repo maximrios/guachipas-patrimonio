@@ -3,10 +3,11 @@
 @section('content')
 <div class="page-title">
     <div class="title_left">
-        <h3>Unidades organizacionales <small></small></h3>
+        <h3>{{ $parent->name }}</h3>
     </div>
     <div class="title_right">
-        <a href="{{ url('organizations/create') }}" class="btn btn-primary pull-right">Nueva unidad organizacional</a>
+        <a href="{{ route('organizations.show', [$parent->parent_id]) }}" class="btn btn-default pull-right">Volver</a>
+        <a href="{{ route('organizations.create', [$parent->id]) }}" class="btn btn-primary pull-right">Nueva unidad organizacional</a>
     </div>
 </div>
 <div class="clearfix"></div>
@@ -18,25 +19,21 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <table class="table table-striped">
+                <table class="table">
                     <thead>
                         <tr>
-                            <th style="width:75px;">Código</th>
                             <th>Nombre</th>
-                            <th style="width:75px;"></th>
-                            <th style="width:75px;"></th>
+                            <th width="270"></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($organizations as $organization)
                             <tr>
-                                <td>{{ $organization->code }}</td>
                                 <td>{{ $organization->name }}</td>
                                 <td>
+                                    <a class="btn btn-info btn-sm" href="{{ route('organizations.show', ['organization' => $organization->id])}}">Dependencias</a>
                                     <a class="btn btn-warning btn-sm" href="{{ route('organizations.edit', ['organization' => $organization->id])}}">Editar</a>
-                                </td>
-                                <td>
-                                    <form method="POST" action="{{ route('organizations.destroy', ['organization' => $organization->id]) }}">
+                                    <form method="POST" action="{{ route('organizations.destroy', ['organization' => $organization]) }}">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-sm btn-delete" data-message="¿Esta por eliminar el registro. Desea continuar?" >
@@ -46,6 +43,7 @@
                                 </td>
                             </tr>    
                         @endforeach
+                        
                     </tbody>
                 </table>
             </div>

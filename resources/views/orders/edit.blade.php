@@ -14,7 +14,7 @@
         <div class="col-md-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Formulario de Alta</h2>
+                    <h2>Editar orden # {{ $order->id }}</h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -28,26 +28,25 @@
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close">x</button>
 						</div>
 					@endif
-                    <br>
                     <form action="{{ route('orders.update', $order->id) }}" method="post" class="form-horizontal form-label-left" autocomplete="false">
                     @csrf
 					@method('PUT')
                         <div class="form-group row">
                             <label class="control-label col-md-3 col-sm-3 ">Carácter</label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input type="text" id="character" name="character" class="form-control" placeholder="Carácter" value="{{ $order->character }}">
+                                <input type="text" id="character" name="character" class="form-control" placeholder="Carácter" value="{{ $order->character }}" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-md-3 col-sm-3 ">Institución</label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input type="text" id="institution" name="institution" class="form-control" placeholder="Institución" value="{{ $order->institution }}">
+                                <input type="text" id="institution" name="institution" class="form-control" placeholder="Institución" value="{{ $order->institution }}" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-md-3 col-sm-3 ">Jurisdicción</label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input type="text" id="organization" name="organization" class="form-control" placeholder="Jurisdicción">
+                                <input type="text" id="organization" name="organization" class="form-control" placeholder="Jurisdicción" value="{{ $order->organization_name }}" readonly>
                             </div>
                         </div>
                         <div class="form-group row">

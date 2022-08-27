@@ -16,8 +16,9 @@ use App\Http\Controllers\AssignmentController;
 Route::group(['middleware' => 'auth'], function () {
     
     Route::get('assignments/list', [AssignmentController::class, 'list'])->name('assignments.list');
-    Route::get('assignments/print', [AssignmentController::class, 'print'])->name('assignments.print');
+    Route::get('assignments/print/{assignment}', [AssignmentController::class, 'print'])->name('assignments.print');
     Route::post('assignments/untracked', [AssignmentController::class, 'untracked'])->name('assignments.untracked');
+    Route::get('assignments/approve/{assignment}', [AssignmentController::class, 'approve'])->name('assignments.approve');
 
     Route::resource('assignments', AssignmentController::class);
 

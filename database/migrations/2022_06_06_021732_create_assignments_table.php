@@ -15,10 +15,10 @@ class CreateAssignmentsTable extends Migration
     {
         Schema::create('assignments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('inventory_id');
             $table->foreignId('organization_id');
             $table->string('assign_to', 191);
-            $table->text('observation');
+            $table->text('observation')->nullable();
+            $table->date('approved_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

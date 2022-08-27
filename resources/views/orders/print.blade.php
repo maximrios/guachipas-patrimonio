@@ -266,8 +266,8 @@
 
                     <!--  Right 38-->
                     <td colspan="28" rowspan="6" class="separator-left" style="vertical-align:top; text-align:justify;padding:0 5px;">{{ $product->description }}</td>
-                    <td colspan="5" class="separator-left">$ {{ $product->unit_price }}</td>
-                    <td colspan="5" class="separator-left separator-right">$ {{ $product->total_price }}</td>
+                    <td colspan="5" class="separator-left"><small>$ {{ $product->unit_price }}</small></td>
+                    <td colspan="5" class="separator-left separator-right"><small>$ {{ $product->total_price }}</small></td>
                     
                 </tr>
                 <tr class="clean">
@@ -296,7 +296,7 @@
                 <tr class="clean">
                     <td class="border-left"></td>
                     <td colspan="5" class="align-left"><strong>Fondos:</strong></td>
-                    <td colspan="12" class="align-left">Arancelamiento</td>
+                    <td colspan="12" class="align-left">{{ $product->found->name }}</td>
 
                     <td colspan="5" class="align-left"><strong>O.C.N°:</strong></td>
                     <td colspan="16" class="align-left border-right">{{ $product->order_payment }}</td>

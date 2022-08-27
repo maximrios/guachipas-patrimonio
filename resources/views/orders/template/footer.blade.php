@@ -6,7 +6,7 @@
                     <td colspan="11" class="separator-left align-left" style="border-top: 1px solid #000;">Jefe del Servicio</td>
                     <td colspan="15" class="separator-left align-left" style="border-top: 1px solid #000;">Gerente Administrativo</td>
                     <td colspan="28" class="separator-left align-left" style="border-top: 1px solid #000;">
-                        Procedencia: 1-compra 2-Transferencia definitiva
+                        <small>El Programa Administración de Bienes, según Circular 6/00 de Contaduría</small>
                     </td>
                     <td colspan="10" class="separator-left separator-right align-left" style="border-top: 1px solid #000;">Gerencia General:</td>
                 </tr>
@@ -15,7 +15,7 @@
                     <td colspan="11" class="separator-left align-left">Recepcionante:</td>
                     <td colspan="15" class="separator-left"></td>
                     <td colspan="28" class="separator-left align-left">
-                        3-construccion 4-donacion 5-cooperacion 6-recupera.
+                        <small>Gral. de la Prov.,ha verificado la Clasificación Institucional hasta el nivel</small>
                     </td>
                     <td colspan="10" class="separator-left separator-right"></td>
                 </tr>
@@ -24,7 +24,7 @@
                     <td colspan="11" class="separator-left"></td>
                     <td colspan="15" class="separator-left"></td>
                     <td colspan="28" class="separator-left align-left">
-                        7-Prestamo
+                        <small>de Unidad de Organización y a constatado la correcta imputación de los</small>
                     </td>
                     <td colspan="10" class="separator-left separator-right"></td>
                 </tr>
@@ -32,14 +32,18 @@
                     <td colspan="13" class="separator-left"></td>
                     <td colspan="11" class="separator-left"></td>
                     <td colspan="15" class="separator-left"></td>
-                    <td colspan="28" class="separator-left"></td>
+                    <td colspan="28" class="separator-left align-left">
+                        <small>bienes de acuerdo al Nomenclador Patrimonial. Se desglosa copia de la</small>
+                    </td>
                     <td colspan="10" class="separator-left separator-right"></td>
                 </tr>
                 <tr class="table-footer">
                     <td colspan="13" class="separator-left">................................</td>
                     <td colspan="11" class="separator-left">................................</td>
                     <td colspan="15" class="separator-left">................................</td>
-                    <td colspan="28" class="separator-left"></td>
+                    <td colspan="28" class="separator-left align-left">
+                        <small>presente</small>
+                    </td>
                     <td colspan="10" class="separator-left separator-right"></td>
                 </tr>
                 <tr class="table-footer">

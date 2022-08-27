@@ -105,8 +105,8 @@
                     <td colspan="13"></td>
                     <td class="border-left" colspan="11"></td>
                     <td class="border-left" colspan="13"></td>
-                    <td class="border-left" colspan="28">
-                        de Unidad de Organización y a constatado la correcta imputación de los
+                    <td colspan="28" class="separator-left align-left">
+                        <small>de Unidad de Organización y a constatado la correcta imputación de los</small>
                     </td>
                     <td class="border-left" colspan="10"></td>
                 </tr>
