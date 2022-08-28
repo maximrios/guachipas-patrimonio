@@ -4,7 +4,7 @@
 <div class="">
     <div class="page-title">
         <div class="title_left">
-            <h3>Unidades organizacionales<small></small></h3>
+            <h3>{{ $parent->name }}<small></small></h3>
         </div>
         <div class="title_right">
         </div>
@@ -28,18 +28,15 @@
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close">x</button>
 						</div>
 					@endif
-                    <br>
                     <form action="{{ url('organizations') }}" method="post" class="form-horizontal form-label-left" autocomplete="false">
                     @csrf
-                        <div class="row">
-                            <div class="col-sm-2">
-                                <label class="control-label">Código</label>    
-                                <input type="text" id="code" name="code" class="form-control" placeholder="Código">
-                            </div>
-                            <div class="col-sm-10">
-                                <label class="control-label">Unidad Organizacional</label>    
-                                <input type="text" id="name" name="name" class="form-control" placeholder="Unidad Organizacional">
-                            </div>
+                        <div class="row form-group">
+                            <label for="code">Centro de costos</label>    
+                            <input type="text" id="code" name="code" class="form-control" placeholder="Código">
+                        </div>
+                        <div class="row form-group">
+                            <label for="name">Unidad Organizacional</label>    
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Unidad Organizacional">
                         </div>
                         <input type="hidden" name="parent_id" value="{{ $parent->id }}">
                         <div class="ln_solid"></div>

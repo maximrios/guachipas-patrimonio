@@ -28,15 +28,16 @@
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close">x</button>
 						</div>
 					@endif
-                    <br>
                     <form action="{{ route('organizations.update', ['organization' => $organization]) }}" method="post" class="form-horizontal form-label-left" autocomplete="false">
                     @csrf
                     @method('PUT')
+                        <div class="row form-group">
+                            <label for="code">Centro de costos</label>    
+                            <input type="text" id="code" name="code" class="form-control" value="{{ $organization->code }}" placeholder="Centro de costos">
+                        </div>
                         <div class="form-group row">
-                            <label class="control-label col-md-3 col-sm-3 ">Unidad Organizacional</label>
-                            <div class="col-md-9 col-sm-9 ">
-                                <input type="text" id="name" name="name" class="form-control" value="{{ $organization->name }}" placeholder="Unidad Organizacional">
-                            </div>
+                            <label for="name">Unidad Organizacional</label>
+                            <input type="text" id="name" name="name" class="form-control" value="{{ $organization->name }}" placeholder="Unidad Organizacional">
                         </div>
                         <div class="ln_solid"></div>
                         <div class="form-group row">

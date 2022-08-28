@@ -72,7 +72,7 @@
                   				<li><a href="{{ url('products') }}"><i class="fa fa-book"></i> Nomenclador</a></li>
                                 <li><a href="{{ url('providers') }}"><i class="fa fa-address-book"></i> Proveedores</a></li>
                                 <li><a href="{{ url('users') }}"><i class="fa fa-users"></i> Usuarios</a></li>
-                                <li><a href="{{ url('roles') }}"><i class="fa fa-book"></i> Roles</a></li>
+                                <li><a href="{{ url('roles') }}"><i class="fa fa-tag"></i> Roles</a></li>
                   			</ul>
               			</div>
             		</div>

@@ -47,7 +47,7 @@ class OrganizationController extends Controller
         $organization = new Organization($request->validated());
         $organization->save();
         if($organization) {
-            return redirect(route('organizations.index', [$organization->id]));
+            return redirect(route('organizations.show', ['organization' => $organization->parent_id]));
         }
         else {
             return redirect(route('organizations.index'))->with([
@@ -93,6 +93,7 @@ class OrganizationController extends Controller
      */
     public function update(Request $request, Organization $organization)
     {
+        $organization->code = $request->input('code');
         $organization->name = $request->input('name');
         $organization->save();
         if($organization) {

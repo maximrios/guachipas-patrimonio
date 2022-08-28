@@ -22,13 +22,15 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th width="150">Centro de Costos</th>
                             <th>Nombre</th>
-                            <th width="270"></th>
+                            <th width="260"></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($organizations as $organization)
                             <tr>
+                                <td>{{ $organization->code }}</td>
                                 <td>{{ $organization->name }}</td>
                                 <td>
                                     <a class="btn btn-info btn-sm" href="{{ route('organizations.show', ['organization' => $organization->id])}}">Dependencias</a>

@@ -5,10 +5,11 @@ namespace App\Models;
 use Kalnoy\Nestedset\NodeTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Organization extends Model
 {
-    use HasFactory, NodeTrait;
+    use HasFactory, NodeTrait, SoftDeletes;
 
     protected $fillable = [
         'code',
