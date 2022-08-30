@@ -13,7 +13,7 @@ use App\Http\Controllers\SaleController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'permission:sale-index']], function () {
 
     Route::resource('sales', SaleController::class);
     Route::get('sales/print/{sale}', [SaleController::class, 'print'])->name('sales.print');

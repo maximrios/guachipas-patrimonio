@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
 
@@ -15,7 +16,8 @@ use App\Http\Controllers\OrderController;
 */
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::resource('orders', OrderController::class);
+    Route::get('orders', [OrderController::class, 'index'])->name('orders.index')->can('viewAny', Order::class);
+    Route::resource('orders', OrderController::class)->except(['index']);
     Route::get('orders/print/{order}', [OrderController::class, 'print'])->name('orders.print');
     Route::get('orders/approve/{order}', [OrderController::class, 'approve'])->name('orders.approve');
 

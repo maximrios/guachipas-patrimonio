@@ -64,15 +64,33 @@
                 			<h3>Cargo</h3>
                 			<ul class="nav side-menu">
                 				<li><a href="{{ url('home') }}"><i class="fa fa-home"></i> Dashboard </a></li>
-                				<li><a href="{{ url('orders') }}"><i class="fa fa-sign-in"></i> Altas</a></li>
-                  				<li><a href="{{ url('sales') }}"><i class="fa fa-sign-out"></i> Bajas</a></li>
-                                <li><a href="{{ url('inventories') }}"><i class="fa fa-list"></i> Inventario</a></li>
-                                <li><a href="{{ url('assignments') }}"><i class="fa fa-share"></i> Asignaciones</a></li>
-                                <li><a href="{{ url('organizations') }}"><i class="fa fa-building"></i> Unidades Organizac</a></li>
-                  				<li><a href="{{ url('products') }}"><i class="fa fa-book"></i> Nomenclador</a></li>
-                                <li><a href="{{ url('providers') }}"><i class="fa fa-address-book"></i> Proveedores</a></li>
-                                <li><a href="{{ url('users') }}"><i class="fa fa-users"></i> Usuarios</a></li>
-                                <li><a href="{{ url('roles') }}"><i class="fa fa-tag"></i> Roles</a></li>
+                                @can('viewAny', App\Models\Order::class)
+                                    <li><a href="{{ url('orders') }}"><i class="fa fa-sign-in"></i> Altas</a></li>
+                                @endcan
+                                @if($getIndexSaleCapability)
+                  				    <li><a href="{{ url('sales') }}"><i class="fa fa-sign-out"></i> Bajas</a></li>
+                                @endif
+                                @if($getIndexInventoryCapability)
+                                    <li><a href="{{ url('inventories') }}"><i class="fa fa-list"></i> Inventario</a></li>
+                                @endif
+                                @if($getIndexAssignmentCapability)
+                                    <li><a href="{{ url('assignments') }}"><i class="fa fa-share"></i> Asignaciones</a></li>
+                                @endif
+                                @if($getIndexOrganizationCapability)
+                                    <li><a href="{{ url('organizations') }}"><i class="fa fa-building"></i> Unidades Organizac</a></li>
+                                @endif
+                                @if($getIndexProductCapability)
+                  				    <li><a href="{{ url('products') }}"><i class="fa fa-book"></i> Nomenclador</a></li>
+                                @endif
+                                @if($getIndexProviderCapability)
+                                    <li><a href="{{ url('providers') }}"><i class="fa fa-address-book"></i> Proveedores</a></li>
+                                @endif
+                                @if($getIndexUserCapability)
+                                    <li><a href="{{ url('users') }}"><i class="fa fa-users"></i> Usuarios</a></li>
+                                @endif
+                                @if($getIndexRoleCapability)
+                                    <li><a href="{{ url('roles') }}"><i class="fa fa-tag"></i> Roles</a></li>
+                                @endif
                   			</ul>
               			</div>
             		</div>
