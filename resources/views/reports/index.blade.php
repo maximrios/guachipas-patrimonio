@@ -3,73 +3,77 @@
 @section('content')
 <div class="page-title">
     <div class="title_left">
-        <h3>Asignaciones <small></small></h3>
-    </div>
-    <div class="title_right">
-        <a href="{{ url('assignments/create') }}" class="btn btn-primary pull-right">Nueva asignación</a>&nbsp;
+        <h3>Reportes <small></small></h3>
     </div>
 </div>
 <div class="clearfix"></div>
 <div class="row">
-    <div class="col-xs-8">
+    <div class="col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Asignaciones</h2>
+                <h2>Inventario</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-down"></i></a></li>
+                </ul>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Fecha</th>
-                            <th>Asignado</th>
-                            <th>Unidad organizacional</th>
-                            <th width="75px"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($assignments as $assignment)
-                            <tr>
-                                <td>{{ $assignment->id }}</td>
-                                <td>{{ $assignment->created_at }}</td>
-                                <td>{{ $assignment->assign_to }}</td>
-                                <td>{{ $assignment->organization->name }}</td>
-                                <td>
-                                    <a class="btn btn-info btn-sm" href="{{ route('assignments.show', ['assignment' => $assignment->id])}}">Detalle</a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <form action="{{ route('inventories.export') }}" target="_blank" method="post" autocomplete="off">
+                    @csrf
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="#">Unidad Organizacional</label>
+                                <select name="organization_id" id="organization_id" class="form-control">
+                                    @foreach ($organizations as $organization)
+                                        <option value="{{ $organization->id }}">{{ $organization->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="#">&nbsp;</label>
+                                <button class="btn btn-success form-control">Exportar a excel</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <div class="col-sm-4">
+</div>
+
+
+<div class="row">
+    <div class="col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Exportar</h2>
+                <h2>Altas</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-down"></i></a></li>
+                </ul>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <form action="{{ route('assignments.export') }}" target="_blank" method="post" autocomplete="off">
+                <form action="{{ route('orders.export') }}" target="_blank" method="post" autocomplete="off">
                     @csrf
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-3">
                             <label for="#">Fecha desde</label>
                             <div class="input-group">
                                 <input type="text" class="form-control datepicker" id="date_from" name="date_from" value="{{ date('d/m/Y') }}">
                                 <span class="input-group-addon" id="basic-addon1"><i class="fa fa-calendar"></i></span>
                             </div><!-- /input-group -->
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-3">
                             <label for="#">Fecha hasta</label>
                             <div class="input-group">
                                 <input type="text" class="form-control datepicker" id="date_to" name="date_to" value="{{ date('d/m/Y') }}">
                                 <span class="input-group-addon" id="basic-addon1"><i class="fa fa-calendar"></i></span>
                             </div><!-- /input-group -->
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="#">Unidad organizacional</label>
                                 <select name="organization_id" id="organization_id" class="form-control">
@@ -79,8 +83,9 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-2">
                             <div class="form-group">
+                                <label for="">&nbsp;</label>
                                 <button class="btn btn-success form-control">Exportar a excel</button>
                             </div>
                         </div>
@@ -91,16 +96,11 @@
         </div>
     </div>
 </div>
+
+@endsection
+
+@section('scripts')
 <script>
-
-    $(function() {
-        $('.table').dataTable({
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json'
-            }
-        });
-    })
-
     $(function() {
 	    $('.datepicker').datepicker({
 		    changeMonth: true,
@@ -108,6 +108,6 @@
 	 		dateFormat: "dd/mm/yy",
 	 	});
 	})
-
 </script>
+
 @endsection

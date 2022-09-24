@@ -10,6 +10,10 @@ use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Picqer\Barcode\BarcodeGeneratorPNG;
+use App\Http\Resources\InventoryResource;
+use App\Http\Resources\InventoryCollection;
+use App\Services\Inventory\InventoryExportService;
+use App\Services\Inventory\GetInventoryDataTableService;
 
 class InventoryController extends Controller
 {
@@ -20,6 +24,7 @@ class InventoryController extends Controller
      */
     public function index()
     {
+
         $inventories = Inventory::all();
         return view('inventories.index')->with('inventories', $inventories);
     }
@@ -97,41 +102,46 @@ class InventoryController extends Controller
         foreach($inventories as $inventory) {
             $inventory->orderProduct = OrderProduct::where('order_id', $inventory->order_id)->where('product_id', $inventory->product_id)->first();
         }
-        
+
         $data = [
             'inventories' => $inventories,
             'date' => $date,
         ];
-    
+
         $pdf = \PDF::loadView('inventories.print', $data)->setPaper('A4', 'landscape');
-    
+
         return $pdf->stream('archivo.pdf');
     }
 
-    public function code(Inventory $inventory) 
+    public function code(Inventory $inventory)
     {
         $code = $inventory->product->nomenclator.''.$inventory->registration;
         $generatorPNG = new BarcodeGeneratorPNG;
         $barcode = base64_encode($generatorPNG->getBarcode($code, $generatorPNG::TYPE_CODE_128));
-        
+
         $data = [
             'inventory' => $inventory,
             'code' => $code,
             'barcode' => $barcode,
         ];
-    
+
         $pdf = \PDF::loadView('inventories.code', $data)->setPaper('A4', 'portrait');
-    
+
         return $pdf->stream('etiquetas.pdf');
     }
 
-    public function list(Request $request) 
+    public function list(Request $request)
     {
-        $inventories = Inventory::selectRaw('inventories.id, CONCAT("MATRICULA N°: ", inventories.registration, " - ", products.name) as text')
-            ->join('products', 'inventories.product_id', 'products.id')
-            ->where('registration', 'like', '%'.$request->term.'%')
-            ->orWhere('products.name', 'like', '%'.$request->term.'%')->orderBy('products.name')->get();
-        return response()->json(['status' => 200, 'results' => $inventories]);
+
+        $inventories = (new GetInventoryDataTableService(
+            $request->get('start'),
+            $request->get('length'),
+            $request->get('term'),
+            $request->get('draw')
+        ))->execute();
+
+        return $inventories;
+
     }
 
     public function check(Request $request)
@@ -141,7 +151,7 @@ class InventoryController extends Controller
         return response()->json(['status' => 200, 'data' => $inventory, 'product' => $product]);
     }
 
-    public function order(Order $order) 
+    public function order(Order $order)
     {
 
         $inventories = Inventory::where('order_id', $order->id)->get();
@@ -151,7 +161,7 @@ class InventoryController extends Controller
             $code = $inventory->product->nomenclator.''.$inventory->registration;
             $generatorPNG = new BarcodeGeneratorPNG;
             $barcode = base64_encode($generatorPNG->getBarcode($code, $generatorPNG::TYPE_CODE_128));
-            
+
             $data['inventories'][] = [
                 //'inventory' => $inventory,
                 'code' => $code,
@@ -159,10 +169,16 @@ class InventoryController extends Controller
             ];
 
         }
-   
+
         $pdf = \PDF::loadView('inventories.order', $data)->setPaper('A4', 'portrait');
-    
+
         return $pdf->stream('etiquetas.pdf');
+    }
+
+    public function export(Request $request)
+    {
+        $organization_id = $request->input('organization_id');
+        return (new InventoryExportService($organization_id))->execute();
     }
 
 }

@@ -28,37 +28,32 @@
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close">x</button>
 						</div>
 					@endif
-                    <br>
                     <form action="{{ route('providers.update', $provider->id) }}" method="post" class="form-horizontal form-label-left" autocomplete="false">
-                    @csrf
-					@method('PUT')
-                        <div class="form-group row">
-                            <label class="control-label col-md-2 col-sm-2">Nombre</label>
-                            <div class="col-sm-10">
+                        @csrf
+					    @method('PUT')
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="control-label">Nombre</label>
                                 <input type="text" id="name" name="name" class="form-control" placeholder="Nombre" value="{{ $provider->name }}">
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="control-label col-md-2 col-sm-2">Domicilio</label>
-                            <div class="col-sm-10">
+                            <div class="form-group col-sm-6">
+                                <label class="control-label">Domicilio</label>
                                 <input type="text" id="address" name="address" class="form-control" placeholder="Domicilio" value="{{ $provider->address }}">
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="control-label col-md-2 col-sm-2">Correo electrónico</label>
-                            <div class="col-sm-10">
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="control-label">Correo electrónico</label>
                                 <input type="text" id="email" name="email" class="form-control" placeholder="Correo electrónico" value="{{ $provider->email }}">
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="control-label col-md-2 col-sm-2">Teléfono</label>
-                            <div class="col-sm-10">
+                            <div class="form-group col-sm-6">
+                                <label class="control-label">Teléfono</label>
                                 <input type="text" id="phone" name="phone" class="form-control" placeholder="Teléfono" value="{{ $provider->phone }}">
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="control-label col-md-2 col-sm-2">Nombre de contacto</label>
-                            <div class="col-sm-10">
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="control-label">Nombre de contacto</label>
                                 <input type="text" id="contact_name" name="contact_name" class="form-control" placeholder="Nombre de contacto" value="{{ $provider->contact_name }}">
                             </div>
                         </div>

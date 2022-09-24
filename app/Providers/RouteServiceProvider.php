@@ -61,6 +61,7 @@ class RouteServiceProvider extends ServiceProvider
             'organizations',
             'inventories',
             'providers',
+            'reports',
             'assignments',
             'assignmentProducts'
         ];

@@ -14,7 +14,7 @@ use App\Http\Controllers\AssignmentController;
 |
 */
 Route::group(['middleware' => 'auth'], function () {
-    
+
     Route::get('assignments/list', [AssignmentController::class, 'list'])->name('assignments.list');
     Route::get('assignments/print/{assignment}', [AssignmentController::class, 'print'])->name('assignments.print');
     Route::post('assignments/untracked', [AssignmentController::class, 'untracked'])->name('assignments.untracked');
@@ -22,4 +22,5 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('assignments', AssignmentController::class);
 
+    Route::post('assignments/export', [AssignmentController::class, 'export'])->name('assignments.export');
 });

@@ -53,6 +53,7 @@
                 contentType: false,
                 success: function(response) {
                     $('#modal').hide();
+                    window.location.reload();
                 }
             })
         });

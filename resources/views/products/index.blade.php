@@ -40,9 +40,9 @@
                                 <td>{{ $product->species }}</td>
                                 <td>{{ $product->subspecies }}</td>
                                 <td>{{ $product->name }}</td>
-                            </tr>    
+                            </tr>
                         @endforeach
-                        
+
                     </tbody>
                 </table>
             </div>
@@ -51,11 +51,7 @@
 </div>
 <script>
     $(function() {
-        $('.table').dataTable({
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json'
-            }
-        });
+        $('.table').dataTable();
     })
 </script>
 @endsection

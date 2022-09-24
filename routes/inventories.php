@@ -13,8 +13,8 @@ use App\Http\Controllers\InventoryController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware' => 'auth'], function () {
-    
+//Route::group(['middleware' => 'auth'], function () {
+
     Route::get('inventories/list', [InventoryController::class, 'list'])->name('inventories.list');
     Route::get('inventories/print', [InventoryController::class, 'print'])->name('inventories.print');
     Route::get('inventories/code/{inventory}', [InventoryController::class, 'code'])->name('inventories.code');
@@ -22,4 +22,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('inventories/check', [InventoryController::class, 'check'])->name('inventories.check');
     Route::resource('inventories', InventoryController::class);
 
-});
+    Route::post('inventories/export', [InventoryController::class, 'export'])->name('inventories.export');
+//});

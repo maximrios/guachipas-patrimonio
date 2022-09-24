@@ -26,8 +26,8 @@
                             <th>Email</th>
                             <th>Teléfono</th>
                             <th>Domicilio</th>
-                            <th style="width:75px;"></th>
-                            <th style="width:75px;"></th>
+                            <th style="width:50px;"></th>
+                            <th style="width:50px;"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,7 +50,7 @@
                                         </button>
                                     </form>
                                 </td>
-                            </tr>    
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -59,4 +59,11 @@
     </div>
 </div>
 
+@endsection
+@section('scripts')
+<script>
+    $(function() {
+        $('.table').dataTable();
+    })
+</script>
 @endsection

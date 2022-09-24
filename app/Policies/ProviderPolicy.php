@@ -2,12 +2,11 @@
 
 namespace App\Policies;
 
+use App\Models\Provider;
 use App\Models\User;
-use App\Models\Order;
-use App\Models\Permission;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class OrderPolicy
+class ProviderPolicy
 {
     use HandlesAuthorization;
 
@@ -19,19 +18,19 @@ class OrderPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->can('order-index');
+        return $user->can('provider-index');
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Provider  $provider
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Order $order)
+    public function view(User $user, Provider $provider)
     {
-        return $user->can('order-show');
+        //
     }
 
     /**
@@ -42,41 +41,41 @@ class OrderPolicy
      */
     public function create(User $user)
     {
-        return $user->can('order-create');
+        //
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Provider  $provider
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Order $order)
+    public function update(User $user, Provider $provider)
     {
-        return $user->can('order-edit');
+        //
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Provider  $provider
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Order $order)
+    public function delete(User $user, Provider $provider)
     {
-        return $user->can('order-destroy');
+        //
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Provider  $provider
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Order $order)
+    public function restore(User $user, Provider $provider)
     {
         //
     }
@@ -85,10 +84,10 @@ class OrderPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Provider  $provider
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Order $order)
+    public function forceDelete(User $user, Provider $provider)
     {
         //
     }

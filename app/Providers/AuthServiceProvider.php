@@ -2,6 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\Assignment;
+use App\Models\Inventory;
+use App\Models\Organization;
+use App\Policies\AssignmentPolicy;
+use App\Policies\InventoryPolicy;
+use App\Policies\OrganizationPolicy;
+use App\Policies\SalePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -15,6 +22,10 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
         Order::class => OrderPolicy::class,
+        Sale::class => SalePolicy::class,
+        Inventory::class => InventoryPolicy::class,
+        Assignment::class => AssignmentPolicy::class,
+        Organization::class => OrganizationPolicy::class,
     ];
 
     /**

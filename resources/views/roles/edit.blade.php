@@ -40,9 +40,12 @@
 						<div class="row">
                         	<div class="form-group col-sm-12">
                         		<label class="control-label" for="name">Permisos <span class="required">*</span></label><br>
+								@php
+								$group = '';
+								@endphp
 								@foreach ($permissions as $permission)
 									<div class="col-sm-3">
-									<label><input type="checkbox" id="" name="permission[]" value="{{ $permission->id }}" {{ in_array($permission->id, $rolePermissions) ? 'checked':'' }}>&nbsp; {{ $permission->name  }}</label><br>
+										<label><input type="checkbox" id="" name="permission[]" value="{{ $permission->id }}" {{ in_array($permission->id, $rolePermissions) ? 'checked':'' }}>&nbsp; {{ $permission->name  }}</label><br>
 									</div>
 								@endforeach
 							</div>

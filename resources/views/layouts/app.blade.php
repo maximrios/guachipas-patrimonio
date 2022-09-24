@@ -14,16 +14,16 @@
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/jquery.dataTables.min.js') }}" defer></script>
+    <!-- <script src="{{ asset('js/jquery.dataTables.min.js') }}" defer></script>
     <script src="{{ asset('js/dataTables.bootstrap.min.js') }}" defer></script>
-    <script src="https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json" defer></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json" defer></script> -->
     <script src="{{ asset('js/gentelella.js') }}" defer></script>
     <script src="{{ asset('js/sweetalert2.js') }}" defer></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
+
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    
+
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/i18n/es.js"></script>
 
@@ -31,7 +31,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    
+
     <!-- Styles -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
@@ -49,7 +49,7 @@
             		<div class="clearfix"></div>
             		<div class="profile clearfix">
               			<div class="profile_pic">
-                			
+
               			</div>
               			<div class="profile_info">
                 			<span>Bienvenido,</span>
@@ -67,30 +67,31 @@
                                 @can('viewAny', App\Models\Order::class)
                                     <li><a href="{{ url('orders') }}"><i class="fa fa-sign-in"></i> Altas</a></li>
                                 @endcan
-                                @if($getIndexSaleCapability)
+                                @can('viewAny', App\Models\Sale::class)
                   				    <li><a href="{{ url('sales') }}"><i class="fa fa-sign-out"></i> Bajas</a></li>
-                                @endif
-                                @if($getIndexInventoryCapability)
+                                @endcan
+                                @can('viewAny', App\Models\Inventory::class)
                                     <li><a href="{{ url('inventories') }}"><i class="fa fa-list"></i> Inventario</a></li>
-                                @endif
-                                @if($getIndexAssignmentCapability)
+                                @endcan
+                                @can('viewAny', App\Models\Assignment::class)
                                     <li><a href="{{ url('assignments') }}"><i class="fa fa-share"></i> Asignaciones</a></li>
-                                @endif
-                                @if($getIndexOrganizationCapability)
+                                @endcan
+                                @can('viewAny', App\Models\Organization::class)
                                     <li><a href="{{ url('organizations') }}"><i class="fa fa-building"></i> Unidades Organizac</a></li>
-                                @endif
-                                @if($getIndexProductCapability)
+                                @endcan
+                                @can('viewAny', App\Models\Product::class)
                   				    <li><a href="{{ url('products') }}"><i class="fa fa-book"></i> Nomenclador</a></li>
-                                @endif
-                                @if($getIndexProviderCapability)
+                                @endcan
+                                @can('viewAny', App\Models\Provider::class)
                                     <li><a href="{{ url('providers') }}"><i class="fa fa-address-book"></i> Proveedores</a></li>
-                                @endif
-                                @if($getIndexUserCapability)
+                                @endcan
+                                @can('viewAny', App\Models\User::class)
                                     <li><a href="{{ url('users') }}"><i class="fa fa-users"></i> Usuarios</a></li>
-                                @endif
-                                @if($getIndexRoleCapability)
+                                @endcan
+                                @can('viewAny', App\Models\Role::class)
                                     <li><a href="{{ url('roles') }}"><i class="fa fa-tag"></i> Roles</a></li>
-                                @endif
+                                @endcan
+                                <li><a href="{{ url('reports') }}"><i class="fa fa-tasks"></i> Reportes</a></li>
                   			</ul>
               			</div>
             		</div>
@@ -128,7 +129,7 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">
                                     <li>
-                                        <a href="#" 
+                                        <a href="#"
                                             onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
                                             <i class="fa fa-sign-out pull-right"></i> Cerrar sesión
@@ -159,5 +160,37 @@
         </div>
     </div>
     <div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModalLabel"></div>
+
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/b-print-2.2.3/r-2.3.0/datatables.min.css"/>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/b-print-2.2.3/r-2.3.0/datatables.min.js"></script>
+
+    <script>
+        $(function() {
+
+            const languages = {
+                'es': '//cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json',
+            };
+            $.extend( true, $.fn.dataTable.Buttons.defaults.dom.button, {
+                className: 'btn btn-sm',
+            });
+            $.extend( true, $.fn.dataTable.defaults, {
+                //responsive: true,
+                language: {
+                    url: languages['es'],
+                },
+                pageLength: 20,
+            });
+
+
+        });
+    </script>
+
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    @yield('scripts')
 </body>
 </html>

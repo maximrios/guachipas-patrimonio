@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    .table label {
+        margin-bottom: 0!important;
+    }
+</style>
+
 <div class="page-title">
     <div class="title_left">
         <h3>Inventario <small></small></h3>
@@ -18,17 +24,19 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <table class="table table-striped">
+                <table id="" class="table table-striped">
                     <thead>
                         <tr>
                             <th width="90px">Matrícula N°</th>
                             <th>Nombre</th>
                             <th>Sector</th>
                             <th width="70px">Estado</th>
-                            <th width="120px"></th>
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            /*
+
                         @foreach ($inventories as $inventory)
                             <tr>
                                 <td>{{ $inventory->registration }}</td>
@@ -41,22 +49,63 @@
                                 <td>
                                     <a href="{{ route('inventories.code', ['inventory' => $inventory]) }}" target="_blank" class="btn btn-primary btn-sm"><i class="fa fa-barcode"></i>&nbsp;Imprimir etiquetas</a>
                                 </td>
-                            </tr>    
+                            </tr>
                         @endforeach
+                        */
+                        @endphp
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
+
+@section('scripts')
 <script>
-    $(function() {
-        $('.table').dataTable({
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json'
-            }
-        });
-    })
-    
+$( document ).ready(function() {
+    $('.table').dataTable({
+        processing: true,
+        serverSide: true,
+        responsive: true,
+        ajax: "{{ route('inventories.list') }}",
+        dataType: 'json',
+        type: 'GET',
+        columns: [{
+                data: 'registration',
+                name: 'registration',
+            },
+            {
+                data: 'product',
+                name: 'product',
+            },
+            {
+                data: 'organization',
+                name: 'organization',
+            },
+            {
+                data: 'status',
+                name: 'status',
+            },
+        ],
+        columnDefs: [
+            {
+                render: function (data, type, row) {
+                    return '<label>' + data + '</label><br><span>' + row.description + '</span>';
+                },
+                targets: 1,
+            },
+            {
+                render: function (data, type, row) {
+                    return `<span class="label label-info">${data}</label>`;
+                },
+                targets: 3,
+            },
+        ],
+    });
+});
+
+
 </script>
+@endsection
+
 @endsection

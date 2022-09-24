@@ -170,8 +170,8 @@
                 @foreach ($assignment->products as $product)
                     <tr>
                         <td>{{ $product->quantity }}</td>
-                        <td></td>
-                        <td></td>
+                        <td>{{ $product->registration }}</td>
+                        <td>{{ $product->registration }}</td>
                         <td class="align-left">{{ $product->name }}</td>
                     </tr>    
                 @endforeach

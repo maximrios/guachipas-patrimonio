@@ -27,5 +27,7 @@ $(document).on('click', '.btn-delete', function(event) {
         if(result.isConfirmed === true) {
             form.submit();
         }
-    })    
-})
+    })
+});
+
+

@@ -21,5 +21,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('orders/print/{order}', [OrderController::class, 'print'])->name('orders.print');
     Route::get('orders/approve/{order}', [OrderController::class, 'approve'])->name('orders.approve');
 
+    Route::post('orders/export', [OrderController::class, 'export'])->name('orders.export');
+
 });
 

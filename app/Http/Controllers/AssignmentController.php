@@ -8,6 +8,7 @@ use App\Models\Organization;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreAssignmentRequest;
 use App\Models\Inventory;
+use App\Services\Assignment\AssignmentExportService;
 
 class AssignmentController extends Controller
 {
@@ -19,7 +20,10 @@ class AssignmentController extends Controller
     public function index()
     {
         $assignments = Assignment::all();
-        return view('assignments.index')->with('assignments', $assignments);
+        $organizations = Organization::all();
+        return view('assignments.index')
+            ->with('assignments', $assignments)
+            ->with('organizations', $organizations);
     }
 
     /**
@@ -51,7 +55,7 @@ class AssignmentController extends Controller
             return redirect(route('assignments.index'))->with([
                 'message' => 'Ocurrio un error al registrar la orden',
                 'type' => 'danger',
-            ]);    
+            ]);
         }
     }
 
@@ -106,9 +110,9 @@ class AssignmentController extends Controller
     public function print(Assignment $assignment)
     {
         $products = $assignment->products()->get();
-        
+
         $date = Carbon::today();
-        $date->locale(); //con esto revise que el lenguaje fuera es 
+        $date->locale(); //con esto revise que el lenguaje fuera es
 
         $logo = base64_encode(file_get_contents(public_path('/img/logo.png')));
 
@@ -117,16 +121,16 @@ class AssignmentController extends Controller
             'products' => $products,
             'logo' => $logo,
         ];
-    
+
         $pdf = \PDF::loadView('assignments.print', $data)->setPaper('A4', 'portrait');
-    
+
         return $pdf->stream('archivo.pdf');
     }
 
     public function approve(Assignment $assignment)
     {
         $products = $assignment->products;
-        
+
         foreach($products as $product) {
             if($product->inventory_id) {
                 $inventory = Inventory::find($product->inventory_id);
@@ -139,5 +143,15 @@ class AssignmentController extends Controller
         $assignment->save();
 
         return redirect(route('assignments.show', [$assignment]));
+    }
+
+    public function export(Request $request)
+    {
+        $from = $request->input('date_from');
+        $to = $request->input('date_to');
+        $organization_id = $request->input('organization_id');
+
+
+        return (new AssignmentExportService($from, $to, $organization_id))->execute();
     }
 }

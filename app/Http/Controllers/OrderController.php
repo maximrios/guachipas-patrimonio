@@ -9,9 +9,12 @@ use App\Models\Inventory;
 use App\Models\OrderProduct;
 use App\Models\Organization;
 use Illuminate\Http\Request;
+use App\Exporters\OrderExport;
 use Illuminate\Support\Facades\Log;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Services\Order\OrderExportService;
 
 class OrderController extends Controller
 {
@@ -56,7 +59,7 @@ class OrderController extends Controller
             return redirect(route('orders.index'))->with([
                 'message' => 'Ocurrio un error al registrar la orden',
                 'type' => 'danger',
-            ]);    
+            ]);
         }
     }
 
@@ -105,7 +108,7 @@ class OrderController extends Controller
             return redirect(route('orders.index'))->with([
                 'message' => 'Ocurrio un error al registrar la orden',
                 'type' => 'danger',
-            ]);    
+            ]);
         }
     }
 
@@ -127,9 +130,9 @@ class OrderController extends Controller
     public function print(Order $order)
     {
         $products = $order->products()->get();
-        
+
         $date = Carbon::today();
-        $date->locale(); //con esto revise que el lenguaje fuera es 
+        $date->locale(); //con esto revise que el lenguaje fuera es
 
         $logo = base64_encode(file_get_contents(public_path('/img/logo.png')));
 
@@ -138,9 +141,9 @@ class OrderController extends Controller
             'products' => $products,
             'logo' => $logo,
         ];
-    
+
         $pdf = \PDF::loadView('orders.print', $data)->setPaper('A4', 'landscape');
-    
+
         return $pdf->stream('archivo.pdf');
     }
 
@@ -169,5 +172,15 @@ class OrderController extends Controller
         $order->status_id = 2;
         $order->save();
         return redirect(route('orders.show', [$order->id]));
+    }
+
+    public function export(Request $request)
+    {
+        $from = $request->input('date_from');
+        $to = $request->input('date_to');
+        $organization_id = $request->input('organization_id');
+
+
+        return (new OrderExportService($from, $to, $organization_id))->execute();
     }
 }

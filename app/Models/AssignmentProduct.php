@@ -17,4 +17,9 @@ class AssignmentProduct extends Model
         'name',
         'quantity',
     ];
+
+    public function inventory() 
+    {
+        return $this->belongsTo(Inventory::class, 'inventory_id', 'id');
+    }
 }
