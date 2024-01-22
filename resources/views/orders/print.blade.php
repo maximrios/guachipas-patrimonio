@@ -281,7 +281,7 @@
                 <tr class="clean">
                     <td class="border-left"></td>
                     <td colspan="7" class="align-left"><strong>Proveedor:</strong></td>
-                    <td colspan="31" class="align-left border-right">MAGNUS S.A.</td>
+                    <td colspan="31" class="align-left border-right">{{ ($product->provider) ? $product->provider->name : '' }}</td>
 
                     <td colspan="5" class="separator-left"></td>
                     <td colspan="5" class="separator-left separator-right"></td>
@@ -289,7 +289,9 @@
                 <tr class="clean">
                     <td class="border-left"></td>
                     <td colspan="7" class="align-left"><strong>Factura N°:</strong></td>
-                    <td colspan="31" class="align-left border-right">{{ $product->invoice }}</td>
+                    <td colspan="10" class="align-left">{{ $product->invoice }}</td>
+                    <td colspan="10" class="align-left"><strong>Fecha de Factura:</strong></td>
+                    <td colspan="11" class="align-left border-right">{{ $product->date_invoice }}</td>
                     <td colspan="5" class="separator-left"></td>
                     <td colspan="5" class="separator-left separator-right"></td>
                 </tr>

@@ -35,7 +35,9 @@ class StoreOrderProductRequest extends FormRequest
             'section' => 'Seccion',
             'subsection' => 'Subseccion',
             'invoice' => 'Factura',
+            'date_invoice' => 'Fecha de factura',
             'order_payment' => 'Orden de pago',
+            'provider_id' => 'Proveedor',
             'unit_price' => 'Precio unitario',
             'total_price' => 'Precio total',
         ];
@@ -48,7 +50,6 @@ class StoreOrderProductRequest extends FormRequest
      */
     public function rules()
     {
-        
         $rules = [
             'order_id' => 'required',
             'product_id' => 'required',
@@ -61,7 +62,9 @@ class StoreOrderProductRequest extends FormRequest
             'section' => 'required',
             'subsection' => 'required',
             'invoice' => 'required',
+            'date_invoice' => 'required',
             'order_payment' => 'required',
+            'provider_id' => 'required',
             'unit_price' => 'required',
             'total_price' => 'required',
         ];

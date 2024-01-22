@@ -35,6 +35,10 @@
                             <label for="code">Centro de costos</label>    
                             <input type="text" id="code" name="code" class="form-control" value="{{ $organization->code }}" placeholder="Centro de costos">
                         </div>
+                        <div class="row form-group">
+                            <label for="sector">Número de sector</label>    
+                            <input type="text" id="sector" name="sector" class="form-control" value="{{ $organization->sector }}" placeholder="Sector">
+                        </div>
                         <div class="form-group row">
                             <label for="name">Unidad Organizacional</label>
                             <input type="text" id="name" name="name" class="form-control" value="{{ $organization->name }}" placeholder="Unidad Organizacional">

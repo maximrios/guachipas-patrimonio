@@ -9,10 +9,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Organization extends Model
 {
-    use HasFactory, NodeTrait, SoftDeletes;
+    use HasFactory;
+    use NodeTrait;
+    use SoftDeletes;
 
     protected $fillable = [
         'code',
+        'sector',
         'name',
         'parent_id',
     ];
@@ -32,5 +35,4 @@ class Organization extends Model
     {
         return str_pad($code, 3, '0', STR_PAD_LEFT);
     }
-    
 }

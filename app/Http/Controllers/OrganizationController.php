@@ -94,6 +94,7 @@ class OrganizationController extends Controller
     public function update(Request $request, Organization $organization)
     {
         $organization->code = $request->input('code');
+        $organization->sector = $request->input('sector');
         $organization->name = $request->input('name');
         $organization->save();
         if($organization) {

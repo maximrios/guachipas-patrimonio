@@ -156,10 +156,9 @@ class InventoryController extends Controller
 
         $inventories = Inventory::where('order_id', $order->id)->get();
         $data = [];
-        foreach($inventories as $inventory) {
-
-            $code = $inventory->product->nomenclator.''.$inventory->registration;
-            $generatorPNG = new BarcodeGeneratorPNG;
+        foreach ($inventories as $inventory) {
+            $code = $inventory->product->nomenclator . '' . $inventory->registration;
+            $generatorPNG = new BarcodeGeneratorPNG();
             $barcode = base64_encode($generatorPNG->getBarcode($code, $generatorPNG::TYPE_CODE_128));
 
             $data['inventories'][] = [
@@ -169,7 +168,6 @@ class InventoryController extends Controller
             ];
 
         }
-
         $pdf = \PDF::loadView('inventories.order', $data)->setPaper('A4', 'portrait');
 
         return $pdf->stream('etiquetas.pdf');

@@ -35,6 +35,10 @@
                             <input type="text" id="code" name="code" class="form-control" placeholder="Código">
                         </div>
                         <div class="row form-group">
+                            <label for="sector">Número de sector</label>    
+                            <input type="text" id="sector" name="sector" class="form-control" placeholder="Sector">
+                        </div>
+                        <div class="row form-group">
                             <label for="name">Unidad Organizacional</label>    
                             <input type="text" id="name" name="name" class="form-control" placeholder="Unidad Organizacional">
                         </div>

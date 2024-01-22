@@ -115,10 +115,10 @@
         </tr>
         <tr class="clean">
             <td class="border-none"></td>
-            <td class="separator-top separator-left separator-right" style="text-align:center;">0</td>
             <td class="separator-top separator-left separator-right" style="text-align:center;">5</td>
+            <td class="separator-top separator-left separator-right" style="text-align:center;">9</td>
             <td class="border-none"></td>
-            <td colspan="35" class="border-none align-left"><b>Unid. De Organización:</b> {{ $order->organization->name }}</td>
+            <td colspan="35" class="border-none align-left"><b>Unid. De Organización:</b> Hospital San Bernardo</td>
 
             <td colspan="38" class="border-none align-left">Fecha de emisión: ...... de ............ de .......</td>
         </tr>
@@ -131,7 +131,7 @@
             <td class="separator-left">E</td>
             <td class="separator-left">M</td>
 
-            <td colspan="28" rowspan="3" class="separator-left align-left" style="font-size: 16px;border-right: none!important;">Sector: {{ $order->organization->code }} - {{ $order->organization->name }}</td>
+            <td colspan="28" rowspan="3" class="separator-left align-left" style="font-size: 16px;border-right: none!important;">Sector: {{ $order->organization->sector }} - {{ $order->organization->name }}</td>
             <td colspan="10" rowspan="3" style="border-left: none!important;"><img width="100" src="data:image/png;base64,{{ $logo }}"/></td>
         </tr>
         <tr>

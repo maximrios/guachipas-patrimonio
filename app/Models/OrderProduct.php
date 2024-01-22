@@ -23,11 +23,13 @@ class OrderProduct extends Model
         'section',
         'subsection',
         'invoice',
+        'date_invoice',
         'order_payment',
+        'provider_id',
         'unit_price',
         'total_price',
     ];
-    
+
     public function order()
     {
         return $this->belongsTo('App\Models\Order', 'order_id', 'id');
@@ -51,5 +53,10 @@ class OrderProduct extends Model
     public function found()
     {
         return $this->belongsTo('App\Models\OrderProductFound', 'order_product_found_id', 'id');
+    }
+
+    public function provider()
+    {
+        return $this->belongsTo('App\Models\Provider', 'provider_id', 'id');
     }
 }

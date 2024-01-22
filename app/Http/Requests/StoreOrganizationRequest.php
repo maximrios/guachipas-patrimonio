@@ -26,6 +26,7 @@ class StoreOrganizationRequest extends FormRequest
         return [
             'parent_id' => 'Organismo',
             'code' => 'Código',
+            'sector' => 'Sector',
             "name" => 'Unidad Organizacional',
         ];
     }
@@ -41,6 +42,7 @@ class StoreOrganizationRequest extends FormRequest
         $rules = [
             "parent_id" => 'required',
             'code' => 'required',
+            'sector' => 'required',
             "name" => 'required|min:4|max:100',
         ];
 

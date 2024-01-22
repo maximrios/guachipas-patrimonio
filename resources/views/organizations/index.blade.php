@@ -23,6 +23,7 @@
                     <thead>
                         <tr>
                             <th width="150">Centro de Costos</th>
+                            <th width="150">Número de sector</th>
                             <th>Nombre</th>
                             <th width="260"></th>
                         </tr>
@@ -31,6 +32,7 @@
                         @foreach ($organizations as $organization)
                             <tr>
                                 <td>{{ $organization->code }}</td>
+                                <td>{{ $organization->sector }}</td>
                                 <td>{{ $organization->name }}</td>
                                 <td>
                                     <a class="btn btn-info btn-sm" href="{{ route('organizations.show', ['organization' => $organization->id])}}">Dependencias</a>

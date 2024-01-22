@@ -33,7 +33,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('layouts.app', function($view) {
+        /*
+        View::composer('layouts.app', function ($view) {
             
             $getIndexOrderCapability = (new GetIndexOrderCapabilityBySessionService())->execute();
             $getIndexSaleCapability = (new GetIndexSaleCapabilityBySessionService())->execute();
@@ -56,5 +57,6 @@ class AppServiceProvider extends ServiceProvider
                 ->with('getIndexRoleCapability', $getIndexRoleCapability);
 
         });
+        */
     }
 }

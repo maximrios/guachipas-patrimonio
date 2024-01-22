@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Models\Provider;
 use App\Services\Order\OrderExportService;
 
 class OrderController extends Controller
@@ -37,8 +38,10 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $organizations = Organization::all();
+        $organizations = Organization::orderBy('name')->get();
+        $providers = Provider::all();
         return view('orders.create')
+            ->with('providers', $providers)
             ->with('organizations', $organizations);
     }
 

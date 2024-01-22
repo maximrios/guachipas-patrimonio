@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\OrderProductOrigin;
 use App\Models\OrderProductStatus;
 use App\Models\Product;
+use App\Models\Provider;
 
 class OrderProductController extends Controller
 {
@@ -35,8 +36,10 @@ class OrderProductController extends Controller
         $statuses = OrderProductStatus::all();
         $origins = OrderProductOrigin::all();
         $products = Product::all();
+        $providers = Provider::all();
         return view('orderProducts.create')
             ->with('order', $order)
+            ->with('providers', $providers)
             ->with('products', $products)
             ->with('statuses', $statuses)
             ->with('origins', $origins)
