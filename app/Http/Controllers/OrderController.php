@@ -154,27 +154,42 @@ class OrderController extends Controller
     {
         $products = $order->products()->get();
         //TODO if one organization
-        $lastRegistration = Inventory::where('organization_id', $order->organization_id)->orderBy('id', 'desc')->value('registration');
-        $registration = ($lastRegistration) ? $lastRegistration:1;
-        foreach($products as $product) {
+        //$lastRegistration = Inventory::where('organization_id', $order->organization_id)->orderBy('id', 'desc')->value('registration');
+        $lastRegistration = Inventory::orderBy('registration', 'desc')->value('registration');
+        $registration = ($lastRegistration) ? $lastRegistration : 1;
+        $productId = 0;
+        foreach ($products as $product) {
             //$registration = $product->registration_from;
-            for($i=1; $i<= $product->quantity; $i++) {
+            for ($i = 1; $i <= $product->quantity; $i++) {
                 $inventory = new Inventory();
                 $inventory->product_id = $product->product_id;
                 $inventory->description = $product->description;
                 $inventory->organization_id = $order->organization_id;
-                $inventory->registration = $registration++;
+                $inventory->registration = $registration + 1;
                 $inventory->order_id = $order->id;
                 $inventory->sale_id = 0;
                 $inventory->current_organization = $order->organization_id;
                 $inventory->status_id = $product->order_product_status_id;
                 $inventory->save();
+
+                if ($productId != $product->id) {
+                    $product->registration_from = $registration + 1;
+                    $productId = $product->id;
+                    $product->save();
+                } else {
+                    $product->registration_to = $registration + 1;
+                    $product->save();
+                }
+                $registration++;
             }
         }
         $order->generated_at = date('Y-m-d H:i:s');
         $order->status_id = 2;
         $order->save();
-        return redirect(route('orders.show', [$order->id]));
+        return redirect(route('orders.show', [$order->id]))->with([
+            'message' => 'Se confirmó el alta correctamente.',
+            'type' => 'success',
+        ]);
     }
 
     public function export(Request $request)

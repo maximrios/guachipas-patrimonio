@@ -56,21 +56,24 @@ class OrderProductController extends Controller
     {
         $orderProduct = new OrderProduct($request->validated());
         $orderProduct->save();
-        if($orderProduct) {
-            if($request->input('continue')){
+        if ($orderProduct) {
+            if ($request->input('continue')) {
                 $order = Order::findOrFail($orderProduct->order_id);
-                return redirect(route('orderProducts.create', ['order' => $order]));
+                return redirect(route('orderProducts.create', ['order' => $order]))->with([
+                    'message' => 'Se agregó el bien correctamente.',
+                    'type' => 'success',
+                ]);
+            } else {
+                return redirect(route('orders.show', [$orderProduct->order_id]))->with([
+                    'message' => 'Se agregó el bien correctamente.',
+                    'type' => 'success',
+                ]);
             }
-            else {
-                return redirect(route('orders.show', [$orderProduct->order_id]));
-            }
-                
-        }
-        else {
+        } else {
             return redirect(route('orders.index'))->with([
                 'message' => 'Ocurrio un error al registrar la orden',
                 'type' => 'danger',
-            ]);    
+            ]);
         }
     }
 

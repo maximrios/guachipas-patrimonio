@@ -111,7 +111,7 @@
             <td class="border-none"></td>
             <td colspan="35" class="border-none align-left"><b>Jurisdicción:</b> {{ $order->organization_name }}</td>
 
-            <td colspan="38" class="border-none align-left">Expediente: C°...... N° {{ $order->file }}</td>
+            <td colspan="38" class="border-none align-left">Expediente N°: {{ $order->file }}</td>
         </tr>
         <tr class="clean">
             <td class="border-none"></td>
@@ -119,8 +119,16 @@
             <td class="separator-top separator-left separator-right" style="text-align:center;">9</td>
             <td class="border-none"></td>
             <td colspan="35" class="border-none align-left"><b>Unid. De Organización:</b> Hospital San Bernardo</td>
-
-            <td colspan="38" class="border-none align-left">Fecha de emisión: ...... de ............ de .......</td>
+            @php
+                $approvedAt = '';
+                if ($order->generated_at != '') {
+                    $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+                    $fecha = \Carbon\Carbon::parse($order->generated_at);
+                    $mes = $meses[($fecha->format('n')) - 1];
+                    $approvedAt = $fecha->format('d') . ' de ' . $mes . ' de ' . $fecha->format('Y');
+                }
+            @endphp
+            <td colspan="38" class="border-none align-left">Fecha de emisión: {{ $approvedAt }}</td>
         </tr>
         <tr>
             <td colspan="9" rowspan="2">Clasificación<br>Insititucional</td>

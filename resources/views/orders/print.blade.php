@@ -249,16 +249,12 @@
                     <td>{{ $quantity[2] }}</td>
                     <td>{{ $quantity[3] }}</td>
                     <!-- Matriculas 10-->
-                    <td class="separator-left"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="separator-left"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="separator-left" colspan="5">
+                        {{ @$product->registration_from }}
+                    </td>
+                    <td class="separator-left" colspan="5">
+                        {{ @$product->registration_to }}
+                    </td>
                     <!-- Procedencia y Estado -->
                     <td class="separator-left">{{ $product->origin->id }}</td>
                     <td class="separator-left">{{ $product->status->id }}</td>

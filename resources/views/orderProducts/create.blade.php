@@ -18,6 +18,14 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
+                    @if(session('message'))
+                        <div class="alert alert-{{ session('type') }} show" role="alert">
+                            {{ session('message') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
 					@if ($errors->any())
 						<div class="alert alert-error alert-dismissible" role="alert">
 							<div class="alert-content">

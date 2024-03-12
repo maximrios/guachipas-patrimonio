@@ -18,6 +18,14 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
+                    @if(session('message'))
+                        <div class="alert alert-{{ session('type') }} show" role="alert">
+                            {{ session('message') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                     <section class="content invoice">
                         <div class="row">
                             <div class="invoice-header">
@@ -41,7 +49,6 @@
                             <div class="col-sm-4 invoice-col">
                                 <div>
                                     <strong>Expediente</strong>
-                                    <br><b>C°:</b>
                                     <br><b>N°:</b> {{ $order->file }}
                                 </div>
                             </div>
@@ -118,7 +125,7 @@
                                                     <p>{{ $product->description }}</p>
                                                 </td>
                                                 <td>{{ $product->quantity }}</td>
-                                                <td></td>
+                                                <td>{{ @$product->registration_from }} - {{ @$product->registration_to }}</td>
                                                 <td>{{ $product->origin->name }}</td>
                                                 <td>{{ $product->status->name }}</td>
                                                 <td>{{ $product->unit_price }}</td>

@@ -9,8 +9,8 @@
         	<div id="message"></div>
             <div class="row">
                 <div class="form-group col-sm-12">
-                	<label>Matricula N°</label><br>
-                	<select id="product_id" name="product_id" class="form-control select" data-url="{{ route('inventories.list') }}"></select>
+                	<label>Matricula Nx°</label><br>
+                	<select id="product_id" style="width:'100%'" name="product_id" class="form-control select" data-url="{{ route('inventories.search') }}"></select>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -31,7 +31,7 @@
             minimumInputLength: 3,
             minimumResultsForSearch: 20,
             ajax: {
-                url: "{{ route('inventories.list') }}",
+                url: "{{ route('inventories.search') }}",
                 dataType: 'json',
                 // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
             }

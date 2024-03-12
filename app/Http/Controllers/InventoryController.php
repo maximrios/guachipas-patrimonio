@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Order;
+use App\Models\Product;
 use Barryvdh\DomPDF\PDF;
 use App\Models\Inventory;
 use App\Models\OrderProduct;
@@ -95,11 +96,12 @@ class InventoryController extends Controller
         //
     }
 
-    public function print() {
+    public function print()
+    {
         $inventories = Inventory::all();
         $date = Carbon::today();
 
-        foreach($inventories as $inventory) {
+        foreach ($inventories as $inventory) {
             $inventory->orderProduct = OrderProduct::where('order_id', $inventory->order_id)->where('product_id', $inventory->product_id)->first();
         }
 
@@ -115,7 +117,7 @@ class InventoryController extends Controller
 
     public function code(Inventory $inventory)
     {
-        $code = $inventory->product->nomenclator.''.$inventory->registration;
+        $code = $inventory->product->nomenclator . '' . $inventory->registration;
         $generatorPNG = new BarcodeGeneratorPNG;
         $barcode = base64_encode($generatorPNG->getBarcode($code, $generatorPNG::TYPE_CODE_128));
 
@@ -141,7 +143,6 @@ class InventoryController extends Controller
         ))->execute();
 
         return $inventories;
-
     }
 
     public function check(Request $request)
@@ -166,7 +167,6 @@ class InventoryController extends Controller
                 'code' => $code,
                 'barcode' => $barcode,
             ];
-
         }
         $pdf = \PDF::loadView('inventories.order', $data)->setPaper('A4', 'portrait');
 
@@ -179,4 +179,21 @@ class InventoryController extends Controller
         return (new InventoryExportService($organization_id))->execute();
     }
 
+    public function search(Request $request)
+    {
+        /*$inventories = Inventory::selectRaw('id, name as text')
+            ->where('registration', 'like', '%' . $request->term . '%')
+            ->orWhereHas('product', function ($query) use ($request) {
+                $query->where('name', 'like', '%' . $request->term . '%');
+            })
+            ->get();
+*/
+        $inventories = Inventory::query()
+            ->select(DB::raw("CONCAT('Matricula N°: ', inventories.registration, ' - ', products.name) AS text"))
+            ->leftJoin('products', 'inventories.product_id', '=', 'products.id') // Join con la tabla de productos
+            ->where('inventories.registration', 'like', '%' . $request->term . '%')
+            ->orWhere('products.name', 'like', '%' . $request->term . '%')
+            ->get();
+        return response()->json(['status' => 200, 'results' => $inventories]);
+    }
 }
