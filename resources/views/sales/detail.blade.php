@@ -53,8 +53,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <a class="btn btn-default pull-right" href="{{ route('sales.print', ['sale' => $sale])}}" target="_blank">Ver planilla de alta</a>
-                                <a class="btn btn-warning pull-right" href="{{ route('sales.edit', ['sale' => $sale->id])}}">Editar</a>
+                                <a class="btn btn-default pull-right" href="{{ route('sales.print', ['sale' => $sale])}}" target="_blank">Ver planilla de baja</a>
                                 @if($sale->status_id === 1)
                                     <form method="POST" action="{{ route('sales.destroy', ['sale' => $sale->id]) }}" style="display:inline;">
                                         @method('DELETE')

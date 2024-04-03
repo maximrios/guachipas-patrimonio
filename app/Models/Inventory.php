@@ -24,7 +24,7 @@ class Inventory extends Model
 
     public function getRegistrationAttribute($registration)
     {
-        return str_pad($registration, 5, '0', STR_PAD_LEFT);
+        return str_pad($registration, 9, '0', STR_PAD_LEFT);
     }
 
     public function organization()

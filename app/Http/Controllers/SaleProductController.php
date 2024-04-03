@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreSaleProductRequest;
 use App\Models\Sale;
 use App\Models\Product;
 use App\Models\SaleProduct;
@@ -38,9 +39,21 @@ class SaleProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSaleProductRequest $request)
     {
-        //
+        $saleProduct = new SaleProduct($request->validated());
+        $saleProduct->save();
+        if ($saleProduct) {
+            return redirect(route('orders.show', [$saleProduct->sale_id]))->with([
+                'message' => 'Se dio de baja el bien correctamente.',
+                'type' => 'success',
+            ]);
+        } else {
+            return redirect(route('orders.index'))->with([
+                'message' => 'Ocurrio un error al registrar la baja',
+                'type' => 'danger',
+            ]);
+        }
     }
 
     /**

@@ -59,4 +59,14 @@ class OrderProduct extends Model
     {
         return $this->belongsTo('App\Models\Provider', 'provider_id', 'id');
     }
+
+    public function getRegistrationFromAttribute($registration_from)
+    {
+        return str_pad($registration_from, 9, '0', STR_PAD_LEFT);
+    }
+
+    public function getRegistrationToAttribute($registration_to)
+    {
+        return str_pad($registration_to, 9, '0', STR_PAD_LEFT);
+    }
 }

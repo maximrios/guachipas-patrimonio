@@ -189,7 +189,7 @@ class InventoryController extends Controller
             ->get();
 */
         $inventories = Inventory::query()
-            ->select(DB::raw("CONCAT('Matricula N°: ', inventories.registration, ' - ', products.name) AS text"))
+            ->select(DB::raw("CONCAT('Matricula N°: ', inventories.registration, ' - ', products.name) AS text, inventories.id as id"))
             ->leftJoin('products', 'inventories.product_id', '=', 'products.id') // Join con la tabla de productos
             ->where('inventories.registration', 'like', '%' . $request->term . '%')
             ->orWhere('products.name', 'like', '%' . $request->term . '%')

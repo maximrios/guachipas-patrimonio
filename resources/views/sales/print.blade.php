@@ -5,16 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Document</title>
+    <title>Planilla de Baja - Hospital San Bernardo</title>
     <style>
         @page {
-            margin: 0.5cm 1cm;
+            margin: 0.5cm;
         }
         body {
+            font-family: Arial, Helvetica, sans-serif;
             margin-top: 4.1cm;
-            /*margin-left: 2cm;
-            margin-right: 2cm;
-            margin-bottom: 2cm; */
         }
         .page_break { 
             page-break-before: always; 
@@ -28,8 +26,7 @@
             top: 0cm;
             left: 0cm;
             right: 0cm;
-            height: 6cm;
-            
+            height: 4.45cm;
         }
         
         /** Table **/
@@ -39,24 +36,35 @@
         
         table tr td {
             border: 1px solid #000;
+            font-size: 13px;
+            height: 11px;
+            text-align: center;
+            width: 11px!important;
+        }
+        table.grid tr td {
+            border: 1px solid #000;
             font-size: 12px;
             height: 11px;
             text-align: center;
-            width: 14px!important;
+            width: 11px!important;
         }
         table tr.hidden td {
-            border: 1px solid transparent!important;
+            border-color: #fff!important;
             color: #fff;
         }
         table.no-border tr td {
             border: 1px solid #fff;
+        }
+        table tr.clean td {
+            border-left: none;
+            border-right: none;
         }
         footer {
             position: fixed; 
             bottom: 0cm; 
             left: 0cm; 
             right: 0cm;
-            height: 4.36cm;
+            height: 3.17cm;
         }
         footer table tr td {
             border-top: none;
@@ -69,11 +77,32 @@
         .btop {
             border-top: 3px solid #000000;
         }
+        .border-left {
+            border-left: 1px solid #000000!important;
+        }
+        .border-right {
+            border-right: 1px solid #000000!important;
+        }
         .border-bottom {
             border-bottom: 1px solid #000000!important;
         }
         .bsides {
             border-top: 3px solid #000000;
+        }
+        .separator-top {
+            border-top: 2px solid #000000!important;
+        }
+        .separator-left {
+            border-left: 2px solid #000000!important;
+        }
+        .separator-right {
+            border-right: 2px solid #000000!important;
+        }
+        .separator-bottom {
+            border-bottom: 2px solid #000000!important;
+        }
+        .border-none {
+            border: none;
         }
 
         
@@ -88,7 +117,18 @@
     @include('sales.template.footer')
     <main>
         <table class="grid">
-            <tr class="hidden">
+        <tr class="hidden">
+                <td>a</td>
+                <td>a</td>
+                <td class="separator-left">a</td>
+                <td>a</td>
+                <td>a</td>
+                <td class="separator-left">a</td>
+                <td>a</td>
+                <td>a</td>
+                <td>a</td>
+
+                <td class="separator-left">a</td>
                 <td>a</td>
                 <td>a</td>
                 <td>a</td>
@@ -100,6 +140,29 @@
                 <td>a</td>
                 <td>a</td>
                 <td>a</td>
+                <td>a</td>
+
+                <td class="separator-left">a</td>
+                <td>a</td>
+                <td>a</td>
+                <td>a</td>
+
+                <td>a</td>
+                <td>a</td>
+                <td>a</td>
+                <td>a</td>
+                <td>a</td>
+                <td class="separator-left">a</td>
+                <td>a</td>
+                <td>a</td>
+                <td>a</td>
+                <td>a</td>
+
+                <td class="separator-left">a</td>
+                <td class="separator-left">a</td>
+                <td class="separator-left">a</td>
+
+                <td class="separator-left">a</td>
                 <td>a</td>
                 <td>a</td>
                 <td>a</td>
@@ -128,40 +191,13 @@
                 <td>a</td>
                 <td>a</td>
 
+                <td class="separator-left">a</td>
                 <td>a</td>
                 <td>a</td>
                 <td>a</td>
                 <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
+
+                <td class="separator-left">a</td>
                 <td>a</td>
                 <td>a</td>
                 <td>a</td>
@@ -179,18 +215,18 @@
             @foreach ($products as $product)
                 <tr class="btop">
                     <!-- Clasificacion Institucional 9-->
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="separator-left">5</td>
+                    <td>6</td>
+                    <td class="separator-left">{{ $sale->organization->code[0] }}</td>
+                    <td>{{ $sale->organization->code[1] }}</td>
+                    <td>{{ $sale->organization->code[2] }}</td>
+                    <td class="separator-left">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
                     <!-- Clasificacion Patrimonial 13-->
 
-                    <td></td>
+                    <td class="separator-left"></td>
                     <td>{{ $product->product->type }}</td>
 
                     <td></td>
@@ -209,7 +245,7 @@
                     <td></td>
                     <td></td>
                     <!-- Cantidad 4-->
-                    <td></td>
+                    <td class="separator-left"></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -227,6 +263,7 @@
                     <!-- Procedencia y Estado -->
                     <td>{{ $product->origin->id }}</td>
                     <td>{{ $product->status->id }}</td>
+                    <td></td>
 
                     <!--  Right 38-->
                     <td colspan="28" rowspan="5">{{ $product->description }}</td>
@@ -235,22 +272,22 @@
                     
                 </tr>
                 <tr>
-                    <td colspan="38" class="align-left">Observaciones</td>
+                    <td colspan="39" class="align-left">Observaciones</td>
                     <td colspan="5"></td>
                     <td colspan="5"></td>
                 </tr>
                 <tr>
-                    <td colspan="38" class="align-left">N° Planilla de Alta: </td>
+                    <td colspan="39" class="align-left">N° Planilla de Alta: </td>
                     <td colspan="5"></td>
                     <td colspan="5"></td>
                 </tr>
                 <tr>
-                    <td colspan="38" class="align-left"></td>
+                    <td colspan="39" class="align-left"></td>
                     <td colspan="5"></td>
                     <td colspan="5"></td>
                 </tr>
                 <tr>
-                    <td colspan="38" style="color: #fff;">a</td>
+                    <td colspan="39" style="color: #fff;">a</td>
                     <td colspan="5" style="color: #fff;">a</td>
                     <td colspan="5" style="color: #fff;">a</td>
                 </tr>
@@ -341,7 +378,7 @@
             @for ($j=$i-1;$j<$total;$j++)
                 <tr class="btop">
                     <!-- Clasificacion Institucional 9-->
-                    <td></td>
+                    <td style="color: #FFF;">a</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -363,56 +400,49 @@
 
                     <td></td>
                     <td></td>
-
+                    
                     <td></td>
                     <td></td>
                     <td></td>
 
                     <td></td>
-                    <td style="color:#FFF;">a</td>
+                    <td></td>
                     <!-- Cantidad 4-->
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
                     <!-- Matriculas 10-->
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td colspan="5"></td>
+                    <td colspan="5"></td>
                     <!-- Procedencia y Estado -->
+                    <td></td>
                     <td></td>
                     <td></td>
 
                     <!--  Right 38-->
-                    <td colspan="28" rowspan="5"></td>
-                    <td colspan="5"></td>
-                    <td colspan="5"></td>
+                    <td colspan="28" rowspan="5" class="separator-left" style="vertical-align:top; text-align:justify;padding:0 5px;"></td>
+                    <td colspan="5" class="separator-left"></td>
+                    <td colspan="5" class="separator-left separator-right"></td>
                     
                 </tr>
                 <tr>
-                    <td colspan="38" class="align-left">Observaciones</td>
+                    <td colspan="39" class="align-left">Observaciones</td>
                     <td colspan="5"></td>
                     <td colspan="5"></td>
                 </tr>
                 <tr>
-                    <td colspan="38" class="align-left">N° Planilla de Alta:</td>
+                    <td colspan="39" class="align-left">N° Planilla de Alta:</td>
                     <td colspan="5"></td>
                     <td colspan="5"></td>
                 </tr>
                 <tr>
-                    <td colspan="38" style="color:#FFF;">a</td>
+                    <td colspan="39" style="color:#FFF;">a</td>
                     <td colspan="5"></td>
                     <td colspan="5"></td>
                 </tr>
                 <tr>
-                    <td colspan="38" style="color:#FFF;">a</td>
+                    <td colspan="39" style="color:#FFF;">a</td>
                     <td colspan="5"></td>
                     <td colspan="5"></td>
                 </tr>

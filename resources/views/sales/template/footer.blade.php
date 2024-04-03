@@ -2,67 +2,77 @@
     <table>
         
         <tr class="table-footer">
-                    <td colspan="13" style="border-top: 1px solid #000;">Confeccionada por:</td>
-                    <td colspan="11" style="border-top: 1px solid #000;">V° B° Jefe del Servicio</td>
-                    <td colspan="14" style="border-top: 1px solid #000;">Director</td>
-                    <td colspan="28" style="border-top: 1px solid #000;">
-                        El Programa Administración de Bienes, según Circular 6/00 de Contaduría
+                    <td colspan="13" class="align-left" style="border-top: 1px solid #000;">Jefe Servicio de Patrimonio:</td>
+                    <td colspan="11" class="separator-left align-left" style="border-top: 1px solid #000;">Jefe del Servicio</td>
+                    <td colspan="15" class="separator-left align-left" style="border-top: 1px solid #000;">Gerente Administrativo</td>
+                    <td colspan="28" class="separator-left align-left" style="border-top: 1px solid #000;">
+                        <small>El Programa Administración de Bienes, según Circular 6/00 de Contaduría</small>
                     </td>
-                    <td colspan="10" style="border-top: 1px solid #000;">Procesada y archivada por:</td>
+                    <td colspan="10" class="separator-left separator-right align-left" style="border-top: 1px solid #000;">Gerencia General:</td>
                 </tr>
                 <tr class="table-footer">
                     <td colspan="13"></td>
-                    <td colspan="11">Patrimonial</td>
-                    <td colspan="14"></td>
-                    <td colspan="28">
-                        Gral. de la Prov.,ha verificado la Clasificación Institucional hasta el nivel de
+                    <td colspan="11" class="separator-left align-left">Recepcionante:</td>
+                    <td colspan="15" class="separator-left"></td>
+                    <td colspan="28" class="separator-left align-left">
+                        <small>Gral. de la Prov.,ha verificado la Clasificación Institucional hasta el nivel</small>
                     </td>
-                    <td colspan="10"></td>
+                    <td colspan="10" class="separator-left separator-right"></td>
                 </tr>
                 <tr class="table-footer">
-                    <td colspan="13"></td>
-                    <td colspan="11"></td>
-                    <td colspan="14"></td>
-                    <td colspan="28">
-                        de Unidad de Organización y a constatado la correcta imputación de los
+                    <td colspan="13" class="separator-left"></td>
+                    <td colspan="11" class="separator-left"></td>
+                    <td colspan="15" class="separator-left"></td>
+                    <td colspan="28" class="separator-left align-left">
+                        <small>de Unidad de Organización y a constatado la correcta imputación de los</small>
                     </td>
-                    <td colspan="10"></td>
+                    <td colspan="10" class="separator-left separator-right"></td>
                 </tr>
                 <tr class="table-footer">
-                    <td colspan="13"></td>
-                    <td colspan="11"></td>
-                    <td colspan="14"></td>
-                    <td colspan="28">
-                        bienes de acuerdo al Nomenclador Patrimonial. Se desglosa copia de la presente.
+                    <td colspan="13" class="separator-left"></td>
+                    <td colspan="11" class="separator-left"></td>
+                    <td colspan="15" class="separator-left"></td>
+                    <td colspan="28" class="separator-left align-left">
+                        <small>bienes de acuerdo al Nomenclador Patrimonial. Se desglosa copia de la</small>
                     </td>
-                    <td colspan="10"></td>
+                    <td colspan="10" class="separator-left separator-right"></td>
                 </tr>
                 <tr class="table-footer">
-                    <td colspan="13">................................</td>
-                    <td colspan="11">................................</td>
-                    <td colspan="14">................................</td>
-                    <td colspan="28"></td>
-                    <td colspan="10">...............</td>
+                    <td colspan="13" class="separator-left">................................</td>
+                    <td colspan="11" class="separator-left">................................</td>
+                    <td colspan="15" class="separator-left">................................</td>
+                    <td colspan="28" class="separator-left align-left">
+                        <small>presente</small>
+                    </td>
+                    <td colspan="10" class="separator-left separator-right"></td>
                 </tr>
                 <tr class="table-footer">
-                    <td colspan="13">Firma</td>
-                    <td colspan="11">Firma</td>
-                    <td colspan="14">Firma</td>
-                    <td colspan="28">
+                    <td colspan="13" class="separator-left">Firma</td>
+                    <td colspan="11" class="separator-left">Firma</td>
+                    <td colspan="15" class="separator-left">Firma</td>
+                    <td colspan="28" class="separator-left">
                         Salta, .......de ...........................de...........  
                     </td>
-                    <td colspan="10">Firma y Sello</td>
+                    <td colspan="10" class="separator-left separator-right">................................</td>
                 </tr>
                 <tr class="table-footer">
-                    <td colspan="13" class="border-bottom">Aclaración</td>
-                    <td colspan="11" class="border-bottom">Sello</td>
-                    <td colspan="14" class="border-bottom">Sello</td>
-                    <td colspan="28" class="border-bottom"></td>
-                    <td colspan="10" class="border-bottom"></td>
+                    <td colspan="13" class="border-bottom separator-left separator-bottom">Sello</td>
+                    <td colspan="11" class="border-bottom separator-left separator-bottom">Sello</td>
+                    <td colspan="15" class="border-bottom separator-left separator-bottom">Sello</td>
+                    <td colspan="28" class="border-bottom separator-left separator-bottom"></td>
+                    <td colspan="10" class="separator-left separator-right separator-bottom">Firma y Sello</td>
                 </tr>
                 <tr class="hidden">
                     <td>a</td>
                     <td>a</td>
+                    <td class="separator-left">a</td>
+                    <td>a</td>
+                    <td>a</td>
+                    <td class="separator-left">a</td>
+                    <td>a</td>
+                    <td>a</td>
+                    <td>a</td>
+                    <td class="separator-left">a</td>
                     <td>a</td>
                     <td>a</td>
                     <td>a</td>
@@ -75,31 +85,25 @@
                     <td>a</td>
                     <td>a</td>
                     <td>a</td>
+                    <td class="separator-left">a</td>
+                    <td>a</td>
+                    <td>a</td>
+                    <td>a</td>
+                    <td class="separator-left">a</td>
                     <td>a</td>
                     <td>a</td>
                     <td>a</td>
                     <td>a</td>
+                    <td class="separator-left">a</td>
                     <td>a</td>
                     <td>a</td>
                     <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
+                    <td class="separator-left">a</td>
+                    <td class="separator-left">a</td>
+                    <td class="separator-left">a</td>
+                    <td class="separator-left">a</td>
 
+                    <td class="separator-left">a</td>
                     <td>a</td>
                     <td>a</td>
                     <td>a</td>
@@ -127,13 +131,12 @@
                     <td>a</td>
                     <td>a</td>
                     <td>a</td>
+                    <td class="separator-left">a</td>
                     <td>a</td>
                     <td>a</td>
                     <td>a</td>
                     <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
+                    <td class="separator-left">a</td>
                     <td>a</td>
                     <td>a</td>
                     <td>a</td>

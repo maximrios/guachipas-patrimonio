@@ -87,4 +87,12 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $('#organization_id').select2({
+            theme: "default",
+            language: "es",
+        });
+    })
+</script>
 @endsection

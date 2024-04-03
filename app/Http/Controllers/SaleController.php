@@ -111,16 +111,18 @@ class SaleController extends Controller
     {
         $date = Carbon::today();
         $date->locale(); //con esto revise que el lenguaje fuera es 
-        
+
+        $logo = base64_encode(file_get_contents(public_path('/img/logo.png')));
 
         $products = $sale->products()->get();
         $data = [
             'sale' => $sale,
             'products' => $products,
-            'date' => $date
+            'date' => $date,
+            'logo' => $logo,
         ];
     
-        $pdf = \PDF::loadView('sales.print', $data)->setPaper('legal', 'landscape');
+        $pdf = \PDF::loadView('sales.print', $data)->setPaper('a4', 'landscape');
     
         return $pdf->stream('archivo.pdf');
     }

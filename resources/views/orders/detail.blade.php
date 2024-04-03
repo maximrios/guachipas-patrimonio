@@ -106,12 +106,13 @@
                                     <thead>
                                         <tr>
                                             <th>Nombre</th>
-                                            <th>Cantidad</th>
-                                            <th>Matrícula</th>
-                                            <th>Procedencia</th>
-                                            <th>Estado</th>
-                                            <th>Precio U.</th>
-                                            <th>Precio Total</th>
+                                            <th width="100px" class="text-center">Cantidad</th>
+                                            <th width="120px">Matrícula desde</th>
+                                            <th width="120px">Matrícula hasta</th>
+                                            <th width="180px">Procedencia</th>
+                                            <th width="100px">Estado</th>
+                                            <th width="120px" class="text-right">Precio U.</th>
+                                            <th width="120px" class="text-right">Precio Total</th>
                                             @if($order->status_id === 1)
                                                 <th width="150px"></th>
                                             @endif
@@ -124,12 +125,13 @@
                                                     <strong>{{ $product->product->name }}</strong><br>
                                                     <p>{{ $product->description }}</p>
                                                 </td>
-                                                <td>{{ $product->quantity }}</td>
-                                                <td>{{ @$product->registration_from }} - {{ @$product->registration_to }}</td>
+                                                <td class="text-center">{{ $product->quantity }}</td>
+                                                <td>{{ $product->registration_from }}</td>
+                                                <td>{{ $product->registration_to }}</td>
                                                 <td>{{ $product->origin->name }}</td>
                                                 <td>{{ $product->status->name }}</td>
-                                                <td>{{ $product->unit_price }}</td>
-                                                <td>{{ $product->total_price }}</td>
+                                                <td class="text-right">{{ $product->unit_price }}</td>
+                                                <td class="text-right">{{ $product->total_price }}</td>
                                                 @if($order->status_id === 1)
                                                     <td>
                                                         <a href="{{ route('orderProducts.edit', ['orderProduct' => $product]) }}" class="btn btn-warning btn-sm">Editar</a>

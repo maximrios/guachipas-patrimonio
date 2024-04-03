@@ -13,9 +13,6 @@
         body {
             font-family: Arial, Helvetica, sans-serif;
             margin-top: 4.1cm;
-            /*margin-left: 2cm;
-            margin-right: 2cm;
-            margin-bottom: 2cm; */
         }
         .page_break { 
             page-break-before: always; 
