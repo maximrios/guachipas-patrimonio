@@ -174,6 +174,9 @@ class OrderController extends Controller
 
                 if ($productId != $product->id) {
                     $product->registration_from = $registration + 1;
+                    if ($product->quantity == 1) {
+                        $product->registration_to = $product->registration_from + 1;
+                    }
                     $productId = $product->id;
                     $product->save();
                 } else {
