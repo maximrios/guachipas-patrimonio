@@ -123,7 +123,7 @@
                 $approvedAt = '';
                 if ($sale->generated_at != '') {
                     $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-                    $fecha = \Carbon\Carbon::parse($order->generated_at);
+                    $fecha = \Carbon\Carbon::parse($sale->generated_at);
                     $mes = $meses[($fecha->format('n')) - 1];
                     $approvedAt = $fecha->format('d') . ' de ' . $mes . ' de ' . $fecha->format('Y');
                 }
