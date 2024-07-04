@@ -25,13 +25,11 @@ class StoreSaleProductRequest extends FormRequest
     {
         return [
             'sale_id' => 'Baja',
-            'product_id' => 'Matrícula',
-            'quantity' => 'Cantidad',
-            'description' => 'Descripcion',
-            'sale_product_status_id' => 'Estado',
+            'inventory_id' => 'Matrícula',
+            'observation' => 'Observación',
             'sale_product_reason_id' => 'Motivo de baja',
-            'registration_from' => 'Matricula desde',
-            'registration_to' => 'Matricula hasta',
+            //'registration_from' => 'Matricula desde',
+            //'registration_to' => 'Matricula hasta',
         ];
     }
 
@@ -44,13 +42,11 @@ class StoreSaleProductRequest extends FormRequest
     {
         $rules = [
             'sale_id' => 'required',
-            'product_id' => 'required',
-            'quantity' => 'required',
-            'description' => 'required',
-            'sale_product_status_id' => 'required',
+            'inventory_id' => 'required',
+            'observation' => 'max:191',
             'sale_product_reason_id' => 'required',
-            'registration_from' => 'required',
-            'registration_to' => 'required',
+            //'registration_from' => 'required',
+            //'registration_to' => 'required',
         ];
 
         return $rules;

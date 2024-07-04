@@ -179,6 +179,12 @@ class InventoryController extends Controller
         return (new InventoryExportService($organization_id))->execute();
     }
 
+    public function get(Request $request)
+    {
+        $inventory = Inventory::find($request->id);
+        return response()->json(['status' => 200, 'data' => new InventoryResource($inventory)]);
+    }
+
     public function search(Request $request)
     {
         /*$inventories = Inventory::selectRaw('id, name as text')

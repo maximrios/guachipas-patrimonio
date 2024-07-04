@@ -41,13 +41,6 @@
             text-align: center;
             width: 11px!important;
         }
-        table.grid tr td {
-            border: 1px solid #000;
-            font-size: 12px;
-            height: 11px;
-            text-align: center;
-            width: 11px!important;
-        }
         table tr.hidden td {
             border-color: #fff!important;
             color: #fff;
@@ -205,7 +198,7 @@
             </tr>
             @php
                 $totalProducts = ($products->count() > 0) ? $products->count():5;
-                $perPage = 5;
+                $perPage = 4;
                 $rest = $totalProducts%$perPage;
                 $complete = ($rest === 0) ? 0 : $perPage - $rest;
                 $total = $complete + $totalProducts;
@@ -217,81 +210,91 @@
                     <!-- Clasificacion Institucional 9-->
                     <td class="separator-left">5</td>
                     <td>6</td>
-                    <td class="separator-left">{{ $sale->organization->code[0] }}</td>
-                    <td>{{ $sale->organization->code[1] }}</td>
-                    <td>{{ $sale->organization->code[2] }}</td>
+                    <td class="separator-left">{{ $product->inventory->organization?->code[0] }}</td>
+                    <td>{{ $product->inventory->organization?->code[1] }}</td>
+                    <td>{{ $product->inventory->organization?->code[2] }}</td>
                     <td class="separator-left">0</td>
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
                     <!-- Clasificacion Patrimonial 13-->
 
-                    <td class="separator-left"></td>
-                    <td>{{ $product->product->type }}</td>
+                    <td class="separator-left">{{ $product->inventory->product->type[0] }}</td>
+                    <td>{{ $product->inventory->product->type[1] }}</td>
 
-                    <td></td>
-                    <td></td>
+                    <td>{{ $product->inventory->product->group[0] }}</td>
+                    <td>{{ $product->inventory->product->group[1] }}</td>
 
-                    <td></td>
-                    <td></td>
+                    <td>{{ $product->inventory->product->subgroup[0] }}</td>
+                    <td>{{ $product->inventory->product->subgroup[1] }}</td>
 
-                    <td></td>
-                    <td></td>
+                    <td>{{ $product->inventory->product->account[0] }}</td>
+                    <td>{{ $product->inventory->product->account[1] }}</td>
 
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $product->inventory->product->species[0] }}</td>
+                    <td>{{ $product->inventory->product->species[1] }}</td>
+                    <td>{{ $product->inventory->product->species[2] }}</td>
 
-                    <td></td>
-                    <td></td>
+                    <td>{{ $product->inventory->product->subspecies[0] }}</td>
+                    <td>{{ $product->inventory->product->subspecies[1] }}</td>
                     <!-- Cantidad 4-->
-                    <td class="separator-left"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="separator-left">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
                     <!-- Matriculas 10-->
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="separator-left" colspan="5">
+                        {{ @$product->inventory->registration }}
+                    </td>
+                    <td class="separator-left" colspan="5">
+                        {{ @$product->inventory->registration }}
+                    </td>
                     <!-- Procedencia y Estado -->
-                    <td>{{ $product->origin->id }}</td>
-                    <td>{{ $product->status->id }}</td>
-                    <td></td>
+                    <td class="separator-left"></td>
+                    <td class="separator-left"></td>
+                    <td class="separator-left"></td>
 
                     <!--  Right 38-->
-                    <td colspan="28" rowspan="5">{{ $product->description }}</td>
-                    <td colspan="5">{{ $product->unit_price }}</td>
-                    <td colspan="5">{{ $product->total_price }}</td>
+                    <td colspan="28" rowspan="6" class="separator-left" style="vertical-align:top; text-align:justify;padding:0 5px;">{{ $product->inventory->product->description }}</td>
+                    <td colspan="5" class="separator-left"><small></small></td>
+                    <td colspan="5" class="separator-left separator-right"><small></small></td>
                     
                 </tr>
-                <tr>
-                    <td colspan="39" class="align-left">Observaciones</td>
-                    <td colspan="5"></td>
-                    <td colspan="5"></td>
+                <tr class="clean">
+                    <td class="border-left"></td>
+                    <td colspan="4" class="align-left"><strong>Bien:</strong> </td>
+                    <td colspan="34" class="align-left border-right">{{ $product->inventory->product->name }}</td>
+                    <td colspan="5" class="separator-left"></td>
+                    <td colspan="5" class="separator-left separator-right"></td>
                 </tr>
-                <tr>
-                    <td colspan="39" class="align-left">N° Planilla de Alta: </td>
-                    <td colspan="5"></td>
-                    <td colspan="5"></td>
+                <tr class="clean">
+                    <td class="border-left"></td>
+                    <td colspan="10" class="align-left"><strong>Motivo de baja:</strong> </td>
+                    <td colspan="28" class="align-left border-right">{{ $product->reason->name }}</td>
+                    <td colspan="5" class="separator-left" style="color: #fff;">a</td>
+                    <td colspan="5" class="separator-left separator-right" style="color: #fff;">a</td>
                 </tr>
-                <tr>
-                    <td colspan="39" class="align-left"></td>
-                    <td colspan="5"></td>
-                    <td colspan="5"></td>
+                <tr class="clean">
+                    <td class="border-left"></td>
+                    <td colspan="8" class="align-left"><strong>Observaciones:</strong> </td>
+                    <td colspan="30" class="align-left border-right">{{ $product->description }}</td>
+                    <td colspan="5" class="separator-left"></td>
+                    <td colspan="5" class="separator-left separator-right"></td>
                 </tr>
-                <tr>
-                    <td colspan="39" style="color: #fff;">a</td>
-                    <td colspan="5" style="color: #fff;">a</td>
-                    <td colspan="5" style="color: #fff;">a</td>
+                <tr class="clean">
+                    <td class="border-left"></td>
+                    <td colspan="10" class="align-left"><strong>N° Planilla de Alta:</strong> </td>
+                    <td colspan="28" class="align-left border-right">{{ $product->inventory->order->number }}</td>
+                    <td colspan="5" class="separator-left"></td>
+                    <td colspan="5" class="separator-left separator-right"></td>
                 </tr>
-                @if($i % 5 === 0 && $i<$total)
+                <tr class="clean">
+                    <td class="border-left"></td>
+                    <td colspan="38" class="align-left border-right"></td>
+                    <td colspan="5" class="separator-left" style="color: #fff;">a</td>
+                    <td colspan="5" class="separator-left separator-right" style="color: #fff;">a</td>
+                </tr>
+                @if($i === 4 && $i<$total)
                     <div class="page_break"></div>
                     <tr class="hidden">
                         <td>a</td>
@@ -421,28 +424,42 @@
                     <td></td>
 
                     <!--  Right 38-->
-                    <td colspan="28" rowspan="5" class="separator-left" style="vertical-align:top; text-align:justify;padding:0 5px;"></td>
+                    <td colspan="28" rowspan="6" class="separator-left" style="vertical-align:top; text-align:justify;padding:0 5px;"></td>
                     <td colspan="5" class="separator-left"></td>
                     <td colspan="5" class="separator-left separator-right"></td>
                     
                 </tr>
-                <tr>
-                    <td colspan="39" class="align-left">Observaciones</td>
+                <tr class="clean">
+                    <td class="border-left"></td>
+                    <td colspan="4" class="align-left"><strong>Bien:</strong> </td>
+                    <td colspan="34" class="align-left border-right"></td>
                     <td colspan="5"></td>
                     <td colspan="5"></td>
                 </tr>
-                <tr>
-                    <td colspan="39" class="align-left">N° Planilla de Alta:</td>
+                <tr class="clean">
+                    <td class="border-left"></td>
+                    <td colspan="10" class="align-left"><strong>Motivo de baja:</strong> </td>
+                    <td colspan="28" class="align-left border-right"></td>
                     <td colspan="5"></td>
                     <td colspan="5"></td>
                 </tr>
-                <tr>
-                    <td colspan="39" style="color:#FFF;">a</td>
+                <tr class="clean">
+                    <td class="border-left"></td>
+                    <td colspan="8" class="align-left"><strong>Observaciones:</strong> </td>
+                    <td colspan="30" class="align-left border-right"></td>
                     <td colspan="5"></td>
                     <td colspan="5"></td>
                 </tr>
-                <tr>
-                    <td colspan="39" style="color:#FFF;">a</td>
+                <tr class="clean">
+                    <td class="border-left"></td>
+                    <td colspan="10" class="align-left"><strong>N° Planilla de Alta:</strong> </td>
+                    <td colspan="28" class="align-left border-right"></td>
+                    <td colspan="5"></td>
+                    <td colspan="5"></td>
+                </tr>
+                <tr class="clean">
+                    <td class="border-left"></td>
+                    <td colspan="38" style="color:#FFF;">a</td>
                     <td colspan="5"></td>
                     <td colspan="5"></td>
                 </tr>

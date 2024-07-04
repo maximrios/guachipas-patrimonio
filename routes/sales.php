@@ -14,8 +14,7 @@ use App\Http\Controllers\SaleController;
 |
 */
 Route::group(['middleware' => ['auth', 'permission:sale-index']], function () {
-
-    Route::resource('sales', SaleController::class);
+    Route::get('sales/approve/{sale}', [SaleController::class, 'approve'])->name('sales.approve');
     Route::get('sales/print/{sale}', [SaleController::class, 'print'])->name('sales.print');
-
+    Route::resource('sales', SaleController::class);
 });

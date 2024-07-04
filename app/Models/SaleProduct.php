@@ -11,7 +11,7 @@ class SaleProduct extends Model
 
     protected $fillable = [
         'sale_id',
-        'product_id',
+        'inventory_id',
         'sale_product_status_id',
         'sale_product_reason_id',
         'quantity',
@@ -25,9 +25,9 @@ class SaleProduct extends Model
         return $this->belongsTo('App\Models\Sale', 'sale_id', 'id');
     }
 
-    public function product()
+    public function inventory()
     {
-        return $this->belongsTo('App\Models\Product', 'product_id', 'id');
+        return $this->belongsTo(Inventory::class, 'inventory_id', 'id')->withTrashed();
     }
 
     public function reason()

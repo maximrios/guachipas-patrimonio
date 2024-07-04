@@ -16,7 +16,7 @@ class CreateSaleProductsTable extends Migration
         Schema::create('sale_products', function (Blueprint $table) {
             $table->bigInteger('id', true)->unsigned();
             $table->foreignId('sale_id');
-            $table->foreignId('product_id');
+            $table->foreignId('inventory_id');
             $table->foreignId('sale_product_status_id');
             $table->foreignId('sale_product_reason_id');
             $table->integer('quantity');

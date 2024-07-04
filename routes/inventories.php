@@ -15,6 +15,7 @@ use App\Http\Controllers\InventoryController;
 */
 //Route::group(['middleware' => 'auth'], function () {
 
+    Route::get('inventories/get', [InventoryController::class, 'get'])->name('inventories.get');
     Route::get('inventories/list', [InventoryController::class, 'list'])->name('inventories.list');
     Route::get('inventories/search', [InventoryController::class, 'search'])->name('inventories.search');
     Route::get('inventories/print', [InventoryController::class, 'print'])->name('inventories.print');

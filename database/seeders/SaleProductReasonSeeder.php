@@ -16,7 +16,7 @@ class SaleProductReasonSeeder extends Seeder
     {
         DB::table('sale_product_reasons')->insert(array(
             array (
-                'id' => 10,
+                'id' => 1,
                 'name' => 'Pérdida o robo',
             ),
             array (
@@ -24,7 +24,7 @@ class SaleProductReasonSeeder extends Seeder
                 'name' => 'Transferencias definitivas',
             ),
             array (
-                'id' => 11,
+                'id' => 3,
                 'name' => 'Destrucción',
             ),
             array (
@@ -32,27 +32,27 @@ class SaleProductReasonSeeder extends Seeder
                 'name' => 'Donación',
             ),
             array (
-                'id' => 7,
+                'id' => 5,
                 'name' => 'Préstamo',
             ),
             array (
-                'id' => 8,
+                'id' => 6,
                 'name' => 'Rezago',
             ),
             array (
-                'id' => 9,
+                'id' => 7,
                 'name' => 'Desuso',
             ),
             array (
-                'id' => 12,
+                'id' => 8,
                 'name' => 'Modificación total',
             ),
             array (
-                'id' => 13,
+                'id' => 9,
                 'name' => 'Arrendamiento',
             ),
             array (
-                'id' => 14,
+                'id' => 10,
                 'name' => 'Compra y Venta',
             ),
         ));

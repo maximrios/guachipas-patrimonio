@@ -14,7 +14,7 @@ use App\Http\Controllers\ProductController;
 |
 */
 Route::group(['middleware' => 'auth'], function () {
-
+    Route::get('products/get', [ProductController::class, 'get'])->name('products.get');
     Route::get('products/list', [ProductController::class, 'list'])->name('products.list');
     Route::resource('products', ProductController::class);
 

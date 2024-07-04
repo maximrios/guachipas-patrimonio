@@ -65,7 +65,10 @@ class SalePolicy
      */
     public function delete(User $user, Sale $sale)
     {
-        //
+        if ($sale->status->id === Sale::PENDING) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -90,5 +93,23 @@ class SalePolicy
     public function forceDelete(User $user, Sale $sale)
     {
         //
+    }
+
+    /**
+     * Determine whether the user can update the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Sale  $sale
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function approve(User $user, Sale $sale)
+    {
+        if (
+            $sale->products()->count() > 0
+            && $sale->status->id === Sale::PENDING
+        ) {
+            return true;
+        }
+        return false;
     }
 }

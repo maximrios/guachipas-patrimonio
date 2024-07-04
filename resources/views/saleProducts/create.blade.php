@@ -26,21 +26,53 @@
 								@endforeach
 							</div>
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close">x</button>
+                            <br>
 						</div>
 					@endif
-                    <br>
                     <form action="{{ route('saleProducts.store') }}" method="post" class="form-horizontal form-label-left" autocomplete="false">
                     @csrf
 						<div class="form-group row">
-                            <label class="control-label col-md-3 col-sm-3" for="product_id">Matrícula</label>
-							<div class="col-md-9 col-sm-9">
-								<select id="product_id" name="product_id" class="form-control"></select>
+                            <div class="col-sm-12">
+                                <label class="control-label" for="inventory_id">Buscar</label>
+								<select id="inventory_id" name="inventory_id" class="form-control"></select>
 							</div>
                         </div>
+                        <div class="form-group row">
+                            <div class="col-sm-3">
+                                <label class="control-label" for="registration">Matrícula</label>
+                                <input type="text" id="registration" name="registration" value="" class="form-control" readonly />
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" for="name">Nombre</label>
+                                <input type="text" id="name" name="name" value="" class="form-control" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <label class="control-label" for="organization">Unidad de organización</label>
+                                <input type="text" id="organization" name="organization" value="" class="form-control" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <label class="control-label" for="description_product">Descripción</label>
+								<textarea class="form-control" name="description_product" id="description_product" rows="3" readonly></textarea>
+                            </div>
+                        </div>
                         <hr>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label class="control-label" for="reason">Motivo de baja</label>
+                                <select name="sale_product_reason_id" id="sale_product_reason_id" class="form-control">
+                                    @foreach ($reasons as $reason)
+                                        <option value="{{ $reason->id }}">{{ $reason->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 						<div class="form-group row">
-                            <label class="control-label col-md-3 col-sm-3" for="description">Descripción</label>
-                            <div class="col-md-9 col-sm-9 ">
+                            <div class="col-sm-12">
+                                <label class="control-label" for="description">Observaciones</label>
 								<textarea class="form-control" name="description" id="description" rows="3"></textarea>
                             </div>
                         </div>
@@ -67,15 +99,33 @@
     
     $(document).ready(function() {
         //OrderProduct.addForm();
-        $('#product_id').select2({
+        $('#inventory_id').select2({
             language: "es",
             minimumInputLength: 3,
             minimumResultsForSearch: 20,
             ajax: {
                 url: "{{ route('inventories.search') }}",
                 dataType: 'json',
-            }
+            },
+        }).on("change", function(e) {
+            $.ajax({
+                url: "{{ route('inventories.get') }}",
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    id: $(this).val()
+                },
+                success: function(data) {
+                    console.log(data.data);
+                    $('#registration').val(data.data.registration);
+                    $('#name').val(data.data.product);
+                    $('#organization').val(data.data.organization);
+                    $('#description_product').val(data.data.description);
+                }
+            });
         });
+
+        
 });
 </script>
 @endsection

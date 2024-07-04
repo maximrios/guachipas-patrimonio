@@ -109,7 +109,7 @@
             <td class="separator-top separator-left separator-right" style="text-align:center;">0</td>
             <td class="separator-top separator-left separator-right" style="text-align:center;">8</td>
             <td class="border-none"></td>
-            <td colspan="35" class="border-none align-left"><b>Jurisdicción:</b> {{ $sale->organization_name }}</td>
+            <td colspan="35" class="border-none align-left"><b>Jurisdicción:</b> MINISTERIO DE SALUD PÚBLICA</td>
 
             <td colspan="38" class="border-none align-left">Expediente N°: {{ $sale->file }}</td>
         </tr>
@@ -139,7 +139,7 @@
             <td class="separator-left">E</td>
             <td class="separator-left">M</td>
 
-            <td colspan="28" rowspan="3" class="separator-left align-left" style="font-size: 16px;border-right: none!important;">Sector: {{ @$sale->organization->sector }} - {{ @$sale->organization->name }}</td>
+            <td colspan="28" rowspan="3" class="separator-left align-left" style="font-size: 16px;border-right: none!important;">Sector: Hospital San Bernardo</td>
             <td colspan="10" rowspan="3" style="border-left: none!important;"><img width="100" src="data:image/png;base64,{{ $logo }}"/></td>
         </tr>
         <tr>

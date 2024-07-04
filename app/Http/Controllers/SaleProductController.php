@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreSaleProductRequest;
 use App\Models\Sale;
 use App\Models\Product;
 use App\Models\SaleProduct;
 use Illuminate\Http\Request;
+use App\Models\SaleProductReason;
+use App\Http\Requests\StoreSaleProductRequest;
+use App\Models\Inventory;
 
 class SaleProductController extends Controller
 {
@@ -28,8 +30,10 @@ class SaleProductController extends Controller
     public function create(Sale $sale)
     {
         $products = Product::all();
+        $reasons = SaleProductReason::all();
         return view('saleProducts.create')
             ->with('sale', $sale)
+            ->with('reasons', $reasons)
             ->with('products', $products);
     }
 
@@ -41,15 +45,21 @@ class SaleProductController extends Controller
      */
     public function store(StoreSaleProductRequest $request)
     {
+        $inventory = Inventory::findOrFail($request->inventory_id);
+
         $saleProduct = new SaleProduct($request->validated());
+        $saleProduct->quantity = 1;
+        $saleProduct->registration_from = $request->input('registration');
+        $saleProduct->registration_to = $request->input('registration');
+        $saleProduct->description = $request->input('observation');
         $saleProduct->save();
         if ($saleProduct) {
-            return redirect(route('orders.show', [$saleProduct->sale_id]))->with([
+            return redirect(route('sales.show', [$saleProduct->sale_id]))->with([
                 'message' => 'Se dio de baja el bien correctamente.',
                 'type' => 'success',
             ]);
         } else {
-            return redirect(route('orders.index'))->with([
+            return redirect(route('sales.index'))->with([
                 'message' => 'Ocurrio un error al registrar la baja',
                 'type' => 'danger',
             ]);

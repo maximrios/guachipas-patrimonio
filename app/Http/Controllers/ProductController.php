@@ -84,6 +84,16 @@ class ProductController extends Controller
         //
     }
 
+    public function get(Request $request)
+    {
+        $product = Product::find($request->id);
+        dd($product);
+        return response()->json(['status' => 200, 'results' => $product]);
+
+        //$products = Product::where('name', 'like', '%'.$request->term.'%')->get();
+        //return response()->json(['status' => 200, 'results' => $products]);
+    }
+
     public function list(Request $request) 
     {
         $products = Product::selectRaw('id, name as text')->where('name', 'like', '%'.$request->term.'%')->orderBy('name')->get();

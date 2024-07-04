@@ -47,20 +47,9 @@
                             <div class="col-sm-4 invoice-col">
                                 <b>Planilla # {{ $sale->number }}</b>
                                 <br>
+                                <b>Estado:</b> {{ $sale->status->name }}
                                 <br>
                                 <b>Fecha:</b> {{ $sale->created_at }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <a class="btn btn-default pull-right" href="{{ route('sales.print', ['sale' => $sale])}}" target="_blank">Ver planilla de baja</a>
-                                @if($sale->status_id === 1)
-                                    <form method="POST" action="{{ route('sales.destroy', ['sale' => $sale->id]) }}" style="display:inline;">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button class="btn btn-danger btn-delete pull-right" data-message="Está por eliminar la baja # {{ $sale->id }}. Desea continuar?">Eliminar</button>
-                                    </form>
-                                @endif
                             </div>
                         </div>
                         <div class="row">
@@ -70,46 +59,17 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <a href="{{ route('saleProducts.create', [$sale]) }}" class="btn btn-primary pull-right" data-target=".bs-example-modal-lg">Agregar registro</a>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="table-responsive">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Cantidad</th>
-                                            <th>Matrícula</th>
-                                            <th>Procedencia</th>
-                                            <th>Estado</th>
-                                            <th>Precio U.</th>
-                                            <th>Precio Total</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($sale->products()->get() as $product)
-                                            <tr>
-                                                <td>
-                                                    <strong>{{ $product->product->name }}</strong><br>
-                                                    <p>{{ $product->description }}</p>
-                                                </td>
-                                                <td>{{ $product->quantity }}</td>
-                                                <td></td>
-                                                <td>{{ $product->origin->name }}</td>
-                                                <td>{{ $product->status->name }}</td>
-                                                <td>{{ $product->unit_price }}</td>
-                                                <td>{{ $product->total_price }}</td>
-                                                <td>
-                                                    <form action="#">
-                                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                                                    </form>
-                                                </td>
-                                            </tr>    
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                <a class="btn btn-default pull-right" href="{{ route('sales.print', ['sale' => $sale])}}" target="_blank">Ver planilla de baja</a>
+                                @can('approve', $sale)
+                                    <a href="{{ route('sales.approve', ['sale' => $sale]) }}" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-check"></i> Confirmar planilla</a>
+                                @endcan
+                                @can('delete', $sale)
+                                <form method="POST" action="{{ route('sales.destroy', ['sale' => $sale->id]) }}" style="display:inline;">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button class="btn btn-danger btn-delete pull-right" data-message="Está por eliminar la baja # {{ $sale->id }}. Desea continuar?">Eliminar</button>
+                                </form>
+                                @endcan
                             </div>
                         </div>
                     </section>
@@ -117,11 +77,52 @@
             </div>
         </div>
     </div>
-</div>
 
-<script>
-    
-    
-    
-</script>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <a href="{{ route('saleProducts.create', [$sale]) }}" class="btn btn-primary pull-right" data-target=".bs-example-modal-lg">Agregar registro</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Cantidad</th>
+                                        <th>Unidad organizacional</th>
+                                        <th>Motivo</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($sale->products()->get() as $saleProduct)
+                                    <tr>
+                                        <td>
+                                            <strong>Matrícula: {{ $saleProduct->inventory?->registration }}</strong><br>
+                                            <p>{{ $saleProduct->inventory?->product->name }}</p>
+                                        </td>
+                                        <td>{{ $saleProduct->quantity }}</td>
+                                        <td>{{ $saleProduct->inventory?->organization->name }}</td>
+                                        <td>{{ $saleProduct->reason->name }}</td>
+                                        <td>
+                                            <form action="#">
+                                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

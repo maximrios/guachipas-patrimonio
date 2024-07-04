@@ -7,6 +7,7 @@ use App\Models\Sale;
 use App\Models\Organization;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreSaleRequest;
+use App\Models\Inventory;
 
 class SaleController extends Controller
 {
@@ -125,5 +126,21 @@ class SaleController extends Controller
         $pdf = \PDF::loadView('sales.print', $data)->setPaper('a4', 'landscape');
     
         return $pdf->stream('archivo.pdf');
+    }
+
+    public function approve(Sale $sale)
+    {
+        $products = $sale->products()->get();
+        foreach ($products as $product) {
+            $inventory = Inventory::where('id', $product->inventory_id)->first();
+            $inventory->delete();
+        }
+        $sale->generated_at = date('Y-m-d H:i:s');
+        $sale->status_id = 2;
+        $sale->save();
+        return redirect(route('sales.show', [$sale->id]))->with([
+            'message' => 'Se confirmó la baja correctamente.',
+            'type' => 'success',
+        ]);
     }
 }

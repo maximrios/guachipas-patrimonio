@@ -16,11 +16,21 @@ class Sale extends Model
         'user_id',
         'organization_id',
         'file',
+        'status_id',
     ];
+
+    public const PENDING = 1;
+    public const APPROVED = 2;
+    public const CANCELLED = 3;
 
     public function products()
     {
-        return $this->hasMany('App\Models\SaleProduct', 'sale_id', 'id');
+        return $this->hasMany(SaleProduct::class, 'sale_id', 'id');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(SaleStatus::class, 'status_id', 'id');
     }
 
     public function getNumberAttribute()
