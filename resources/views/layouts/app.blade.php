@@ -77,7 +77,7 @@
                                     <li><a href="{{ url('assignments') }}"><i class="fa fa-share"></i> Asignaciones</a></li>
                                 @endcan
                                 @can('viewAny', App\Models\Organization::class)
-                                    <li><a href="{{ url('organizations') }}"><i class="fa fa-building"></i> Unidades Organizac</a></li>
+                                    <li><a href="{{ url('areas') }}"><i class="fa fa-building"></i> Areas</a></li>
                                 @endcan
                                 @can('viewAny', App\Models\Product::class)
                   				    <li><a href="{{ url('products') }}"><i class="fa fa-book"></i> Nomenclador</a></li>

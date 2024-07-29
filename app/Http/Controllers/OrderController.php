@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Area;
 use App\Models\Order;
+use App\Models\Provider;
 use Barryvdh\DomPDF\PDF;
 use App\Models\Inventory;
 use App\Models\OrderProduct;
@@ -14,7 +16,6 @@ use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
-use App\Models\Provider;
 use App\Services\Order\OrderExportService;
 
 class OrderController extends Controller
@@ -38,7 +39,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $organizations = Organization::orderBy('name')->get();
+        $organizations = Area::all();
         $providers = Provider::all();
         return view('orders.create')
             ->with('providers', $providers)

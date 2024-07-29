@@ -118,7 +118,7 @@
             <td class="separator-top separator-left separator-right" style="text-align:center;">5</td>
             <td class="separator-top separator-left separator-right" style="text-align:center;">9</td>
             <td class="border-none"></td>
-            <td colspan="35" class="border-none align-left"><b>Unid. De Organización:</b> Hospital San Bernardo</td>
+            <td colspan="35" class="border-none align-left"><b>Unid. De Organización:</b> Sindicatura General de la Provincia</td>
             @php
                 $approvedAt = '';
                 if ($order->generated_at != '') {

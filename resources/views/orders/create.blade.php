@@ -54,7 +54,7 @@
                         <div class="form-group row">
                             <label class="control-label col-md-3 col-sm-3 ">Jurisdicción</label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input type="text" id="organization_name" name="organization_name" class="form-control" placeholder="Jurisdicción" value="MINISTERIO DE SALUD PÚBLICA" readonly>
+                                <input type="text" id="organization_name" name="organization_name" class="form-control" placeholder="Jurisdicción" value="SINDICATURA GENERAL DE LA PROVINCIA DE SALTA" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
