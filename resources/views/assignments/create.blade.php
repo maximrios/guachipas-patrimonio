@@ -34,7 +34,12 @@
                         <div class="form-group row">
                             <label for="assing_to" class="control-label col-md-3 col-sm-3 ">Dirigido a </label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input type="text" id="assign_to" name="assign_to" class="form-control" placeholder="Nombre completo" value="">
+                                <select name="employee_id" id="employee_id" class="form-control">
+                                    @foreach ($employees as $employee)
+                                        <option value="{{ $employee->id }}">{{ $employee->profile->name }}</option>
+                                    @endforeach
+                                </select>
+                                <input type="hidden" id="assign_to" name="assign_to" class="form-control" placeholder="Nombre completo" value="">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -64,4 +69,14 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(function() {
+        $('#employee_id').on('change', function() {
+            var employee_id = $(this).val();
+            var employee = $(this).find('option:selected').text();
+            $('#assign_to').val(employee);
+        });
+    })
+</script>
 @endsection

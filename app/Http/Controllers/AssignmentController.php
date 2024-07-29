@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Employee;
+use App\Models\Inventory;
 use App\Models\Assignment;
 use App\Models\Organization;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreAssignmentRequest;
-use App\Models\Inventory;
 use App\Services\Assignment\AssignmentExportService;
 
 class AssignmentController extends Controller
@@ -33,8 +34,10 @@ class AssignmentController extends Controller
      */
     public function create()
     {
+        $employees = Employee::all();
         $organizations = Organization::all();
         return view('assignments.create')
+            ->with('employees', $employees)
             ->with('organizations', $organizations);
     }
 

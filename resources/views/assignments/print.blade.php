@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Planilla de Asignacion - Hospital San Bernardo</title>
+    <title>Planilla de Asignacion - Sindicatura General de la Provincia</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon.ico') }}">
     <style>
         @page {
@@ -128,7 +128,7 @@
     <main>
         <table class="no-border">
             <tr>
-                <td class="align-left">MINISTERIO DE SALUD PUBLICA - SALTA</td>
+                <td class="align-left">Sindicatura General de la Provincia - SALTA</td>
                 <td style="width:250px!important;" rowspan="2"><img width="175px" src="data:image/png;base64,{{ $logo }}"/></td>
             </tr>
             <tr>
