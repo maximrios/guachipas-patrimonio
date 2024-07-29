@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Area;
 use App\Models\Employee;
 use App\Models\Inventory;
 use App\Models\Assignment;
@@ -35,7 +36,7 @@ class AssignmentController extends Controller
     public function create()
     {
         $employees = Employee::all();
-        $organizations = Organization::all();
+        $organizations = Area::all();
         return view('assignments.create')
             ->with('employees', $employees)
             ->with('organizations', $organizations);
