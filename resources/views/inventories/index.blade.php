@@ -34,9 +34,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @php
-                            /*
-
                         @foreach ($inventories as $inventory)
                             <tr>
                                 <td>{{ $inventory->registration }}</td>
@@ -51,8 +48,6 @@
                                 </td>
                             </tr>
                         @endforeach
-                        */
-                        @endphp
                     </tbody>
                 </table>
             </div>
@@ -62,6 +57,7 @@
 
 @section('scripts')
 <script>
+    /*
 $( document ).ready(function() {
     $('.table').dataTable({
         processing: true,
@@ -103,7 +99,7 @@ $( document ).ready(function() {
         ],
     });
 });
-
+*/
 
 </script>
 @endsection

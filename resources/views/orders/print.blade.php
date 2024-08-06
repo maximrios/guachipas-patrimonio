@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Planilla de Alta - Hospital San Bernardo</title>
+    <title>Planilla de Alta - Sindicatura General de la Provincia de Salta</title>
     <style>
         @page {
             margin: 0.5cm;
@@ -210,9 +210,9 @@
                     <!-- Clasificacion Institucional 9-->
                     <td class="separator-left">5</td>
                     <td>6</td>
-                    <td class="separator-left">{{ $order->organization->code[0] }}</td>
-                    <td>{{ $order->organization->code[1] }}</td>
-                    <td>{{ $order->organization->code[2] }}</td>
+                    <td class="separator-left">X</td>
+                    <td>X</td>
+                    <td>X</td>
                     <td class="separator-left">0</td>
                     <td>0</td>
                     <td>0</td>
