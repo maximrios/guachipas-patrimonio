@@ -9,6 +9,8 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $appends = ['nomenclator'];
+
     public function order()
     {
         return $this->hasMany('App\Models\OrderProduct', 'product_id', 'id');

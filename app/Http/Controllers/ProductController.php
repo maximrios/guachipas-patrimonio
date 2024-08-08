@@ -96,7 +96,8 @@ class ProductController extends Controller
 
     public function list(Request $request) 
     {
-        $products = Product::selectRaw('id, name as text')->where('name', 'like', '%'.$request->term.'%')->orderBy('name')->get();
+        //$products = Product::selectRaw('id, name as text,')->where('name', 'like', '%'.$request->term.'%')->orderBy('name')->get();
+        $products = Product::where('name', 'like', '%'.$request->term.'%')->get();
         return response()->json(['status' => 200, 'results' => $products]);
     }
 }

@@ -33,6 +33,12 @@
 					    @method('PUT')
                         <div class="row">
                             <div class="form-group col-sm-6">
+                                <label class="control-label">N° de CUIT</label>
+                                <input type="text" id="identity" name="identity" class="form-control" placeholder="N° de CUIT" value="{{ $provider->identity }}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
                                 <label class="control-label">Nombre</label>
                                 <input type="text" id="name" name="name" class="form-control" placeholder="Nombre" value="{{ $provider->name }}">
                             </div>

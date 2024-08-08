@@ -33,7 +33,10 @@
                     <tbody>
                         @foreach ($providers as $provider)
                             <tr>
-                                <td>{{ $provider->name }}</td>
+                                <td>
+                                    <strong>CUIT N° {{ $provider->identity }}</strong><br />
+                                    {{ $provider->name }}
+                                </td>
                                 <td>{{ $provider->contact_name }}</td>
                                 <td>{{ $provider->email }}</td>
                                 <td>{{ $provider->phone }}</td>

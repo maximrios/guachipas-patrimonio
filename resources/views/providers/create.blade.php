@@ -32,6 +32,12 @@
                     <form action="{{ url('providers') }}" method="post" class="form-horizontal form-label-left" autocomplete="false">
                     @csrf
                         <div class="form-group row">
+                            <label class="control-label col-md-2 col-sm-2">CUIT</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="identity" name="identity" class="form-control" placeholder="N° de CUIT">
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label class="control-label col-md-2 col-sm-2">Nombre</label>
                             <div class="col-sm-10">
                                 <input type="text" id="name" name="name" class="form-control" placeholder="Nombre">

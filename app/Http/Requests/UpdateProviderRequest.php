@@ -24,6 +24,7 @@ class UpdateProviderRequest extends FormRequest
     public function attributes()
     {
         return [
+            'identity' => 'N° de CUIT',
             'name' => 'Nombre',
             'address' => 'Domicilio',
             'email' => 'Correo electrónico',
@@ -41,6 +42,7 @@ class UpdateProviderRequest extends FormRequest
     {
         
         $rules = [
+            'identity' => 'required|max:191',
             'name' => 'required|min:1',
             'address' => 'max:191',
             'email' => 'max:191',

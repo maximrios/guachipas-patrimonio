@@ -208,15 +208,15 @@
             @foreach ($products as $product)
                 <tr class="btop">
                     <!-- Clasificacion Institucional 9-->
-                    <td class="separator-left">5</td>
-                    <td>6</td>
-                    <td class="separator-left">X</td>
-                    <td>X</td>
-                    <td>X</td>
-                    <td class="separator-left">0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
+                    <td class="separator-left"></td>
+                    <td></td>
+                    <td class="separator-left"></td>
+                    <td></td>
+                    <td></td>
+                    <td class="separator-left"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <!-- Clasificacion Patrimonial 13-->
 
                     <td class="separator-left">{{ $product->product->type[0] }}</td>
@@ -293,7 +293,7 @@
                     <td colspan="5" class="align-left"><strong>Fondos:</strong></td>
                     <td colspan="12" class="align-left">{{ $product->found->name }}</td>
 
-                    <td colspan="5" class="align-left"><strong>O.C.N°:</strong></td>
+                    <td colspan="5" class="align-left"><strong>O.P.N°:</strong></td>
                     <td colspan="16" class="align-left border-right">{{ $product->order_payment }}</td>
 
                     <td colspan="5" class="separator-left"></td>

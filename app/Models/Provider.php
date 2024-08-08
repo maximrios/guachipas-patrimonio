@@ -11,6 +11,7 @@ class Provider extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'identity',
         'name',
         'address',
         'email',

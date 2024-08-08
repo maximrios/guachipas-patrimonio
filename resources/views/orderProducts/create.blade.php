@@ -102,8 +102,8 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
-                                    <label class="control-label" for="order_payment">N° Orden de Compra</label>
-                                    <input type="text" id="order_payment" name="order_payment" class="form-control" placeholder="Número de orden de compra" value="{{ old('order_payment') }}">
+                                    <label class="control-label" for="order_payment">N° Orden de Pago</label>
+                                    <input type="text" id="order_payment" name="order_payment" class="form-control" placeholder="Número de orden de pago" value="{{ old('order_payment') }}">
                                 </div>
                             </div>
                         </div>
@@ -161,7 +161,19 @@
             url: "{{ route('products.list') }}",
             dataType: 'json',
             // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
-        }
+        },
+        escapeMarkup: function(markup) {
+            return markup;
+        },
+        templateSelection(item) {
+            return item.name || item.id;
+        },
+        templateResult: function(data) {
+            if (data.loading) {
+                return data.text;
+            }
+            return '<strong>'+data.name+'</strong><br/><span>'+data.nomenclator+'</span>';
+        },
     });
 });
 </script>
