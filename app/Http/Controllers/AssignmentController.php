@@ -21,7 +21,7 @@ class AssignmentController extends Controller
      */
     public function index()
     {
-        $assignments = Assignment::all();
+        $assignments = Assignment::orderBy('created_at', 'desc')->get();
         $organizations = Organization::all();
         return view('assignments.index')
             ->with('assignments', $assignments)

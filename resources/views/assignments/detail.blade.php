@@ -76,27 +76,34 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th width="75">Cantidad</th>
-                                            <th width="75">Matrícula</th>
-                                            <th>Nombre</th>
-                                            <th width="75px"></th>
+                                            <th>Bien</th>
+                                            <th width="75" class="text-center">Cantidad</th>
+                                            @if(!$assignment->approved_at)
+                                                <th width="75px"></th>
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($products as $product)
                                             <tr>
-                                                <td>{{ $product->quantity }}</td>
-                                                <td>{{ $product->registration ?? '' }}</td>
-                                                <td><strong>{{ $product->name }}</strong></td>
                                                 <td>
-                                                    @if(!$assignment->approved_at)
+                                                    @if ($product->registration)
+                                                        <strong>{{ $product->registration }}</strong><br>    
+                                                    @endif
+                                                    <span>{{ $product->name }}</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    {{ $product->quantity }}
+                                                </td>
+                                                @if(!$assignment->approved_at)
+                                                    <td>
                                                         <form action="{{ route('assignmentProducts.destroy', ['assignmentProduct' => $product]) }}" method="post">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger btn-sm btn-delete" data-message="Está por eliminar el registro. Desea continuar?">Eliminar</button>
-                                                        </form>
-                                                    @endif
-                                                </td>
+                                                        </form>        
+                                                    </td>
+                                                @endif
                                             </tr>    
                                         @endforeach
                                     </tbody>

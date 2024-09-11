@@ -26,7 +26,7 @@ class StoreSaleProductRequest extends FormRequest
         return [
             'sale_id' => 'Baja',
             'inventory_id' => 'Matrícula',
-            'observation' => 'Observación',
+            'description' => 'Observación',
             'sale_product_reason_id' => 'Motivo de baja',
             //'registration_from' => 'Matricula desde',
             //'registration_to' => 'Matricula hasta',
@@ -43,7 +43,7 @@ class StoreSaleProductRequest extends FormRequest
         $rules = [
             'sale_id' => 'required',
             'inventory_id' => 'required',
-            'observation' => 'max:191',
+            'description' => 'max:191',
             'sale_product_reason_id' => 'required',
             //'registration_from' => 'required',
             //'registration_to' => 'required',

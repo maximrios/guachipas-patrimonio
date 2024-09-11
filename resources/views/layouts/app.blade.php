@@ -76,20 +76,11 @@
                                 @can('viewAny', App\Models\Assignment::class)
                                     <li><a href="{{ url('assignments') }}"><i class="fa fa-share"></i> Asignaciones</a></li>
                                 @endcan
-                                @can('viewAny', App\Models\Organization::class)
-                                    <li><a href="{{ url('areas') }}"><i class="fa fa-building"></i> Areas</a></li>
-                                @endcan
                                 @can('viewAny', App\Models\Product::class)
                   				    <li><a href="{{ url('products') }}"><i class="fa fa-book"></i> Nomenclador</a></li>
                                 @endcan
                                 @can('viewAny', App\Models\Provider::class)
                                     <li><a href="{{ url('providers') }}"><i class="fa fa-address-book"></i> Proveedores</a></li>
-                                @endcan
-                                @can('viewAny', App\Models\User::class)
-                                    <li><a href="{{ url('users') }}"><i class="fa fa-users"></i> Usuarios</a></li>
-                                @endcan
-                                @can('viewAny', App\Models\Role::class)
-                                    <li><a href="{{ url('roles') }}"><i class="fa fa-tag"></i> Roles</a></li>
                                 @endcan
                                 <li><a href="{{ url('reports') }}"><i class="fa fa-tasks"></i> Reportes</a></li>
                   			</ul>

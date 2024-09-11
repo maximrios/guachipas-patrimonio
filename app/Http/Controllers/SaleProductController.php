@@ -48,10 +48,11 @@ class SaleProductController extends Controller
         $inventory = Inventory::findOrFail($request->inventory_id);
 
         $saleProduct = new SaleProduct($request->validated());
+        $saleProduct->sale_product_status_id = 1;
         $saleProduct->quantity = 1;
         $saleProduct->registration_from = $request->input('registration');
         $saleProduct->registration_to = $request->input('registration');
-        $saleProduct->description = $request->input('observation');
+        $saleProduct->description = $request->input('description');
         $saleProduct->save();
         if ($saleProduct) {
             return redirect(route('sales.show', [$saleProduct->sale_id]))->with([

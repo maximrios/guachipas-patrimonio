@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class OrderProductStatusSeeder extends Seeder
+class SaleProductStatusSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class OrderProductStatusSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('order_product_statuses')->insert(array(
+        DB::table('sale_product_statuses')->insert(array(
             array (
                 'id' => 1,
                 'name' => 'Muy bueno',
