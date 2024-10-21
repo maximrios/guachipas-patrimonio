@@ -109,7 +109,7 @@
             <td class="separator-top separator-left separator-right" style="text-align:center;">0</td>
             <td class="separator-top separator-left separator-right" style="text-align:center;">8</td>
             <td class="border-none"></td>
-            <td colspan="35" class="border-none align-left"><b>Jurisdicción:</b> {{ $order->organization_name }}</td>
+            <td colspan="35" class="border-none align-left"><b>Jurisdicción:</b> {{ $sale->organization_name }}</td>
 
             <td colspan="38" class="border-none align-left">Expediente N°: {{ $sale->file }}</td>
         </tr>
