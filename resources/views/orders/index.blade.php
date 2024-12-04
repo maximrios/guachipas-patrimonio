@@ -39,7 +39,11 @@
                                     <td>{{ $order->file }}</td>
                                     <td>{{ $order->created_at }}</td>
                                     <td>{{ $order->generated_at }}</td>
-                                    <td>{{ $order->status->name }}</td>
+                                    <td>
+                                        <span class="badge badge-{{$order->status->slug }}">
+                                            {{ $order->status->name }}
+                                        </span>
+                                    </td>
                                     <td>
                                         <a class="btn btn-info btn-sm" href="{{ route('orders.show', ['order' => $order->id])}}">Detalle</a>
                                         

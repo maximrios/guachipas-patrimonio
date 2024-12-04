@@ -8,9 +8,11 @@ require('./bootstrap');
 
 import * as Order from './modules/Order';
 import * as OrderProduct from './modules/OrderProduct';
+import * as SaleProduct from './modules/SaleProduct';
 
 window.Order = Order;
 window.OrderProduct = OrderProduct;
+window.SaleProduct = SaleProduct;
 
 $(document).on('click', '.btn-delete', function(event) {
     event.preventDefault()

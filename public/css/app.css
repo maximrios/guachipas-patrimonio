@@ -14,6 +14,14 @@
   width: 80% !important;
 }
 
+.badge-pending {
+  background-color: #f0ad4e;
+}
+
+.badge-approve {
+  background-color: rgba(38, 185, 154, 0.88);
+}
+
 table tr td form {
   display: inline;
 }

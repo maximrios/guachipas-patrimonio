@@ -54,7 +54,15 @@ class OrderPolicy
      */
     public function update(User $user, Order $order)
     {
-        return $user->can('order-edit');
+        if ($user->hasRole('admin')) {
+            return true;
+        }
+        if (
+            $order->status_id === 1
+            && $user->can('order-edit')) {
+            return true;
+        }
+        return false;
     }
 
     /**

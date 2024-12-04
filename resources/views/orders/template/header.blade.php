@@ -106,8 +106,8 @@
         </tr>
         <tr class="clean">
             <td class="border-none"></td>
+            <td class="separator-top separator-left separator-right" style="text-align:center;">1</td>
             <td class="separator-top separator-left separator-right" style="text-align:center;">0</td>
-            <td class="separator-top separator-left separator-right" style="text-align:center;">8</td>
             <td class="border-none"></td>
             <td colspan="35" class="border-none align-left"><b>Jurisdicción:</b> {{ $order->organization_name }}</td>
 
@@ -115,8 +115,8 @@
         </tr>
         <tr class="clean">
             <td class="border-none"></td>
-            <td class="separator-top separator-left separator-right" style="text-align:center;">5</td>
-            <td class="separator-top separator-left separator-right" style="text-align:center;">9</td>
+            <td class="separator-top separator-left separator-right" style="text-align:center;">0</td>
+            <td class="separator-top separator-left separator-right" style="text-align:center;">1</td>
             <td class="border-none"></td>
             <td colspan="35" class="border-none align-left"><b>Unid. De Organización:</b> Sindicatura General de la Provincia</td>
             @php

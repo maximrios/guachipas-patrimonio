@@ -10,6 +10,14 @@
         </div>
     </div>
     <div class="clearfix"></div>
+    @if(session('message'))
+        <div class="alert alert-{{ session('type') }} show" role="alert">
+            {{ session('message') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <div class="row">
         <div class="col-md-12">
             <div class="x_panel">
@@ -18,14 +26,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    @if(session('message'))
-                        <div class="alert alert-{{ session('type') }} show" role="alert">
-                            {{ session('message') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    @endif
+                    
                     <section class="content invoice">
                         <div class="row">
                             <div class="invoice-header">
@@ -55,7 +56,7 @@
                             <div class="col-sm-4 invoice-col">
                                 <b>Planilla #{{ $order->number }}</b>
                                 <br>
-                                <b>Estado:</b> {{ $order->status->name }}
+                                <b>Estado:</b> <span class="badge badge-{{$order->status->slug}}">{{ $order->status->name }}</span>
                                 <br>
                                 <b>Fecha:</b> {{ $order->created_at }}
                             </div>
@@ -75,8 +76,10 @@
                                     <a href="{{ route('orders.approve', ['order' => $order]) }}" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-check"></i> Confirmar planilla</a>
                                 @endif
                                 <a href="{{ route('orders.print', ['order' => $order]) }}" class="btn btn-default pull-right" style="margin-right: 5px;" target="_blank"><i class="fa fa-print"></i> Ver planilla de alta</a>
-
-                                <a href="{{ route('orders.edit', ['order' => $order]) }}" class="btn btn-warning pull-right" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Editar</a>
+                                @can('update', $order)
+                                    <a href="{{ route('orders.edit', ['order' => $order]) }}" class="btn btn-warning pull-right" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Editar</a>    
+                                @endcan
+                                
 
                                 @if($order->status_id === 1)
                                     <form method="POST" action="{{ route('orders.destroy', ['order' => $order->id]) }}" style="display:inline;">
@@ -114,7 +117,7 @@
                                             <th width="120px" class="text-right">Precio U.</th>
                                             <th width="120px" class="text-right">Precio Total</th>
                                             @if($order->status_id === 1)
-                                                <th width="150px"></th>
+                                                <th width="100px"></th>
                                             @endif
                                         </tr>
                                     </thead>
@@ -134,12 +137,14 @@
                                                 <td class="text-right">{{ $product->total_price }}</td>
                                                 @if($order->status_id === 1)
                                                     <td>
-                                                        <a href="{{ route('orderProducts.edit', ['orderProduct' => $product]) }}" class="btn btn-warning btn-sm">Editar</a>
+                                                        <a href="{{ route('orderProducts.edit', ['orderProduct' => $product]) }}" class="btn btn-warning btn-sm">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </a>
                                                         <form method="POST" action="{{ route('orderProducts.destroy', ['orderProduct' => $product->id]) }}" style="display:inline;">
                                                             @method('DELETE')
                                                             @csrf
                                                             <button type="submit" class="btn btn-danger btn-sm btn-delete" data-message="¿Esta por eliminar el registro. Desea continuar?" >
-                                                                Eliminar
+                                                                <i class="fa fa-trash"></i>
                                                             </button>
                                                         </form>
                                                     </td>

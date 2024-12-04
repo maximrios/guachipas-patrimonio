@@ -28,6 +28,12 @@
     }
 }
 
+.badge-pending {
+    background-color: $color-warning;
+}
+.badge-approve {
+    background-color: $color-success;
+}
 table {
     tr {
         td {

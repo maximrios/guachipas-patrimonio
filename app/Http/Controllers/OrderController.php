@@ -106,7 +106,10 @@ class OrderController extends Controller
     {
         $order->update($request->validated());
         if($order) {
-            return redirect(route('orders.index', [$order->id]));
+            return redirect(route('orders.show', [$order]))->with([
+                'message' => 'Alta patrimonial actualizada correctamente.',
+                'type' => 'success',
+            ]);;
         }
         else {
             return redirect(route('orders.index'))->with([

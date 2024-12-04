@@ -71,7 +71,7 @@
 						<input type="hidden" name="id" value="{{ $order->id }}">
                         <div class="ln_solid"></div>
                         <div class="form-group row">
-                            <a href="{{ url('orders') }}" class="btn btn-default">Cancelar</a>
+                            <a href="{{ route('orders.show', $order) }}" class="btn btn-default">Cancelar</a>
                             <button type="submit" class="btn btn-primary pull-right">Guardar</button>
                         </div>
                     </form>

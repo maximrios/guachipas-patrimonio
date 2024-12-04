@@ -72,6 +72,16 @@
 
 <script>
     $(function() {
+        $('#employee_id').select2({
+            language: "es",
+            minimumInputLength: 3,
+            minimumResultsForSearch: 20,
+            ajax: {
+                url: "{{ route('employees.search') }}",
+                dataType: 'json',
+                // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+            }
+        });
         $('#employee_id').on('change', function() {
             var employee_id = $(this).val();
             var employee = $(this).find('option:selected').text();
