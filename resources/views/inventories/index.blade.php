@@ -29,7 +29,7 @@
                         <tr>
                             <th width="100px">Matrícula N°</th>
                             <th>Nombre</th>
-                            <th>Sector</th>
+                            <th>Area</th>
                             <th width="90px">Estado</th>
                             <th width="90px"></th>
                         </tr>
@@ -42,14 +42,16 @@
                                     <strong>{{ $inventory->product->nomenclator }}</strong><br>
                                     {{ $inventory->product->name }}
                                 </td>
-                                <td>{{ $inventory->organization->name }}</td>
+                                <td>
+                                    {{ $inventory->organization->name }}
+                                </td>
                                 <td>
                                     <span class="badge badge-{{$inventory->status->slug }}">
                                         {{ $inventory->status->name }}
                                     </span>
                                 </td>
                                 <td>
-                                    <a href="{{ route('inventories.code', ['inventory' => $inventory]) }}" target="_blank" class="btn btn-primary btn-sm"><i class="fa fa-barcode"></i>&nbsp;Imprimir etiquetas</a>
+                                    <a href="{{ route('inventories.show', ['inventory' => $inventory]) }}" class="btn btn-primary btn-sm">&nbsp;Ver detalle</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -62,8 +64,10 @@
 
 @section('scripts')
 <script>
-    /*
+    
 $( document ).ready(function() {
+    $('.table').dataTable();
+    /*
     $('.table').dataTable({
         processing: true,
         serverSide: true,
@@ -103,8 +107,8 @@ $( document ).ready(function() {
             },
         ],
     });
+    */
 });
-*/
 
 </script>
 @endsection

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\InventoryImport;
 use App\Models\Sale;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class HomeController extends Controller
 {
@@ -31,4 +33,10 @@ class HomeController extends Controller
             ->with('orders', $orders)
             ->with('sales', $sales);
     }
+
+    public function import()
+    {
+        Excel::import(new InventoryImport, 'patrimonio.xlsx');
+    }
+
 }

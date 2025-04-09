@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -23,10 +24,12 @@ use Illuminate\Support\Str;
 }); */
 
 
-//Auth::routes();
-//Route::redirect('/', '/home');
-Route::group(['middleware' => 'auth.check'], function () {
+Auth::routes();
+Route::redirect('/', '/home');
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('import', [HomeController::class, 'import'])->name('import');
+    
 });
 /*
 Route::get("/login", function(Request $request) {
@@ -81,9 +84,9 @@ Route::get('/home', function(Request $request) {
             return $response->json();
 });
 */
-Route::get("login", [AuthController::class, 'login'])->name('auth.login');
-Route::get("callback", [AuthController::class, 'callback'])->name('auth.callback');
-Route::get("profile", [AuthController::class, 'profile'])->name('auth.profile');
+// Route::get("login", [AuthController::class, 'login'])->name('auth.login');
+// Route::get("callback", [AuthController::class, 'callback'])->name('auth.callback');
+// Route::get("profile", [AuthController::class, 'profile'])->name('auth.profile');
 /*
 Route::middleware('auth.check')->group(function() {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

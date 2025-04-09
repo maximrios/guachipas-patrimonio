@@ -11,6 +11,7 @@ class Inventory extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'order_product_id',
         'product_id',
         'organization_id',
         'registration',
@@ -32,6 +33,11 @@ class Inventory extends Model
         return $this->belongsTo(Organization::class, 'organization_id', 'id');
     }
 
+    public function area()
+    {
+        return $this->belongsTo(Area::class, 'area_id', 'id');
+    }
+
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id', 'id');
@@ -45,6 +51,23 @@ class Inventory extends Model
     public function status()
     {
         return $this->belongsTo(OrderProductStatus::class, 'status_id', 'id');
+    }
+
+    public function assignments()
+    {
+        return $this->hasMany(Assignment::class, 'inventory_id', 'id');
+    }
+
+    public function provider()
+    {
+        return $this->hasOneThrough(
+            Provider::class,
+            OrderProduct::class,
+            'id', // Foreign key on OrderProduct
+            'id', // Foreign key on Supplier
+            'order_product_id', // Local key on Inventory
+            'provider_id' // Local key on OrderProduct
+        );
     }
 
 }

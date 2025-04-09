@@ -23,4 +23,12 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sourceMaps();
 
+mix.browserSync({
+    proxy: 'http://localhost:8082', // Cambia al URL donde estás sirviendo tu proyecto Laravel
+    files: [
+        'resources/views/**/*.blade.php', // Monitorea cambios en tus archivos Blade
+        'public/js/**/*.js',              // Monitorea cambios en archivos JS
+        'public/css/**/*.css'             // Monitorea cambios en archivos CSS
+    ]
+});
 

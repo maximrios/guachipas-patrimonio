@@ -14,9 +14,9 @@ use App\Http\Controllers\OrderController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware' => 'auth.check'], function () {
+Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('orders', [OrderController::class, 'index'])->name('orders.index')->can('viewAny', Order::class);
+    Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
     Route::resource('orders', OrderController::class)->except(['index']);
     Route::get('orders/print/{order}', [OrderController::class, 'print'])->name('orders.print');
     Route::get('orders/approve/{order}', [OrderController::class, 'approve'])->name('orders.approve');

@@ -22,6 +22,17 @@
   background-color: rgba(38, 185, 154, 0.88);
 }
 
+.select2-selection__choice {
+  background-color: red;
+}
+.select2-selection__choice button {
+  margin: 0;
+  padding-top: 3px !important;
+}
+.select2-selection__choice span.select2-selection__choice__display {
+  padding-left: 20px !important;
+}
+
 table tr td form {
   display: inline;
 }

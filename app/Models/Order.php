@@ -20,6 +20,8 @@ class Order extends Model
         'status_id',
         'organization_id',
         'file',
+        'number',
+        'year',
     ];
 
     public function organization()
@@ -37,6 +39,8 @@ class Order extends Model
         return $this->hasMany('App\Models\OrderProduct', 'order_id', 'id');
     }
 
+    /*
+
     public function getNumberAttribute()
     {
         return str_pad($this->id, 6, '0', STR_PAD_LEFT);
@@ -46,4 +50,5 @@ class Order extends Model
     {
         return date('Y', strtotime($this->created_at));
     }
+        */
 }

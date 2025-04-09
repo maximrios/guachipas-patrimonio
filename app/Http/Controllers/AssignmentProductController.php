@@ -68,12 +68,17 @@ class AssignmentProductController extends Controller
     {
         $inventory = Inventory::findOrFail($request->product_id);
 
-        $assignmentProduct = new AssignmentProduct();
-        $assignmentProduct->inventory_id = $inventory->id;
-        $assignmentProduct->registration = $inventory->registration;
-        $assignmentProduct->name = $inventory->product->name;
-        $assignmentProduct->quantity = 1;
-        $assignmentProduct->assignment_id = $request->input('assignment_id');
+        $assignment = new Assignment();
+        $assignment->inventory_id = $inventory->id;
+        $assignment->assign_to = $request->input('assign_to');
+        $assignment->area_id = $request->input('area_id');
+        $assignment->observation = $request->input('observation');
+        $assignment->approved_at = now();
+        $assignment->save();
+        // $assignmentProduct->registration = $inventory->registration;
+        // $assignmentProduct->name = $inventory->product->name;
+        // $assignmentProduct->quantity = 1;
+        // $assignmentProduct->assignment_id = $request->input('assignment_id');
         $assignmentProduct->save();
 
         return response()->json(['assignmentProduct' => $assignmentProduct]);

@@ -64,24 +64,12 @@
                 			<h3>Cargo</h3>
                 			<ul class="nav side-menu">
                 				<li><a href="{{ url('home') }}"><i class="fa fa-home"></i> Dashboard </a></li>
-                                @can('viewAny', App\Models\Order::class)
-                                    <li><a href="{{ url('orders') }}"><i class="fa fa-sign-in"></i> Altas</a></li>
-                                @endcan
-                                @can('viewAny', App\Models\Sale::class)
-                  				    <li><a href="{{ url('sales') }}"><i class="fa fa-sign-out"></i> Bajas</a></li>
-                                @endcan
-                                @can('viewAny', App\Models\Inventory::class)
-                                    <li><a href="{{ url('inventories') }}"><i class="fa fa-list"></i> Inventario</a></li>
-                                @endcan
-                                @can('viewAny', App\Models\Assignment::class)
-                                    <li><a href="{{ url('assignments') }}"><i class="fa fa-share"></i> Asignaciones</a></li>
-                                @endcan
-                                @can('viewAny', App\Models\Product::class)
-                  				    <li><a href="{{ url('products') }}"><i class="fa fa-book"></i> Nomenclador</a></li>
-                                @endcan
-                                @can('viewAny', App\Models\Provider::class)
-                                    <li><a href="{{ url('providers') }}"><i class="fa fa-address-book"></i> Proveedores</a></li>
-                                @endcan
+                                <li><a href="{{ url('orders') }}"><i class="fa fa-sign-in"></i> Altas</a></li>
+                  				<li><a href="{{ url('sales') }}"><i class="fa fa-sign-out"></i> Bajas</a></li>
+                                <li><a href="{{ url('inventories') }}"><i class="fa fa-list"></i> Inventario</a></li>
+                                <li><a href="{{ url('assignments') }}"><i class="fa fa-share"></i> Asignaciones</a></li>
+                  				<li><a href="{{ url('products') }}"><i class="fa fa-book"></i> Nomenclador</a></li>
+                                <li><a href="{{ url('providers') }}"><i class="fa fa-address-book"></i> Proveedores</a></li>
                                 <li><a href="{{ url('reports') }}"><i class="fa fa-tasks"></i> Reportes</a></li>
                   			</ul>
               			</div>

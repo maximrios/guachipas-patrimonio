@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Picqer\Barcode\BarcodeGeneratorPNG;
 use App\Http\Resources\InventoryResource;
 use App\Http\Resources\InventoryCollection;
+use App\Models\Area;
 use App\Services\Inventory\InventoryExportService;
 use App\Services\Inventory\GetInventoryDataTableService;
 
@@ -59,7 +60,14 @@ class InventoryController extends Controller
      */
     public function show(Inventory $inventory)
     {
-        //
+        $assignments = $inventory->assignments()->get();
+        $order = $inventory->order;
+        $areas = Area::all();
+
+        return view('inventories.show')
+            ->with('inventory', $inventory)
+            ->with('order', $order)
+            ->with('areas', $areas);
     }
 
     /**

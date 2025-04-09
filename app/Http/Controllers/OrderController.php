@@ -166,6 +166,7 @@ class OrderController extends Controller
             //$registration = $product->registration_from;
             for ($i = 1; $i <= $product->quantity; $i++) {
                 $inventory = new Inventory();
+                $inventory->order_product_id = $product->id;
                 $inventory->product_id = $product->product_id;
                 $inventory->description = $product->description;
                 $inventory->organization_id = $order->organization_id;

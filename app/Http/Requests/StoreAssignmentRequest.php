@@ -24,7 +24,7 @@ class StoreAssignmentRequest extends FormRequest
     public function attributes()
     {
         return [
-            "assign_to" => 'Dirigido',
+            "employees[]" => 'Dirigido',
             'organization_id' => 'Organismo',
             "observation" => 'Observacion',
         ];
@@ -39,7 +39,7 @@ class StoreAssignmentRequest extends FormRequest
     {
         
         $rules = [
-            'assign_to' => 'min:1',
+            'employees[]' => 'min:1',
             "organization_id" => 'required',
             "observation" => 'sometimes',
         ];

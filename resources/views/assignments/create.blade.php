@@ -29,22 +29,21 @@
 						</div>
 					@endif
                     <br>
-                    <form action="{{ url('assignments') }}" method="post" class="form-horizontal form-label-left" autocomplete="false">
+                    <form action="{{ url('assignments') }}" method="post" class="" autocomplete="false">
                     @csrf
-                        <div class="form-group row">
-                            <label for="assing_to" class="control-label col-md-3 col-sm-3 ">Dirigido a </label>
-                            <div class="col-md-9 col-sm-9 ">
-                                <select name="employee_id" id="employee_id" class="form-control">
-                                    @foreach ($employees as $employee)
-                                        <option value="{{ $employee->id }}">{{ $employee->profile->name }}</option>
-                                    @endforeach
-                                </select>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <x-search 
+                                    id="employee_id"
+                                    url="http://131.107.4.117:8081/api/v1/employees/autocomplete"
+                                    key="user_id"
+                                />
                                 <input type="hidden" id="assign_to" name="assign_to" class="form-control" placeholder="Nombre completo" value="">
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="organization_id" class="control-label col-md-3 col-sm-3 ">Unidad de Organización</label>
-                            <div class="col-md-9 col-sm-9 ">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="organization_id" class="control-label">Unidad de Organización</label>
                                 <select id="organization_id" name="organization_id" class="form-control">
                                     @foreach ($organizations as $organization)
                                         <option value="{{ $organization->id }}">{{ $organization->name }}</option>
@@ -53,8 +52,8 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="observation" class="control-label col-md-3 col-sm-3 ">Observaciones</label>
-                            <div class="col-md-9 col-sm-9 ">
+                            <div class="col-md-9">
+                                <label for="observation" class="control-label">Observaciones</label>
                                 <textarea name="observation" id="observation" cols="30" rows="10" class="form-control"></textarea>
                             </div>
                         </div>
@@ -71,13 +70,14 @@
 </div>
 
 <script>
+    /*
     $(function() {
         $('#employee_id').select2({
             language: "es",
             minimumInputLength: 3,
             minimumResultsForSearch: 20,
             ajax: {
-                url: "{{ route('employees.search') }}",
+                url: "http://131.107.4.117:8081/api/v1/employees",
                 dataType: 'json',
                 // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
             }
@@ -88,5 +88,6 @@
             $('#assign_to').val(employee);
         });
     })
+    */
 </script>
 @endsection

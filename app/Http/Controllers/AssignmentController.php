@@ -50,7 +50,13 @@ class AssignmentController extends Controller
      */
     public function store(StoreAssignmentRequest $request)
     {
-        $assignment = new Assignment($request->validated());
+        $data = $request->validated();
+dd($data);
+        $assignment = new Assignment([
+            'assign_to' => $data['employee_id'],
+            'organization_id' => $data['organization_id'],
+            'observation' => $data['observation'],
+        ]);
         $assignment->save();
         if($assignment) {
             return redirect(route('assignments.show', ['assignment' => $assignment]));

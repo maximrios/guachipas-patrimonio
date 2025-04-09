@@ -34,6 +34,17 @@
 .badge-approve {
     background-color: $color-success;
 }
+
+.select2-selection__choice {
+    background-color: red;
+    button {
+        margin: 0;
+        padding-top: 3px!important;
+    }
+    span.select2-selection__choice__display {
+        padding-left: 20px!important;
+    }
+}
 table {
     tr {
         td {

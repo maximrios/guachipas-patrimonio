@@ -22,7 +22,7 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <th>Número</th>
                                 <th>Unidad Organizacional</th>
                                 <th>Expediente</th>
                                 <th>Creado</th>
@@ -34,7 +34,7 @@
                         <tbody>
                             @foreach ($orders as $order)
                                 <tr>
-                                    <td>{{ $order->id }}</td>
+                                    <td>{{ $order->number }}/{{ $order->year }}</td>
                                     <td>{{ $order->organization->code }} - {{ $order->organization->name }}</td>
                                     <td>{{ $order->file }}</td>
                                     <td>{{ $order->created_at }}</td>
