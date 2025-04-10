@@ -66,11 +66,12 @@ class AssignmentProductController extends Controller
      */
     public function storeInventory(Request $request)
     {
-        $inventory = Inventory::findOrFail($request->product_id);
+        $inventory = Inventory::findOrFail($request->input('inventory_id'));
 
         $assignment = new Assignment();
         $assignment->inventory_id = $inventory->id;
-        $assignment->assign_to = $request->input('assign_to');
+        $assignment->assign_to = 'N/A';
+        $assignment->organization_id = 1;
         $assignment->area_id = $request->input('area_id');
         $assignment->observation = $request->input('observation');
         $assignment->approved_at = now();
@@ -79,9 +80,9 @@ class AssignmentProductController extends Controller
         // $assignmentProduct->name = $inventory->product->name;
         // $assignmentProduct->quantity = 1;
         // $assignmentProduct->assignment_id = $request->input('assignment_id');
-        $assignmentProduct->save();
+        $assignment->save();
 
-        return response()->json(['assignmentProduct' => $assignmentProduct]);
+        return response()->json(['assignment' => $assignment]);
     }
 
     /**

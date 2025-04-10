@@ -190,8 +190,8 @@ class InventoryController extends Controller
 
     public function export(Request $request)
     {
-        $organization_id = $request->input('organization_id');
-        return (new InventoryExportService($organization_id))->execute();
+        $area_id = $request->input('area_id');
+        return (new InventoryExportService($area_id))->execute();
     }
 
     public function get(Request $request)

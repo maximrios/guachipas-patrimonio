@@ -45,7 +45,7 @@ class InventoryExport implements FromCollection, WithHeadings, WithMapping, Shou
 
             return [
                 $row->id,
-                $row->organization->name,
+                $row->currentAssignment?->area?->name,
                 $row->registration,
                 $row->product->nomenclator,
                 $row->product->name,

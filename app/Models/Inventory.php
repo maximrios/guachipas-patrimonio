@@ -53,9 +53,15 @@ class Inventory extends Model
         return $this->belongsTo(OrderProductStatus::class, 'status_id', 'id');
     }
 
+    //last assignment
+    public function currentAssignment()
+    {
+        return $this->hasOne(Assignment::class, 'inventory_id', 'id')->latestOfMany();
+    }
+
     public function assignments()
     {
-        return $this->hasMany(Assignment::class, 'inventory_id', 'id');
+        return $this->hasMany(Assignment::class, 'inventory_id', 'id')->orderBy('created_at', 'desc');
     }
 
     public function provider()

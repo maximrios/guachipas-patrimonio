@@ -43,7 +43,12 @@
                                     {{ $inventory->product->name }}
                                 </td>
                                 <td>
-                                    {{ $inventory->organization->name }}
+                                    @if ($inventory->currentAssignment)
+                                        <strong>{{ $inventory->currentAssignment->area->name }}</strong><br>
+                                        {{ $inventory->currentAssignment->area->description }}
+                                    @else
+                                        {{ $inventory->organization->name }}    
+                                    @endif
                                 </td>
                                 <td>
                                     <span class="badge badge-{{$inventory->status->slug }}">

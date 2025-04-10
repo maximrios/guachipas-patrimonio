@@ -11,19 +11,21 @@ use Maatwebsite\Excel\Facades\Excel;
 class InventoryExportService
 {
 
-    private int $organization_id;
+    private int $area_id;
 
     public function __construct(
-        int $organization_id
+        int $area_id
     )
     {
-        $this->organization_id = $organization_id;
+        $this->area_id = $area_id;
     }
 
     public function execute()
     {
-        if($this->organization_id !== 1) {
-            $inventories = Inventory::where('organization_id', $this->organization_id)->get();
+        if($this->area_id !== 1) {
+            $inventories = Inventory::whereHas('currentAssignment', function ($query) {
+                $query->where('area_id', $this->area_id);
+            })->get();
         }
         else {
             $inventories = Inventory::all();

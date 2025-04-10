@@ -26,8 +26,16 @@
                         <div class="row invoice-info">
                             <div class="col-sm-4 invoice-col">
                                 <div>
-                                    <strong>Area: </strong><span>{{ $inventory->area?->name }}</span><br>
-                                    <strong>Empleado: </strong><span>{{ $inventory->employee?->name }}</span>
+                                    @if ($inventory->currentAssignment)
+                                        @foreach ($inventory->currentAssignment?->area?->ancestors as $ancestor)
+                                            <strong>{{ $ancestor->name }}</strong><br>
+                                        @endforeach
+                                        <br>
+                                    @else
+                                        Area: <strong>Sin asignación</strong><br>
+                                    @endif
+                                    
+                                    <strong>Empleado: </strong><span>{{ $inventory->currentAssignment?->employee?->name }}</span>
                                 </div>
                             </div>
                             <div class="col-sm-4 invoice-col">
@@ -112,23 +120,20 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th style="width: 50px;">#</th>
                                 <th>Area</th>
-                                <th>Empleado</th>
-                                <th>Fecha</th>
-                                <th>Estado</th>
                                 <th>Observaciones</th>
+                                <th width="140px">Fecha</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($inventory->assignments as $assignment)
                             <tr>
-                                <td>{{ $assignment->id }}</td>
-                                <td>{{ $assignment->area->name }}</td>
-                                <td>{{ $assignment->employee->name }}</td>
+                                <td>
+                                    {{ $assignment->area->name }}<br>
+                                    {{ $assignment->employee?->name }}
+                                </td>
+                                <td>{{ $assignment->observation }}</td>
                                 <td>{{ $assignment->created_at }}</td>
-                                <td><span class="badge badge-{{$item->status->slug}}">{{ $assignment->status->name }}</span></td>
-                                <td>{{ $assignment->observations }}</td>
                             </tr>
                             @empty
                             <tr>
@@ -172,6 +177,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <input type="hidden" name="inventory_id" value="{{ $inventory->id }}">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                     <button type="button" id="addInventory" class="btn btn-primary">Guardar</button>
                 </div>

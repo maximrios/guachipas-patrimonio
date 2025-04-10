@@ -23,10 +23,10 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="#">Unidad Organizacional</label>
-                                <select name="organization_id" id="organization_id" class="form-control">
-                                    @foreach ($organizations as $organization)
-                                        <option value="{{ $organization->id }}">{{ $organization->name }}</option>
+                                <label for="#">Area</label>
+                                <select name="area_id" id="area_id" class="form-control">
+                                    @foreach ($areas as $area)
+                                        <option value="{{ $area->id }}">{{ $area->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -75,10 +75,10 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="#">Unidad organizacional</label>
-                                <select name="organization_id" id="organization_id" class="form-control">
-                                    @foreach ($organizations as $organization)
-                                        <option value="{{ $organization->id }}">{{ $organization->name }}</option>
+                                <label for="#">Area</label>
+                                <select name="area_id" id="area_id" class="form-control">
+                                    @foreach ($areas as $area)
+                                        <option value="{{ $area->id }}">{{ $area->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

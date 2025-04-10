@@ -30,4 +30,9 @@ class Assignment extends Model
     {
         return $this->belongsTo(Inventory::class, 'inventory_id', 'id');
     }
+
+    public function area()
+    {
+        return $this->belongsTo(Area::class, 'area_id', 'id');
+    }
 }

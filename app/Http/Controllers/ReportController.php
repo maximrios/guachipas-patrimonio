@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProviderRequest;
 use App\Http\Requests\UpdateProviderRequest;
+use App\Models\Area;
 use App\Models\Organization;
 use App\Models\Provider;
 use Illuminate\Http\Request;
@@ -18,9 +19,9 @@ class ReportController extends Controller
     public function index()
     {
         //$providers = Provider::orderBy('id', 'DESC')->get();
-        $organizations = Organization::all();
+        $areas = Area::all();
         return view('reports.index')
-            ->with('organizations', $organizations);
+            ->with('areas', $areas);
     }
 
     /**
