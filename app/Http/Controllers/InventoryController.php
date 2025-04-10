@@ -129,6 +129,13 @@ class InventoryController extends Controller
         $generatorPNG = new BarcodeGeneratorPNG;
         $barcode = base64_encode($generatorPNG->getBarcode($code, $generatorPNG::TYPE_CODE_128));
 
+        $scale = 2;     // Escala horizontal, aumenta el ancho
+        $height = 51;   // Altura de las barras
+
+        $barcode = base64_encode(
+            $generatorPNG->getBarcode($code, $generatorPNG::TYPE_CODE_128, $scale, $height)
+        );
+
         $data = [
             'inventory' => $inventory,
             'code' => $code,

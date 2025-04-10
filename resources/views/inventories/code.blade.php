@@ -8,7 +8,10 @@
     <title>Etiquetas - {{ $inventory->product->name }}</title>
     <style>
         @page {
-            margin: 0.5cm;
+            margin-top: 10mm;
+            margin-bottom: 14mm;
+            margin-left: 0mm;
+            margin-right: 0mm;
         }
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -19,7 +22,7 @@
         }
         td {
             border: 1px solid black;
-            padding: 3px 5px;
+            padding: 3px 15px;
             text-align: center;
         }
         td span {
@@ -37,45 +40,29 @@
             <tbody>
                 <tr>
                     <td>
-                        <img src="data:image/png;base64,{{ $barcode }}" width="125px">
+                        <img src="data:image/png;base64,{{ $barcode }}" width="230px">
                         <span>{{ $code }}</span>
                     </td>
                     <td>
-                        <img src="data:image/png;base64,{{ $barcode }}" width="125px">
+                        <img src="data:image/png;base64,{{ $barcode }}" width="230px">
                         <span>{{ $code }}</span>
                     </td>
                     <td>
-                        <img src="data:image/png;base64,{{ $barcode }}" width="125px">
-                        <span>{{ $code }}</span>
-                    </td>
-                    <td>
-                        <img src="data:image/png;base64,{{ $barcode }}" width="125px">
-                        <span>{{ $code }}</span>
-                    </td>
-                    <td>
-                        <img src="data:image/png;base64,{{ $barcode }}" width="125px">
+                        <img src="data:image/png;base64,{{ $barcode }}" width="230px">
                         <span>{{ $code }}</span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <img src="data:image/png;base64,{{ $barcode }}" width="125px">
+                        <img src="data:image/png;base64,{{ $barcode }}" width="230px">
                         <span>{{ $code }}</span>
                     </td>
                     <td>
-                        <img src="data:image/png;base64,{{ $barcode }}" width="125px">
+                        <img src="data:image/png;base64,{{ $barcode }}" width="230px">
                         <span>{{ $code }}</span>
                     </td>
                     <td>
-                        <img src="data:image/png;base64,{{ $barcode }}" width="125px">
-                        <span>{{ $code }}</span>
-                    </td>
-                    <td>
-                        <img src="data:image/png;base64,{{ $barcode }}" width="125px">
-                        <span>{{ $code }}</span>
-                    </td>
-                    <td>
-                        <img src="data:image/png;base64,{{ $barcode }}" width="125px">
+                        <img src="data:image/png;base64,{{ $barcode }}" width="230px">
                         <span>{{ $code }}</span>
                     </td>
                 </tr>

@@ -97,7 +97,7 @@
 
                                 <a id="addProducto" href="#" class="btn btn-default pull-right" data-toggle="modal" data-target="#modal">Asignar inventario</a>
 
-                                <a href="{{ route('inventories.print', ['inventory' => $inventory]) }}" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-barcode"></i> Imprimir etiquetas</a>
+                                <a href="{{ route('inventories.code', $inventory) }}" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-barcode"></i> Imprimir etiquetas</a>
                             </div>
                         </div>
                     </section>
