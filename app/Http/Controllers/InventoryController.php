@@ -30,7 +30,10 @@ class InventoryController extends Controller
     {
 
         $inventories = Inventory::all();
-        return view('inventories.index')->with('inventories', $inventories);
+        $areas = Area::all();
+        return view('inventories.index')
+            ->with('areas', $areas)
+            ->with('inventories', $inventories);
     }
 
     /**

@@ -25,7 +25,8 @@ class InventoryExport implements FromCollection, WithHeadings, WithMapping, Shou
     {
         return [
             '#',
-            'Unidad organizacional',
+            'Area',
+            'Agente',
             'Matrícula N°',
             'Nomenclador',
             'Nombre',
@@ -45,7 +46,8 @@ class InventoryExport implements FromCollection, WithHeadings, WithMapping, Shou
 
             return [
                 $row->id,
-                $row->currentAssignment?->area?->name,
+                $row->area?->name,
+                $row->employee?->profile?->full_name,
                 $row->registration,
                 $row->product->nomenclator,
                 $row->product->name,

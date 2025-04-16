@@ -36,6 +36,15 @@
                         <label for="inventory-search">Inventario</label>
                         <input type="text" id="inventory-search" class="form-control" placeholder="Buscar...">
                     </div>
+                    <div class="col-sm-5">
+                        <label for="area-search">Area</label>
+                        <select id="area-search" class="form-control">
+                            <option value="">Todas</option>
+                            @foreach ($areas as $area)
+                                <option value="{{ $area->name }}">{{ $area->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="col-sm-2">
                         <label for="filtro-status">Disponibilidad</label>
                         <select id="filtro-status" class="form-control">
@@ -108,14 +117,17 @@ $( document ).ready(function() {
         
         const statusSeleccionado = $('#filtro-status').val()?.trim();
         const inventory = $('#inventory-search').val()?.toLowerCase().trim();
+        const area = $('#area-search').val()?.toLowerCase().trim();
 
         const statusFila = data[3]?.trim();         // ajustá índice según el orden de tus columnas
         const inventoryFila = data[1]?.toLowerCase().trim();  // idem
+        const areaFila = data[2]?.toLowerCase().trim();  // idem
 
         const pasaFiltroStatus = !statusSeleccionado || statusFila === statusSeleccionado;
         const pasaFiltroInventory = !inventory || inventoryFila.includes(inventory);
+        const pasaFiltroArea = !area || areaFila.includes(area);
 
-        return pasaFiltroStatus && pasaFiltroInventory;
+        return pasaFiltroStatus && pasaFiltroInventory && pasaFiltroArea;
         
     });
 
@@ -130,6 +142,10 @@ $( document ).ready(function() {
 
     $('#product-search').on('keyup', function() {
         table.columns(0).search(this.value).draw();
+    });
+
+    $('#area-search').on('change', function() {
+        table.draw();
     });
 });
 

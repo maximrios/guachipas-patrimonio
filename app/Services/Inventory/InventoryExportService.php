@@ -23,9 +23,7 @@ class InventoryExportService
     public function execute()
     {
         if($this->area_id !== 1) {
-            $inventories = Inventory::whereHas('currentAssignment', function ($query) {
-                $query->where('area_id', $this->area_id);
-            })->get();
+            $inventories = Inventory::where('area_id', $this->area_id)->get();
         }
         else {
             $inventories = Inventory::all();
