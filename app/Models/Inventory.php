@@ -21,6 +21,13 @@ class Inventory extends Model
         'description',
         'observations',
         'status_id',
+        'available',
+        'area_id',
+    ];
+
+    public const AVAILABLE = [
+        '0' => 'No disponible',
+        '1' => 'Disponible',
     ];
 
     public function getRegistrationAttribute($registration)
@@ -31,11 +38,6 @@ class Inventory extends Model
     public function organization()
     {
         return $this->belongsTo(Organization::class, 'organization_id', 'id');
-    }
-
-    public function area()
-    {
-        return $this->belongsTo(Area::class, 'area_id', 'id');
     }
 
     public function product()
@@ -54,9 +56,14 @@ class Inventory extends Model
     }
 
     //last assignment
-    public function currentAssignment()
+    public function area()
     {
-        return $this->hasOne(Assignment::class, 'inventory_id', 'id')->latestOfMany();
+        return $this->belongsTo(Area::class, 'area_id', 'id');
+    }
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'employee_id', 'id');
     }
 
     public function assignments()

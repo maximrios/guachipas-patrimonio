@@ -24,5 +24,6 @@ use App\Http\Controllers\InventoryController;
     Route::post('inventories/check', [InventoryController::class, 'check'])->name('inventories.check');
     Route::resource('inventories', InventoryController::class);
 
+    Route::put('inventories/{inventory}/update', [InventoryController::class, 'update'])->name('inventories.update');
     Route::post('inventories/export', [InventoryController::class, 'export'])->name('inventories.export');
 //});

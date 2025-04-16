@@ -14,6 +14,8 @@ use Picqer\Barcode\BarcodeGeneratorPNG;
 use App\Http\Resources\InventoryResource;
 use App\Http\Resources\InventoryCollection;
 use App\Models\Area;
+use App\Models\Employee;
+use App\Models\OrderProductStatus;
 use App\Services\Inventory\InventoryExportService;
 use App\Services\Inventory\GetInventoryDataTableService;
 
@@ -63,11 +65,14 @@ class InventoryController extends Controller
         $assignments = $inventory->assignments()->get();
         $order = $inventory->order;
         $areas = Area::all();
+        $employees = Employee::all();
 
         return view('inventories.show')
             ->with('inventory', $inventory)
             ->with('order', $order)
-            ->with('areas', $areas);
+            ->with('areas', $areas)
+            ->with('assignments', $assignments)
+            ->with('employees', $employees);
     }
 
     /**
@@ -78,7 +83,10 @@ class InventoryController extends Controller
      */
     public function edit(Inventory $inventory)
     {
-        //
+        $statuses = OrderProductStatus::all();
+        return view('inventories.edit')
+            ->with('inventory', $inventory)
+            ->with('statuses', $statuses);
     }
 
     /**
@@ -90,7 +98,19 @@ class InventoryController extends Controller
      */
     public function update(Request $request, Inventory $inventory)
     {
-        //
+        $inventory->status_id = $request->input('status_id');
+        $inventory->observations = $request->input('observations');
+        $inventory->available = $request->input('available');
+        if ($request->input('available') == 1) {
+            $inventory->employee_id = null;
+        }
+
+        $inventory->save();
+
+        return redirect(route('inventories.show', $inventory))->with([
+            'message' => 'Inventario actualizado correctamente',
+            'type' => 'success',
+        ]);
     }
 
     /**

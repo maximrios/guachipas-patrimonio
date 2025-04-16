@@ -26,8 +26,8 @@
                         <div class="row invoice-info">
                             <div class="col-sm-4 invoice-col">
                                 <div>
-                                    @if ($inventory->currentAssignment)
-                                        @foreach ($inventory->currentAssignment?->area?->ancestors as $ancestor)
+                                    @if ($inventory->area)
+                                        @foreach ($inventory->area?->ancestors as $ancestor)
                                             <strong>{{ $ancestor->name }}</strong><br>
                                         @endforeach
                                         <br>
@@ -35,20 +35,24 @@
                                         Area: <strong>Sin asignación</strong><br>
                                     @endif
                                     
-                                    <strong>Empleado: </strong><span>{{ $inventory->currentAssignment?->employee?->name }}</span>
+                                    @if ($inventory->employee)
+                                        <strong>Agente: </strong><span>{{ $inventory->employee->profile->full_name }}</span>
+                                    @else
+                                        Agente: <strong>Sin asignación</strong><br>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-sm-4 invoice-col">
                                 <div>
-                                    <strong>Alta patrimonial N°:</strong> {{ $inventory->order->number }}/{{ $inventory->order->year }}
+                                    <strong>Alta patrimonial N°:</strong> 
+                                    <a href="{{ route('orders.show', $inventory->order) }}">{{ $inventory->order->number }}/{{ $inventory->order->year }}</a>
                                     <br><b>Expediente:</b> {{ $inventory->order->file }}<br>
                                     <b>Fecha de alta:</b> {{ $inventory->order->created_at }}
                                 </div>
                             </div>
                             <div class="col-sm-4 invoice-col">
-                                <b>Inventario #{{ $inventory->id }}</b>
-                                <br>
-                                <b>Estado:</b> <span class="badge badge-{{$inventory->status->slug}}">{{ $inventory->status->name }}</span>
+                                <b>Estado:</b> <span class="badge badge-{{$inventory->status->slug}}">{{ $inventory->status->name }}</span><br>
+                                <b>Disponibilidad:</b> <span class="badge badge-success">{{ $inventory->available ? 'Disponible':'No disponible' }}</span><br>
                             </div>
                         </div>
 
@@ -105,6 +109,8 @@
 
                                 <a id="addProducto" href="#" class="btn btn-default pull-right" data-toggle="modal" data-target="#modal">Asignar inventario</a>
 
+                                <a href="{{ route('inventories.edit', $inventory) }}" class="btn btn-warning pull-right" style="margin-right: 5px;" target="_self"><i class="fa fa-pencil"></i> Editar</a>
+
                                 <a href="{{ route('inventories.code', $inventory) }}" class="btn btn-primary pull-right" style="margin-right: 5px;" target="_blank"><i class="fa fa-barcode"></i> Imprimir etiquetas</a>
                             </div>
                         </div>
@@ -121,6 +127,7 @@
                         <thead>
                             <tr>
                                 <th>Area</th>
+                                <th>Agente</th>
                                 <th>Observaciones</th>
                                 <th width="140px">Fecha</th>
                             </tr>
@@ -129,8 +136,10 @@
                             @forelse ($inventory->assignments as $assignment)
                             <tr>
                                 <td>
-                                    {{ $assignment->area->name }}<br>
-                                    {{ $assignment->employee?->name }}
+                                    {{ $assignment->area->name }}
+                                </td>
+                                <td>
+                                    {{ $assignment->employee?->profile->full_name }}
                                 </td>
                                 <td>{{ $assignment->observation }}</td>
                                 <td>{{ $assignment->created_at }}</td>
@@ -162,10 +171,19 @@
                     <div class="row">
                         <div class="form-group col-sm-12">
                             <label>Area</label><br>
-                            <select id="area_id" name="area_id" class="form-control select" data-url="{{ route('inventories.search') }}">
+                            <select id="area_id" name="area_id" class="form-control select" style="width: 100%;">
                                 <option value="">Seleccione</option>
                                 @foreach ($areas as $area)
                                 <option value="{{ $area->id }}">{{ $area->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label>Agente</label><br>
+                            <select id="employee_id" name="employee_id" class="form-control select" style="width: 100%;">
+                                <option value="">Seleccione</option>
+                                @foreach ($employees as $employee)
+                                <option value="{{ $employee->id }}">{{ $employee->profile->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -224,7 +242,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        //$('.select').select2();
+        $('.select').select2();
 
         $('#addInventory').on('click', function(event) {
             event.preventDefault()

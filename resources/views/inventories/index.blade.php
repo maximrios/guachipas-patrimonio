@@ -5,6 +5,9 @@
     .table label {
         margin-bottom: 0!important;
     }
+    .dataTables_filter {
+  display: none;
+}
 </style>
 
 <div class="page-title">
@@ -24,13 +27,32 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <table id="" class="table table-striped">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label for="product-search">Matrícula</label>
+                        <input type="text" id="product-search" class="form-control" placeholder="Buscar...">
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="inventory-search">Inventario</label>
+                        <input type="text" id="inventory-search" class="form-control" placeholder="Buscar...">
+                    </div>
+                    <div class="col-sm-2">
+                        <label for="filtro-status">Disponibilidad</label>
+                        <select id="filtro-status" class="form-control">
+                            <option value="">Todos</option>
+                            <option value="Disponible">Disponible</option>
+                            <option value="No disponible">No disponible</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <table id="table-inventories" class="table table-striped">
                     <thead>
                         <tr>
                             <th width="100px">Matrícula N°</th>
                             <th>Nombre</th>
                             <th>Area</th>
-                            <th width="90px">Estado</th>
+                            <th width="90px">Disponibilidad</th>
                             <th width="90px"></th>
                         </tr>
                     </thead>
@@ -40,20 +62,25 @@
                                 <td>{{ $inventory->registration }}</td>
                                 <td>
                                     <strong>{{ $inventory->product->nomenclator }}</strong><br>
-                                    {{ $inventory->product->name }}
+                                    {{ $inventory->product->name }}<br>
+                                    <span class="badge badge-{{$inventory->status->slug }}">
+                                        {{ $inventory->status->name }}
+                                    </span>
                                 </td>
                                 <td>
-                                    @if ($inventory->currentAssignment)
-                                        <strong>{{ $inventory->currentAssignment->area->name }}</strong><br>
-                                        {{ $inventory->currentAssignment->area->description }}
+                                    @if ($inventory->area)
+                                        <strong>{{ $inventory->area->name }}</strong><br>
+                                        {{ $inventory->employee?->profile->full_name }}
                                     @else
                                         {{ $inventory->organization->name }}    
                                     @endif
                                 </td>
                                 <td>
-                                    <span class="badge badge-{{$inventory->status->slug }}">
-                                        {{ $inventory->status->name }}
-                                    </span>
+                                    @if ($inventory->available == 1)
+                                        <span class="label label-success">Disponible</span>
+                                    @else
+                                        <span class="label label-warning">No disponible</span>
+                                    @endif
                                 </td>
                                 <td>
                                     <a href="{{ route('inventories.show', ['inventory' => $inventory]) }}" class="btn btn-primary btn-sm">&nbsp;Ver detalle</a>
@@ -71,48 +98,39 @@
 <script>
     
 $( document ).ready(function() {
-    $('.table').dataTable();
-    /*
-    $('.table').dataTable({
-        processing: true,
-        serverSide: true,
-        responsive: true,
-        ajax: "{{ route('inventories.list') }}",
-        dataType: 'json',
-        type: 'GET',
-        columns: [{
-                data: 'registration',
-                name: 'registration',
-            },
-            {
-                data: 'product',
-                name: 'product',
-            },
-            {
-                data: 'organization',
-                name: 'organization',
-            },
-            {
-                data: 'status',
-                name: 'status',
-            },
-        ],
-        columnDefs: [
-            {
-                render: function (data, type, row) {
-                    return '<label>' + data + '</label><br><span>' + row.description + '</span>';
-                },
-                targets: 1,
-            },
-            {
-                render: function (data, type, row) {
-                    return `<span class="label label-info">${data}</label>`;
-                },
-                targets: 3,
-            },
-        ],
+    var table = $('.table').DataTable({
+        dom: 'frtip',
+        //searching: false,
     });
-    */
+    $('.dataTables_filter').hide();
+
+    $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+        
+        const statusSeleccionado = $('#filtro-status').val()?.trim();
+        const inventory = $('#inventory-search').val()?.toLowerCase().trim();
+
+        const statusFila = data[3]?.trim();         // ajustá índice según el orden de tus columnas
+        const inventoryFila = data[1]?.toLowerCase().trim();  // idem
+
+        const pasaFiltroStatus = !statusSeleccionado || statusFila === statusSeleccionado;
+        const pasaFiltroInventory = !inventory || inventoryFila.includes(inventory);
+
+        return pasaFiltroStatus && pasaFiltroInventory;
+        
+    });
+
+    // 2) Al cambiar el select, redibujamos la tabla
+    $('#filtro-status').on('change', function() {
+        table.draw();
+    });
+
+    $('#inventory-search').on('keyup', function() {
+        table.draw();
+    });
+
+    $('#product-search').on('keyup', function() {
+        table.columns(0).search(this.value).draw();
+    });
 });
 
 </script>

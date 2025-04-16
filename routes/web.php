@@ -25,9 +25,10 @@ use Illuminate\Support\Str;
 
 
 Auth::routes();
-Route::redirect('/', '/home');
+//Route::redirect('/', '/home');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('import', [HomeController::class, 'import'])->name('import');
     
 });

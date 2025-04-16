@@ -73,6 +73,7 @@ class AssignmentProductController extends Controller
         $assignment->assign_to = 'N/A';
         $assignment->organization_id = 1;
         $assignment->area_id = $request->input('area_id');
+        $assignment->employee_id = $request->input('employee_id');
         $assignment->observation = $request->input('observation');
         $assignment->approved_at = now();
         $assignment->save();
