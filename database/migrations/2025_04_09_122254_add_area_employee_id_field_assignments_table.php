@@ -14,8 +14,8 @@ class AddAreaEmployeeIdFieldAssignmentsTable extends Migration
     public function up()
     {
         Schema::table('assignments', function (Blueprint $table) {
-            $table->integer('area_id')->nullable()->default(null);
-            $table->integer('employee_id')->nullable()->default(null)->after('area_id');
+            //$table->integer('area_id')->nullable()->default(null);
+            //$table->integer('employee_id')->nullable()->default(null)->after('area_id');
         });
     }
 
