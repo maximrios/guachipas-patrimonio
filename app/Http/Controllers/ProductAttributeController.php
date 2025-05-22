@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\ProductAttribute;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ProductAttributeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        return view('products.index')->with('products', $products);
+        $productAttributes = ProductAttribute::all();
+        return view('productAttributes.index')->with('productAttributes', $productAttributes);
     }
 
     /**
@@ -36,7 +37,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:product_attributes',
+            'icon' => 'nullable|string|max:255',
+            'product_id' => 'required|exists:products,id',
+        ]);
+
+        $productAttribute = ProductAttribute::create($request->all());
+
+        return redirect()->route('products.show', $productAttribute->product_id)
+            ->with('success', 'Product attribute created successfully.');
     }
 
     /**
@@ -79,9 +90,11 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(ProductAttribute $productAttribute)
     {
-        //
+        $productAttribute->delete();
+        return redirect()->route('products.show', $productAttribute->product_id)
+            ->with('success', 'Product attribute deleted successfully.');
     }
 
     public function get(Request $request)

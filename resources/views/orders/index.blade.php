@@ -35,7 +35,7 @@
                             @foreach ($orders as $order)
                                 <tr>
                                     <td>{{ $order->number }}/{{ $order->year }}</td>
-                                    <td>{{ $order->organization->code }} - {{ $order->organization->name }}</td>
+                                    <td>{{ $order->organization->name }} {{ $order->organization->responsible?->profile?->full_name }}</td>
                                     <td>{{ $order->file }}</td>
                                     <td>{{ $order->created_at }}</td>
                                     <td>{{ $order->generated_at }}</td>

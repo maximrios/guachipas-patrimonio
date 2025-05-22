@@ -28,6 +28,7 @@
                             <th>Especie</th>
                             <th>Subespecie</th>
                             <th>Nombre</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,6 +41,9 @@
                                 <td>{{ $product->species }}</td>
                                 <td>{{ $product->subspecies }}</td>
                                 <td>{{ $product->name }}</td>
+                                <td>
+                                    <a class="btn btn-info btn-sm" href="{{ route('products.show', [$product]) }}">Detalle</a>
+                                </td>
                             </tr>
                         @endforeach
 

@@ -55,6 +55,11 @@ class Inventory extends Model
         return $this->belongsTo(OrderProductStatus::class, 'status_id', 'id');
     }
 
+    public function attributeValues()
+    {
+        return $this->hasMany(ProductAttributeValue::class, 'inventory_id', 'id');
+    }
+
     //last assignment
     public function area()
     {

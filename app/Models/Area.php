@@ -48,4 +48,12 @@ class Area extends Model
         //return $this->belongsToMany(Employee::class)->using(AreaEmployee::class);
         return $this->hasManyThrough(Employee::class, AreaEmployee::class, 'area_id', 'id', 'id', 'employee_id');
     }
+
+    public function getResponsibleAttribute()
+    {
+        return $this->employees()
+            ->where('job_position_id', $this->position)
+            ->where('current', 1)
+            ->first();
+    }
 }

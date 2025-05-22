@@ -16,6 +16,17 @@ class Product extends Model
         return $this->hasMany('App\Models\OrderProduct', 'product_id', 'id');
     }
 
+    public function attributes()
+    {
+        return $this->hasMany(ProductAttribute::class);
+    }
+
+    // Product.php
+    public function attributeValues()
+    {
+        return $this->hasMany(ProductAttributeValue::class);
+    }
+
     public function getTypeAttribute($type)
     {
         return str_pad($type, 2, '0', STR_PAD_LEFT);

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\ProductAttribute;
+use App\Models\ProductAttributeValue;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ProductAttributeValueController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        return view('products.index')->with('products', $products);
+        $productAttributeValues = ProductAttributeValue::all();
+        return view('productAttributeValues.index')->with('productAttributeValues', $productAttributeValues);
     }
 
     /**
@@ -36,7 +38,44 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $inventoryId = $request->input('inventory_id');
+        $attributeInputs = $request->input('attribute', []);
+
+        foreach ($attributeInputs as $attributeId => $inputValue) {
+            $attribute = ProductAttribute::with('options')->find($attributeId);
+
+            if (!$attribute) continue;
+
+            if ($attribute->options->isNotEmpty()) {
+                // Asegurar que la opción existe
+                $option = $attribute->options->firstWhere('id', $inputValue);
+
+                ProductAttributeValue::updateOrCreate(
+                    [
+                        'inventory_id' => $inventoryId,
+                        'product_attribute_id' => $attributeId
+                    ],
+                    [
+                        'value' => $option?->value ?? null,
+                        'product_attribute_option_id' => $option?->id
+                    ]
+                );
+            } else {
+                // Texto libre o número
+                ProductAttributeValue::updateOrCreate(
+                    [
+                        'inventory_id' => $inventoryId,
+                        'product_attribute_id' => $attributeId
+                    ],
+                    [
+                        'value' => $inputValue,
+                        'product_attribute_option_id' => null
+                    ]
+                );
+            }
+        }
+
+        return redirect()->back()->with('success', 'Atributos actualizados correctamente.');
     }
 
     /**
@@ -79,9 +118,11 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(ProductAttribute $productAttribute)
     {
-        //
+        $productAttribute->delete();
+        return redirect()->route('products.show', $productAttribute->product_id)
+            ->with('success', 'Product attribute deleted successfully.');
     }
 
     public function get(Request $request)

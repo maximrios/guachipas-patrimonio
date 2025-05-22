@@ -106,7 +106,9 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <a href="{{ url('orders') }}" class="btn btn-default">Volver</a>
-
+                                @if (auth()->user()->hasRole('admin'))
+                                    <a id="addAttributes" href="#" class="btn btn-default pull-right" data-toggle="modal" data-target="#attributes">Especificaciones</a>
+                                @endif
                                 <a id="addProducto" href="#" class="btn btn-default pull-right" data-toggle="modal" data-target="#modal">Asignar inventario</a>
 
                                 <a href="{{ route('inventories.edit', $inventory) }}" class="btn btn-warning pull-right" style="margin-right: 5px;" target="_self"><i class="fa fa-pencil"></i> Editar</a>
@@ -153,6 +155,61 @@
                     </table>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div id="attributes" class="modal fade" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content" id="guest-modal">
+            <form id="form-untracked" method="post" role="form" action="{{ route('productAttributeValues.store') }}">
+                @csrf
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="margin-top:0px!important;">Especificaciones</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="message"></div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Atributo</th>
+                                <th>Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($inventory->product->attributes as $attribute)
+                                <tr>
+                                    <td>{{ $attribute->name }}</td>
+                                    <td>
+                                        @if ($attribute->options->count() > 0)
+                                            <select class="form-control" name="attribute[{{ $attribute->id }}]">
+                                                <option value="">-- Seleccionar --</option>
+                                                @foreach ($attribute->options as $option)
+                                                    <option value="{{ $option->id }}"
+                                                        {{ $inventory->attributeValues->where('product_attribute_id', $attribute->id)->first()?->product_attribute_option_id == $option->id ? 'selected' : '' }}>
+                                                        {{ $option->value }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        @else
+                                            <input type="text"
+                                                class="form-control"
+                                                name="attribute[{{ $attribute->id }}]"
+                                                value="{{ $inventory->attributeValues->where('product_attribute_id', $attribute->id)->first()?->value }}">
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="inventory_id" value="{{ $inventory->id }}">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" id="addInventory" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
