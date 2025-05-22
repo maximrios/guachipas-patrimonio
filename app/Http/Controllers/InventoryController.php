@@ -36,6 +36,15 @@ class InventoryController extends Controller
             ->with('inventories', $inventories);
     }
 
+    public function custom()
+    {
+        $inventories = Inventory::all();
+        $areas = Area::all();
+        return view('inventories.custom')
+            ->with('areas', $areas)
+            ->with('inventories', $inventories);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

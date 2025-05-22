@@ -138,7 +138,7 @@
                             @forelse ($inventory->assignments as $assignment)
                             <tr>
                                 <td>
-                                    {{ $assignment->area->name }}
+                                    {{ $assignment->area?->name }}
                                 </td>
                                 <td>
                                     {{ $assignment->employee?->profile->full_name }}
@@ -207,7 +207,7 @@
                 <div class="modal-footer">
                     <input type="hidden" name="inventory_id" value="{{ $inventory->id }}">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="button" id="addInventory" class="btn btn-primary">Guardar</button>
+                    <button type="button" id="addSpecification" class="btn btn-primary">Guardar</button>
                 </div>
             </form>
         </div>
@@ -302,6 +302,24 @@
         $('.select').select2();
 
         $('#addInventory').on('click', function(event) {
+            event.preventDefault()
+            let form = $(this).closest('form')[0]
+            var formData = new FormData(document.getElementById('form-untracked'));
+            $.ajax({
+                url: form.action,
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                processData: false, 
+                contentType: false,
+                success: function(response) {
+                    $('#modal').hide();
+                    window.location.reload();
+                }
+            })
+        });
+
+        $('#addSpecification').on('click', function(event) {
             event.preventDefault()
             let form = $(this).closest('form')[0]
             var formData = new FormData(document.getElementById('form-untracked'));

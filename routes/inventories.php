@@ -17,6 +17,7 @@ use App\Http\Controllers\InventoryController;
 
     Route::get('inventories/get', [InventoryController::class, 'get'])->name('inventories.get');
     Route::get('inventories/list', [InventoryController::class, 'list'])->name('inventories.list');
+    Route::get('inventories/custom', [InventoryController::class, 'custom'])->name('inventories.custom');
     Route::get('inventories/search', [InventoryController::class, 'search'])->name('inventories.search');
     Route::get('inventories/print', [InventoryController::class, 'print'])->name('inventories.print');
     Route::get('inventories/code/{inventory}', [InventoryController::class, 'code'])->name('inventories.code');

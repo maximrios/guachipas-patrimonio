@@ -67,6 +67,9 @@
                                 <li><a href="{{ url('orders') }}"><i class="fa fa-sign-in"></i> Altas</a></li>
                   				<li><a href="{{ url('sales') }}"><i class="fa fa-sign-out"></i> Bajas</a></li>
                                 <li><a href="{{ url('inventories') }}"><i class="fa fa-list"></i> Inventario</a></li>
+                                @if (Auth::user()->hasRole('admin'))
+                                    <li><a href="{{ url('inventories/custom') }}"><i class="fa fa-cog"></i> Informatica</a></li>
+                                @endif
                   				<li><a href="{{ url('products') }}"><i class="fa fa-book"></i> Nomenclador</a></li>
                                 <li><a href="{{ url('providers') }}"><i class="fa fa-address-book"></i> Proveedores</a></li>
                                 <li><a href="{{ url('reports') }}"><i class="fa fa-tasks"></i> Reportes</a></li>

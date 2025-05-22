@@ -54,11 +54,11 @@ class Assignment extends Model
 
     public function area()
     {
-        return $this->belongsTo(Area::class, 'area_id', 'id');
+        return $this->belongsTo(Area::class, 'area_id', 'id')->withTrashed();
     }
 
     public function employee()
     {
-        return $this->belongsTo(Employee::class, 'employee_id', 'id');
+        return $this->belongsTo(Employee::class, 'employee_id', 'id')->withTrashed();
     }
 }
