@@ -217,7 +217,7 @@
 <div id="modal" class="modal fade" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content" id="guest-modal">
-            <form id="form-untracked" method="post" role="form" action="{{ route('assignmentProducts.storeInventory') }}">
+            <form id="form-assignment" method="post" role="form" action="{{ route('assignmentProducts.storeInventory') }}">
                 @csrf
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -304,7 +304,7 @@
         $('#addInventory').on('click', function(event) {
             event.preventDefault()
             let form = $(this).closest('form')[0]
-            var formData = new FormData(document.getElementById('form-untracked'));
+            var formData = new FormData(document.getElementById('form-assignment'));
             $.ajax({
                 url: form.action,
                 type: 'POST',
