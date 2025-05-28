@@ -10,11 +10,14 @@ class ProductAttribute extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'slug',
-        'icon',
+        'attribute_id',
         'product_id',
     ];
+
+    public function attribute()
+    {
+        return $this->belongsTo(Attribute::class);
+    }
 
     public function product()
     {

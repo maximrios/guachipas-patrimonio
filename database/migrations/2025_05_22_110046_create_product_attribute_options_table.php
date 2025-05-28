@@ -15,7 +15,7 @@ class CreateProductAttributeOptionsTable extends Migration
     {
         Schema::create('product_attribute_options', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('product_attribute_id')->unsigned()->index('product_attributes_product_attribute_id_foreign');
+            $table->bigInteger('attribute_id')->unsigned()->index('product_attributes_attribute_id_foreign');
             $table->string('name', 191);
             $table->string('default_value', 191)->nullable();
 			$table->timestamps();

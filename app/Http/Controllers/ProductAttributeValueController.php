@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attribute;
 use App\Models\Product;
 use App\Models\ProductAttribute;
 use App\Models\ProductAttributeValue;
@@ -38,44 +39,42 @@ class ProductAttributeValueController extends Controller
      */
     public function store(Request $request)
     {
-       $inventoryId = $request->input('inventory_id');
+        $inventoryId = $request->input('inventory_id');
         $attributeInputs = $request->input('attribute', []);
 
         foreach ($attributeInputs as $attributeId => $inputValue) {
-            $attribute = ProductAttribute::with('options')->find($attributeId);
+            $attribute = Attribute::find($attributeId);
 
             if (!$attribute) continue;
 
-            if ($attribute->options->isNotEmpty()) {
-                // Asegurar que la opción existe
-                $option = $attribute->options->firstWhere('id', $inputValue);
+            // if ($attribute->options->isNotEmpty()) {
+            //     $option = $attribute->options->firstWhere('id', $inputValue);
 
-                ProductAttributeValue::updateOrCreate(
-                    [
-                        'inventory_id' => $inventoryId,
-                        'product_attribute_id' => $attributeId
-                    ],
-                    [
-                        'value' => $option?->value ?? null,
-                        'product_attribute_option_id' => $option?->id
-                    ]
-                );
-            } else {
+            //     ProductAttributeValue::updateOrCreate(
+            //         [
+            //             'inventory_id' => $inventoryId,
+            //             'product_attribute_id' => $attributeId
+            //         ],
+            //         [
+            //             'value' => $option?->value ?? null,
+            //             'product_attribute_option_id' => $option?->id
+            //         ]
+            //     );
+            // } else {
                 // Texto libre o número
                 ProductAttributeValue::updateOrCreate(
                     [
                         'inventory_id' => $inventoryId,
-                        'product_attribute_id' => $attributeId
+                        'attribute_id' => $attributeId
                     ],
                     [
                         'value' => $inputValue,
-                        'product_attribute_option_id' => null
+                        'attribute_option_id' => null
                     ]
                 );
-            }
+            //}
         }
-
-        return redirect()->back()->with('success', 'Atributos actualizados correctamente.');
+        return response()->json(['status' => 200, 'message' => 'Atributos actualizados correctamente.']);
     }
 
     /**

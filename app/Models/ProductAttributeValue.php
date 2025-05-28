@@ -11,7 +11,7 @@ class ProductAttributeValue extends Model
 
     protected $fillable = [
         'inventory_id',
-        'product_attribute_id',
+        'attribute_id',
         'value',
         'option_id',
     ];
@@ -23,6 +23,6 @@ class ProductAttributeValue extends Model
 
     public function attribute()
     {
-        return $this->belongsTo(ProductAttribute::class);
+        return $this->belongsTo(Attribute::class);
     }
 }

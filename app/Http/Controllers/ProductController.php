@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attribute;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -47,7 +48,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('products.show')->with('product', $product);
+        $allAttributes = Attribute::all();
+        return view('products.show')->with('product', $product)->with('attributes', $allAttributes);
     }
 
     /**

@@ -182,22 +182,10 @@
                                 <tr>
                                     <td>{{ $attribute->name }}</td>
                                     <td>
-                                        @if ($attribute->options->count() > 0)
-                                            <select class="form-control" name="attribute[{{ $attribute->id }}]">
-                                                <option value="">-- Seleccionar --</option>
-                                                @foreach ($attribute->options as $option)
-                                                    <option value="{{ $option->id }}"
-                                                        {{ $inventory->attributeValues->where('product_attribute_id', $attribute->id)->first()?->product_attribute_option_id == $option->id ? 'selected' : '' }}>
-                                                        {{ $option->value }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        @else
-                                            <input type="text"
-                                                class="form-control"
-                                                name="attribute[{{ $attribute->id }}]"
-                                                value="{{ $inventory->attributeValues->where('product_attribute_id', $attribute->id)->first()?->value }}">
-                                        @endif
+                                        <input type="text"
+                                            class="form-control"
+                                            name="attribute[{{ $attribute->id }}]"
+                                            value="{{ $inventory->attributeValues->where('attribute_id', $attribute->id)->first()?->value }}">
                                     </td>
                                 </tr>
                             @endforeach

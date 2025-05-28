@@ -37,17 +37,23 @@ class ProductAttributeController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:product_attributes',
-            'icon' => 'nullable|string|max:255',
-            'product_id' => 'required|exists:products,id',
-        ]);
+        $attributes = $request->input('attributes', []);
+        $productId = $request->input('product_id');
 
-        $productAttribute = ProductAttribute::create($request->all());
+        //sync attributes to the product
+        if (empty($attributes) || empty($productId)) {
+            return redirect()->back()->with('error', 'Product ID and attributes are required.');
+        }
 
-        return redirect()->route('products.show', $productAttribute->product_id)
-            ->with('success', 'Product attribute created successfully.');
+        $product = Product::find($productId);
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not found.');
+        }
+
+        $product->attributes()->sync($attributes);
+        
+        return redirect()->route('products.show', $productId)
+            ->with('success', 'Product attributes updated successfully.');
     }
 
     /**

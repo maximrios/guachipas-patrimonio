@@ -16,7 +16,7 @@ class CreateProductAttributeValuesTable extends Migration
         Schema::create('product_attribute_values', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('inventory_id')->unsigned()->index('product_attributes_inventory_id_foreign');
-            $table->bigInteger('product_attribute_id')->unsigned()->index('product_attributes_product_attribute_id_foreign');
+            $table->bigInteger('attribute_id')->unsigned()->index('product_attributes_attribute_id_foreign');
             $table->string('value', 191)->nullable();
             $table->bigInteger('option_id')->unsigned()->nullable()->index('product_attributes_option_id_foreign')->nullable();
 			$table->timestamps();

@@ -54,7 +54,6 @@
                             <tr>
                                 <th>Nombre atributo</th>
                                 <th>Slug</th>
-                                <th width="100"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -62,13 +61,6 @@
                                 <tr>
                                     <td>{{ $attribute->name }}</td>
                                     <td>{{ $attribute->slug }}</td>
-                                    <td>
-                                        <form action="{{ route('productAttributes.destroy', $attribute->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                                        </form>
-                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -88,21 +80,14 @@
                 <div class="x_content">
                     <form action="{{ route('productAttributes.store') }}" method="POST">
                         @csrf
-                        <div class="form-group">
-                            <label for="name">Nombre <span class="text-danger">*</span></label>
-                            <input type="text" id="name" name="name" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="slug">Slug <span class="text-danger">*</span></label>
-                            <input type="text" id="slug" name="slug" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="icon">Icono</label>
-                            <input type="text" id="icon" name="icon" class="form-control">
-                        </div>
+                        <select name="attributes[]" id="attribute_id" class="form-control select" multiple>
+                            @foreach ($attributes as $attribute)
+                                <option value="{{ $attribute->id }}" {{ in_array($attribute->id, $product->attributes->pluck('id')->toArray()) ? 'selected' : '' }}>{{ $attribute->name }}</option>
+                            @endforeach
+                        </select>
                         <hr>
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
-                        <button type="submit" class="btn btn-primary">Agregar atributo</button>
+                        <button type="submit" class="btn btn-primary">Actualizar atributos</button>
                     </form>
                 </div>
             </div>

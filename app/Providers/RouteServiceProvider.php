@@ -49,6 +49,7 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         $routes = [
+            'attributes',
             'roles',
             'permissions',
             'users',
