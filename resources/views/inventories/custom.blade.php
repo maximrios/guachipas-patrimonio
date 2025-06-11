@@ -171,6 +171,7 @@
                 <table id="table-inventories" class="table table-striped">
                     <thead>
                         <tr>
+                            <th width="100px">Matrícula N°</th>
                             <th>Nombre</th>
                             <th>Area</th>
                             <th>Atributos</th>
@@ -181,8 +182,8 @@
                     <tbody>
                         @foreach ($inventories as $inventory)
                             <tr>
+                                <td>{{ $inventory->registration }}</td>
                                 <td>
-                                    <strong>{{ $inventory->registration }}</strong><br>
                                     <strong>{{ $inventory->product->nomenclator }}</strong><br>
                                     {{ $inventory->product->name }}<br>
                                     <span class="badge badge-{{$inventory->status->slug }}">
