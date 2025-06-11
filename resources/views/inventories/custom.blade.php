@@ -200,8 +200,8 @@
                                 </td>
                                 <td>
                                     @foreach($inventory->attributeValues as $value)
-                                        <div data-attribute-id="{{ $value->attribute->id }}">
-                                            <strong>{{ $value->attribute->name }}:</strong> {{ $value->value }}<br>
+                                        <div data-attribute-id="{{ $value->attribute?->id }}">
+                                            <strong>{{ $value->attribute?->name }}:</strong> {{ $value->value }}<br>
                                         </div>
                                     @endforeach
                                 </td>
