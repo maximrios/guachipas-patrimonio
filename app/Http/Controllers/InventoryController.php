@@ -38,10 +38,13 @@ class InventoryController extends Controller
 
     public function custom()
     {
-        $inventories = Inventory::all();
+        $inventories = Inventory::with(['product.attributes', 'attributeValues', 'area', 'employee'])->get();
         $areas = Area::all();
+        $attributes = \App\Models\Attribute::with('products')->get();
+        
         return view('inventories.custom')
             ->with('areas', $areas)
+            ->with('attributes', $attributes)
             ->with('inventories', $inventories);
     }
 
