@@ -47,24 +47,6 @@
                         <img src="data:image/png;base64,{{ $barcode }}" width="230px">
                         <span>{{ $code }}</span>
                     </td>
-                    <td>
-                        <img src="data:image/png;base64,{{ $barcode }}" width="230px">
-                        <span>{{ $code }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="data:image/png;base64,{{ $barcode }}" width="230px">
-                        <span>{{ $code }}</span>
-                    </td>
-                    <td>
-                        <img src="data:image/png;base64,{{ $barcode }}" width="230px">
-                        <span>{{ $code }}</span>
-                    </td>
-                    <td>
-                        <img src="data:image/png;base64,{{ $barcode }}" width="230px">
-                        <span>{{ $code }}</span>
-                    </td>
                 </tr>
             </tbody>
         </table>

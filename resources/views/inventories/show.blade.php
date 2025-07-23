@@ -83,7 +83,7 @@
                                 {{ $inventory->description }}
                             </div>
                         </div>
-                        @if ($inventory->observations)
+                        @if ($inventory->observations && 1==2)
                         <br>
                         <div class="row">
                             <div class="col-sm-12">
