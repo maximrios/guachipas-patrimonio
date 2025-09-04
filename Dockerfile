@@ -16,17 +16,17 @@ RUN apt-get update && apt-get install -y \
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # Establecer directorio de trabajo
-WORKDIR /var/www
+WORKDIR /var/www/patrimonio
 
 # Instalar dependencias de Laravel
 COPY ./composer.json ./composer.lock ./
-RUN composer install --no-scripts --no-autoloader
+#RUN composer install --no-scripts --no-autoloader
 
 # Copiar el resto del código
 COPY . ./
 
 # Dar permisos
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/patrimonio/storage /var/www/patrimonio/bootstrap/cache
 
 # Ejecutar supervisord si esta app lo necesita
 CMD ["php-fpm"]
