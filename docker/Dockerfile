@@ -1,27 +1,32 @@
-# Partimos de la imagen php en su versión 7.4
-FROM php:8.1-apache
+FROM php:8.2-fpm
 
+# Dependencias del sistema
 RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
     zip \
     unzip \
     git \
-    curl \
-    libpq-dev \
-    libzip-dev \
-    libpng-dev
+    supervisor \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd pdo pdo_mysql bcmath
 
-RUN a2enmod rewrite
+# Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-RUN docker-php-ext-install pdo_mysql zip exif pcntl; \
-    docker-php-ext-configure gd --with-freetype --with-jpeg; \
-    docker-php-ext-install gd
-
+# Establecer directorio de trabajo
 WORKDIR /var/www/patrimonio
 
-RUN curl -sS https://getcomposer.org/installer | php -- -- install-dir=/usr/local/bin --filename=composer
+# Instalar dependencias de Laravel
+COPY ./composer.json ./composer.lock ./
+#RUN composer install --no-scripts --no-autoloader
 
-RUN apt-get update
-RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
-RUN apt-get update && apt-get install -y nodejs
+# Copiar el resto del código
+COPY . ./
 
-EXPOSE 80
+# Dar permisos
+RUN chown -R www-data:www-data /var/www/patrimonio/storage /var/www/patrimonio/bootstrap/cache
+
+# Ejecutar supervisord si esta app lo necesita
+CMD ["php-fpm"]
