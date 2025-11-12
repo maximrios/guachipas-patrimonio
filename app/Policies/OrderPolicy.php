@@ -57,11 +57,6 @@ class OrderPolicy
         if ($user->hasRole('admin')) {
             return true;
         }
-        if (
-            $order->status_id === 1
-            && $user->can('order-edit')) {
-            return true;
-        }
         return false;
     }
 
