@@ -25,20 +25,19 @@
                                 <th>Número</th>
                                 <th>Unidad Organizacional</th>
                                 <th>Expediente</th>
-                                <th>Creado</th>
-                                <th>Fecha de emisión</th>
                                 <th>Estado</th>
                                 <th style="width:75px;"></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($orders as $order)
+                                @php
+                                    $sortableNumber = $order->year . str_pad($order->number, 3, '0', STR_PAD_LEFT);
+                                @endphp
                                 <tr>
-                                    <td>{{ $order->number }}/{{ $order->year }}</td>
+                                    <td data-order="{{ $sortableNumber }}">{{ $order->number }}/{{ $order->year }}</td>
                                     <td>{{ $order->organization->name }} {{ $order->organization->responsible?->profile?->full_name }}</td>
                                     <td>{{ $order->file }}</td>
-                                    <td>{{ $order->created_at }}</td>
-                                    <td>{{ $order->generated_at }}</td>
                                     <td>
                                         <span class="badge badge-{{$order->status->slug }}">
                                             {{ $order->status->name }}

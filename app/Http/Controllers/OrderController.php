@@ -27,7 +27,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::orderBy('id', 'DESC')->get();
+        $orders = Order::orderByDesc('year')
+            ->orderByDesc('number')
+            ->get();
+
         return view('orders.index')
             ->with('orders', $orders);
     }
@@ -136,6 +139,7 @@ class OrderController extends Controller
 
     public function print(Order $order)
     {
+        ini_set('memory_limit', '512M');
         $products = $order->products()->get();
 
         $date = Carbon::today();

@@ -75,7 +75,9 @@
                                 @if($products->count() > 0 && $order->status_id === 1)
                                     <a href="{{ route('orders.approve', ['order' => $order]) }}" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-check"></i> Confirmar planilla</a>
                                 @endif
-                                <a href="{{ route('orders.print', ['order' => $order]) }}" class="btn btn-default pull-right" style="margin-right: 5px;" target="_blank"><i class="fa fa-print"></i> Ver planilla de alta</a>
+                                @if($products->count() > 0)
+                                    <a href="{{ route('orders.print', ['order' => $order]) }}" class="btn btn-default pull-right" style="margin-right: 5px;" target="_blank"><i class="fa fa-print"></i> Ver planilla de alta</a>
+                                @endif
                                 @can('update', $order)
                                     <a href="{{ route('orders.edit', ['order' => $order]) }}" class="btn btn-warning pull-right" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Editar</a>    
                                 @endcan

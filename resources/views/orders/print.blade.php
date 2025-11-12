@@ -15,8 +15,7 @@
             margin-top: 4.1cm;
         }
         .page_break { 
-            page-break-before: always; 
-            page-break-after: always;
+            page-break-after: always; 
         }
         .align-left {
             text-align: left!important;
@@ -109,8 +108,13 @@
     @include('orders.template.header')
     @include('orders.template.footer')
     <main>
-        <table class="grid">
-            <tr class="hidden">
+        @php
+            $perPage = 4;
+            $chunks = $products->chunk($perPage);
+        @endphp
+        @foreach ($chunks as $chunkIndex => $chunk)
+            <table class="grid">
+                <tr class="hidden">
                 <td>a</td>
                 <td>a</td>
                 <td class="separator-left">a</td>
@@ -182,7 +186,6 @@
                 <td>a</td>
                 <td>a</td>
                 <td>a</td>
-                <td>a</td>
 
                 <td class="separator-left">a</td>
                 <td>a</td>
@@ -195,18 +198,9 @@
                 <td>a</td>
                 <td>a</td>
                 <td>a</td>
-            </tr>
-            @php
-                $totalProducts = $products->count();
-                $perPage = 4;
-                $rest = $totalProducts%$perPage;
-                $complete = ($rest === 0) ? 0 : $perPage - $rest;
-                $total = $complete + $totalProducts;
-                $i = 1;
-                $j = 0;
-            @endphp
-            @foreach ($products as $product)
-                <tr class="btop">
+                </tr>
+                @foreach ($chunk as $product)
+                    <tr class="btop">
                     <!-- Clasificacion Institucional 9-->
                     <td class="separator-left"></td>
                     <td></td>
@@ -305,93 +299,9 @@
                     <td colspan="5" class="separator-left" style="color: #fff;">a</td>
                     <td colspan="5" class="separator-left separator-right" style="color: #fff;">a</td>
                 </tr>
-                @if($i === 4 && $i<$total)
-                    <div class="page_break"></div>
-                    <tr class="hidden">
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                        <td>a</td>
-                    </tr>
-                @endif
-                @php $i++; @endphp
-            @endforeach
-            @for ($j=$i-1;$j<$total;$j++)
-            <tr class="btop">
+                @endforeach
+                @for ($f = $chunk->count(); $f < $perPage; $f++)
+                <tr class="btop">
                     <!-- Clasificacion Institucional 9-->
                     <td style="color: #FFF;">a</td>
                     <td></td>
@@ -488,8 +398,12 @@
                     <td colspan="5" class="separator-left" style="color: #fff;">a</td>
                     <td colspan="5" class="separator-left separator-right" style="color: #fff;">a</td>
                 </tr>
-            @endfor
-        </table>
+                @endfor
+            </table>
+            @if ($chunkIndex + 1 < $chunks->count())
+                <div class="page_break"></div>
+            @endif
+        @endforeach
     </main>
 </body>
 </html>

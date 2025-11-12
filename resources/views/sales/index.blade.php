@@ -41,7 +41,7 @@
                                     <td>{{ $sale->year }}</td>
                                     <td>{{ $sale->institution }}</td>
                                     <td>
-                                        <strong>Hospital San Bernardo</strong><br>
+                                        <strong>Sindicatura General de la Provincia de Salta</strong><br>
                                         {{ $sale->organization_name }}
                                     </td>
                                     <td>{{ $sale->file }}</td>
