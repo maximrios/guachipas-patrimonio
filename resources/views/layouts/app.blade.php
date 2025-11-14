@@ -79,6 +79,7 @@
                   				<li><a href="{{ url('products') }}"><i class="fa fa-book"></i> Nomenclador</a></li>
                                 <li><a href="{{ url('providers') }}"><i class="fa fa-address-book"></i> Proveedores</a></li>
                                 <li><a href="{{ url('reports') }}"><i class="fa fa-tasks"></i> Reportes</a></li>
+                                <li><a href="{{ asset('files/instructivo.pdf') }}" target="_blank"><i class="fa fa-file-pdf-o"></i> Instructivo </a></li>
                   			</ul>
               			</div>
             		</div>
