@@ -208,7 +208,7 @@ class OrderController extends Controller
     {
         $from = $request->input('date_from');
         $to = $request->input('date_to');
-        $organization_id = $request->input('organization_id');
+        $organization_id = $request->input('area_id');
 
 
         return (new OrderExportService($from, $to, $organization_id))->execute();
