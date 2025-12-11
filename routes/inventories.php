@@ -20,6 +20,7 @@ use App\Http\Controllers\InventoryController;
     Route::get('inventories/custom', [InventoryController::class, 'custom'])->name('inventories.custom');
     Route::get('inventories/search', [InventoryController::class, 'search'])->name('inventories.search');
     Route::get('inventories/print', [InventoryController::class, 'print'])->name('inventories.print');
+    Route::get('inventories/code', [InventoryController::class, 'codeAll'])->name('inventories.codeAll');
     Route::get('inventories/code/{inventory}', [InventoryController::class, 'code'])->name('inventories.code');
     Route::get('inventories/order/{order}', [InventoryController::class, 'order'])->name('inventories.order');
     Route::post('inventories/check', [InventoryController::class, 'check'])->name('inventories.check');

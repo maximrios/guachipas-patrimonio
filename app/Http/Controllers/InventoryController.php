@@ -158,6 +158,37 @@ class InventoryController extends Controller
         return $pdf->stream('archivo.pdf');
     }
 
+    public function codeAll(Request $request)
+    {
+        $offset = $request->has('offset') ? $request->get('offset') : 0;
+        $limit = $request->has('limit') ? $request->get('limit') : 24;
+        $inventories = Inventory::offset($offset)->limit($limit)->get();
+        $products = [];
+        foreach($inventories as $inventory) {
+            $code = $inventory->product->nomenclator . '' . $inventory->registration;
+            $generatorPNG = new BarcodeGeneratorPNG;
+            $barcode = base64_encode($generatorPNG->getBarcode($code, $generatorPNG::TYPE_CODE_128));
+    
+            $scale = 2;     // Escala horizontal, aumenta el ancho
+            $height = 40;   // Altura de las barras
+    
+            $barcode = base64_encode(
+                $generatorPNG->getBarcode($code, $generatorPNG::TYPE_CODE_128, $scale, $height)
+            );
+    
+            $products[$inventory->id]['code'] = $code;
+            $products[$inventory->id]['barcode'] = $barcode;
+        }
+
+        $data = [
+            'inventories' => $products
+        ];
+//dd($data);
+        $pdf = \PDF::loadView('inventories.code_all', $data)->setPaper('A4', 'portrait');
+
+        return $pdf->stream('etiquetas.pdf');
+    }
+
     public function code(Inventory $inventory)
     {
         $code = $inventory->product->nomenclator . '' . $inventory->registration;
