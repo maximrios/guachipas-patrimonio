@@ -40,6 +40,7 @@
     <link href="{{ asset('css/sweetalert2.css') }}" rel="stylesheet">
     <link href="{{ asset('css/gentelella.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @stack('styles')
 </head>
 <body class="nav-sm">
 	<div id="app" class="container body">
@@ -65,7 +66,7 @@
                 			<ul class="nav side-menu">
                 				<li><a href="{{ url('home') }}"><i class="fa fa-home"></i> Dashboard </a></li>
                                 <li><a href="{{ url('orders') }}"><i class="fa fa-sign-in"></i> Altas</a></li>
-                  				<li><a href="{{ url('sales') }}"><i class="fa fa-sign-out"></i> Bajas</a></li>
+                  				<!--<li><a href="{{ url('sales') }}"><i class="fa fa-sign-out"></i> Bajas</a></li>-->
                                 <li><a href="{{ url('inventories') }}"><i class="fa fa-list"></i> Inventario</a></li>
                                 @if (Auth::user()->hasRole('admin'))
                                     <li><a href="{{ url('inventories/custom') }}"><i class="fa fa-cog"></i> Informatica</a></li>
@@ -79,7 +80,6 @@
                   				<li><a href="{{ url('products') }}"><i class="fa fa-book"></i> Nomenclador</a></li>
                                 <li><a href="{{ url('providers') }}"><i class="fa fa-address-book"></i> Proveedores</a></li>
                                 <li><a href="{{ url('reports') }}"><i class="fa fa-tasks"></i> Reportes</a></li>
-                                <li><a href="{{ asset('files/instructivo.pdf') }}" target="_blank"><i class="fa fa-file-pdf-o"></i> Instructivo </a></li>
                   			</ul>
               			</div>
             		</div>

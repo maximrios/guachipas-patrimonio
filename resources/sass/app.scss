@@ -4,6 +4,10 @@
 // Variables
 @import 'variables';
 
+// Components
+@import 'buttons';
+@import 'empty-state';
+
 // Bootstrap
 //@import '~bootstrap/scss/bootstrap';
 
@@ -31,7 +35,7 @@
 .badge-pending {
     background-color: $color-warning;
 }
-.badge-approve {
+.badge-approved {
     background-color: $color-success;
 }
 
@@ -53,4 +57,13 @@ table {
             }
         }
     }
+}
+
+.bg-primary {
+    background-color: $primary-color !important;
+    color: #fff !important;
+}
+.bg-warning {
+    background-color: $warning-color !important;
+    color: #fff !important;
 }

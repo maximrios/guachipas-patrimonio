@@ -24,7 +24,7 @@ mix.js('resources/js/app.js', 'public/js')
     .sourceMaps();
 
 mix.browserSync({
-    proxy: 'http://localhost:8082', // Cambia al URL donde estás sirviendo tu proyecto Laravel
+    proxy: 'http://patrimonio.guachipas.local', // Cambia al URL donde estás sirviendo tu proyecto Laravel
     files: [
         'resources/views/**/*.blade.php', // Monitorea cambios en tus archivos Blade
         'public/js/**/*.js',              // Monitorea cambios en archivos JS

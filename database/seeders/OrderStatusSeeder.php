@@ -17,16 +17,21 @@ class OrderStatusSeeder extends Seeder
         DB::table('order_statuses')->insert([
             array (
                 'id' => 1,
+                'name' => 'Borrador',
+                'slug' => 'draft',
+            ),
+            array (
+                'id' => 2,
                 'name' => 'Pendiente',
                 'slug' => 'pending',
             ),
             array (
-                'id' => 2,
+                'id' => 3,
                 'name' => 'Aprobada',
-                'slug' => 'approve',
+                'slug' => 'approved',
             ),
             array (
-                'id' => 3,
+                'id' => 4,
                 'name' => 'Cancelada',
                 'slug' => 'cancelled',
             ),

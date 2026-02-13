@@ -11,7 +11,6 @@ class AreaEmployee extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $connection = 'personal';
 
     protected $fillable = [
         'area_id',

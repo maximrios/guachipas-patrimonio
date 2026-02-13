@@ -16,10 +16,12 @@ use App\Http\Controllers\OrderController;
 */
 Route::group(['middleware' => 'auth'], function () {
 
+    Route::get('orders/blank', [OrderController::class, 'blank'])->name('orders.blank');
     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
     Route::resource('orders', OrderController::class)->except(['index']);
     Route::get('orders/print/{order}', [OrderController::class, 'print'])->name('orders.print');
     Route::get('orders/approve/{order}', [OrderController::class, 'approve'])->name('orders.approve');
+    Route::get('orders/confirm/{order}', [OrderController::class, 'confirm'])->name('orders.confirm');
 
     Route::post('orders/export', [OrderController::class, 'export'])->name('orders.export');
 

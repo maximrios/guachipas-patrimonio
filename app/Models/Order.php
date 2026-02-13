@@ -24,6 +24,11 @@ class Order extends Model
         'year',
     ];
 
+    public const STATUS_PENDING = 1;
+    public const STATUS_CONFIRMED = 2;
+    public const STATUS_APPROVED = 3;
+    public const STATUS_CANCELLED = 4;
+
     public function organization()
     {
         return $this->belongsTo(Area::class, 'organization_id', 'id');
@@ -37,6 +42,11 @@ class Order extends Model
     public function products()
     {
         return $this->hasMany('App\Models\OrderProduct', 'order_id', 'id');
+    }
+
+    public function getAssetsCountAttribute()
+    {
+        return $this->products()->count();
     }
 
     /*

@@ -10,7 +10,7 @@ class CustomRole extends Role
 {
     use HasFactory;
 
-    protected $connection = 'auditorias';
+    
 
     public const CAN_INDEX_PROJECT = 'project-index';
     public const CAN_CREATE_PROJECT = 'project-create';

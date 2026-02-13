@@ -88,4 +88,23 @@ class Inventory extends Model
         );
     }
 
+    public function maintenances()
+    {
+        return $this->hasMany(InventoryMaintenance::class, 'inventory_id', 'id');
+    }
+
+    public function property()
+    {
+        return $this->hasOne(InventoryProperty::class, 'inventory_id', 'id');
+    }
+
+    public function vehicle()
+    {
+        return $this->hasOne(InventoryVehicle::class, 'inventory_id', 'id');
+    }
+
+    public function documents()
+    {
+        return $this->morphMany(Document::class, 'documentable');
+    }
 }

@@ -18,7 +18,7 @@ class OrganizationSeeder extends Seeder
             array (
                 'id' => 1,
                 'code' => '5',
-                'name' => 'Hospital San Bernardo',
+                'name' => env('ADMINO_NAME', 'Admino'),
                 'parent_id' => 0,
                 '_lft' => 1,
                 '_rgt' => 2

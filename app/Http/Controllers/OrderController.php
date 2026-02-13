@@ -21,6 +21,16 @@ use App\Services\Order\OrderExportService;
 class OrderController extends Controller
 {
     /**
+     * Show the blank form to select registration type.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function blank()
+    {
+        return view('orders.blank');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -28,7 +38,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::orderByDesc('year')
-            ->orderByDesc('number')
+            ->orderByDesc('id')
             ->get();
 
         return view('orders.index')
@@ -79,7 +89,7 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         $products = $order->products()->get();
-        return view('orders.detail')
+        return view('orders.show')
             ->with('order', $order)
             ->with('products', $products);
     }
@@ -158,6 +168,17 @@ class OrderController extends Controller
         return $pdf->stream('archivo.pdf');
     }
 
+    public function confirm(Order $order)
+    {
+        $order->status_id = Order::STATUS_CONFIRMED;
+        $order->save();
+        
+        return redirect(route('orders.show', [$order->id]))->with([
+            'message' => 'Se confirmó el alta correctamente.',
+            'type' => 'success',
+        ]);
+    }
+
     public function approve(Order $order)
     {
         $products = $order->products()->get();
@@ -196,10 +217,10 @@ class OrderController extends Controller
             }
         }
         $order->generated_at = date('Y-m-d H:i:s');
-        $order->status_id = 2;
+        $order->status_id = Order::STATUS_APPROVED;
         $order->save();
         return redirect(route('orders.show', [$order->id]))->with([
-            'message' => 'Se confirmó el alta correctamente.',
+            'message' => 'Se aprobó el alta correctamente.',
             'type' => 'success',
         ]);
     }

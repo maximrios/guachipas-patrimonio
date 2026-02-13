@@ -118,7 +118,7 @@
             <td class="separator-top separator-left separator-right" style="text-align:center;">0</td>
             <td class="separator-top separator-left separator-right" style="text-align:center;">1</td>
             <td class="border-none"></td>
-            <td colspan="35" class="border-none align-left"><b>Unid. De Organización:</b> Sindicatura General de la Provincia</td>
+            <td colspan="35" class="border-none align-left"><b>Unid. De Organización:</b> {{ $order->organization_name }}</td>
             @php
                 $approvedAt = '';
                 if ($order->generated_at != '') {
@@ -140,7 +140,7 @@
             <td class="separator-left">M</td>
 
             <td colspan="28" rowspan="3" class="separator-left align-left" style="font-size: 16px;border-right: none!important;">Sector: {{ $order->organization->sector }} - {{ $order->organization->name }}</td>
-            <td colspan="10" rowspan="3" style="border-left: none!important;"><img width="100" src="data:image/png;base64,{{ $logo }}"/></td>
+            <td colspan="10" rowspan="3" style="border-left: none!important;"><img width="50" src="data:image/png;base64,{{ $logo }}"/></td>
         </tr>
         <tr>
             <td class="separator-left">r</td>

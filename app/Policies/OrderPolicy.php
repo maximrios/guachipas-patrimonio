@@ -69,7 +69,10 @@ class OrderPolicy
      */
     public function delete(User $user, Order $order)
     {
-        return $user->can('order-destroy');
+        if ($order->status_id === 1) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -94,5 +97,21 @@ class OrderPolicy
     public function forceDelete(User $user, Order $order)
     {
         //
+    }
+
+    public function confirm(User $user, Order $order)
+    {
+        if ($order->products()->count() > 0 && $order->status_id === 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public function approve(User $user, Order $order)
+    {
+        if ($order->products()->count() > 0 && $order->status_id === 2) {
+            return true;
+        }
+        return false;
     }
 }

@@ -17,7 +17,6 @@ class Profile extends Model
         'email',
     ];
 
-    protected $connection = 'personal';
 
     public function getNameAttribute()
     {

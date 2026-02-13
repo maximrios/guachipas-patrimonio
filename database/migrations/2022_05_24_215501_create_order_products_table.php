@@ -15,7 +15,7 @@ class CreateOrderProductsTable extends Migration
     {
         Schema::create('order_products', function (Blueprint $table) {
             $table->bigInteger('id', true)->unsigned();
-            $table->foreignId('order_id');
+            $table->foreignId('order_id')->nullable();
             $table->foreignId('product_id');
             $table->foreignId('order_product_found_id');
             $table->foreignId('order_product_status_id');

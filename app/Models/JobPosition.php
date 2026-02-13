@@ -11,7 +11,7 @@ class JobPosition extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $connection = 'personal';
+    
 
     public function areas()
     {

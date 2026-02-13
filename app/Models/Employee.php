@@ -11,7 +11,7 @@ class Employee extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $connection = 'personal';
+    
     protected $table = 'employees';
 
     protected $fillable = [

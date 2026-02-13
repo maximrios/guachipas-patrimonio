@@ -1,0 +1,45 @@
+// Empty State Component
+// =====================
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+
+.empty-state__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1.5rem;
+    background-color: #f7fafc;
+    border-radius: 50%;
+
+    i {
+        font-size: 2rem;
+        color: #a0aec0;
+    }
+}
+
+.empty-state__title {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.empty-state__description {
+    margin: 0 0 1.5rem;
+    font-size: 0.9375rem;
+    color: #718096;
+    max-width: 400px;
+}
+
+.empty-state__action {
+    margin-top: 1rem;
+}

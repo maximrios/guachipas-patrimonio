@@ -21,17 +21,12 @@
     <div class="row">
         <div class="col-md-12">
             <div class="x_panel">
-                <div class="x_title">
-                    <h2>Planilla de Alta <small></small></h2>
-                    <div class="clearfix"></div>
-                </div>
                 <div class="x_content">
-                    
                     <section class="content invoice">
                         <div class="row">
                             <div class="invoice-header">
                                 <h1>
-                                    <i class="fa fa-globe"></i> Planilla de Alta N° {{ $order->number }} / {{ $order->year }}
+                                    Planilla de Alta N° {{ $order->number }} / {{ $order->year }}
                                 </h1>
                             </div>
                         </div>
@@ -54,7 +49,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-4 invoice-col">
-                                <b>Planilla #{{ $order->number }}</b>
+                                <b>Planilla # {{ $order->id }}</b>
                                 <br>
                                 <b>Estado:</b> <span class="badge badge-{{$order->status->slug}}">{{ $order->status->name }}</span>
                                 <br>
@@ -72,9 +67,14 @@
                                 @if($products->count() > 0 && $order->status_id === 2)
                                     <a href="{{ route('inventories.order', ['order' => $order]) }}" class="btn btn-primary pull-right" style="margin-right: 5px;" target="_blank"><i class="fa fa-barcode"></i> Imprimir etiquetas</a>
                                 @endif
-                                @if($products->count() > 0 && $order->status_id === 1)
-                                    <a href="{{ route('orders.approve', ['order' => $order]) }}" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-check"></i> Confirmar planilla</a>
-                                @endif
+
+                                @can('confirm', $order)
+                                    <a href="{{ route('orders.confirm', ['order' => $order]) }}" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-check"></i> Confirmar planilla</a>    
+                                @endcan
+                                @can('approve', $order)
+                                    <a href="{{ route('orders.approve', ['order' => $order]) }}" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-check"></i> Aprobar planilla</a>    
+                                @endcan
+
                                 @if($products->count() > 0)
                                     <a href="{{ route('orders.print', ['order' => $order]) }}" class="btn btn-default pull-right" style="margin-right: 5px;" target="_blank"><i class="fa fa-print"></i> Ver planilla de alta</a>
                                 @endif
@@ -83,11 +83,11 @@
                                 @endcan
                                 
 
-                                @if($order->status_id === 1)
+                                @can('delete', $order)
                                     <form method="POST" action="{{ route('orders.destroy', ['order' => $order->id]) }}" style="display:inline;">
                                         @method('DELETE')
                                         @csrf
-                                        <button class="btn btn-danger btn-delete pull-right" data-message="Está por eliminar la orden # {{ $order->id }}. Desea continuar?"><i class="fa fa-trash-o"></i> Eliminar</button>
+                                        <button class="btn btn-danger btn-delete pull-right" data-message="Está por eliminar el alta # {{ $order->id }}. Desea continuar?"><i class="fa fa-trash-o"></i> Eliminar</button>
                                     </form>
                                 @endif
                                 

@@ -22,10 +22,6 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="x_panel">
-            <div class="x_title">
-                <h2>Inventario</h2>
-                <div class="clearfix"></div>
-            </div>
             <div class="x_content">
                 <div class="row">
                     <div class="col-sm-2">
@@ -45,23 +41,23 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-sm-2">
-                        <label for="filtro-status">Disponibilidad</label>
-                        <select id="filtro-status" class="form-control">
-                            <option value="">Todos</option>
-                            <option value="Disponible">Disponible</option>
-                            <option value="No disponible">No disponible</option>
-                        </select>
-                    </div>
                 </div>
-                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="x_panel">
+            <div class="x_content">
                 <table id="table-inventories" class="table table-striped">
                     <thead>
                         <tr>
                             <th width="100px">Matrícula N°</th>
-                            <th>Nombre</th>
-                            <th>Area</th>
-                            <th width="90px">Disponibilidad</th>
+                            <th width="200px">Nombre</th>
+                            <th>Descripción</th>
+                            <th width="300px">Area</th>
                             <th width="90px"></th>
                         </tr>
                     </thead>
@@ -76,6 +72,7 @@
                                         {{ $inventory->status->name }}
                                     </span>
                                 </td>
+                                <td>{{ $inventory->description }}</td>
                                 <td>
                                     @if ($inventory->area)
                                         <strong>{{ $inventory->area?->name }} - {{ $inventory->area->responsible?->profile?->full_name }}</strong><br>
@@ -83,13 +80,6 @@
                                         {{ $inventory->employee?->profile?->full_name }}
                                     @else
                                         {{ $inventory->organization->name }}    
-                                    @endif
-                                </td>
-                                <td>
-                                    @if ($inventory->available == 1)
-                                        <span class="label label-success">Disponible</span>
-                                    @else
-                                        <span class="label label-warning">No disponible</span>
                                     @endif
                                 </td>
                                 <td>

@@ -13,7 +13,7 @@ class Organization extends Model
     use NodeTrait;
     use SoftDeletes;
 
-    protected $connection = 'personal';
+    
     protected $table = 'areas';
 
     protected $fillable = [

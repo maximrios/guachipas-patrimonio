@@ -15,6 +15,7 @@ use App\Http\Resources\InventoryResource;
 use App\Http\Resources\InventoryCollection;
 use App\Models\Area;
 use App\Models\Employee;
+use App\Models\DocumentType;
 use App\Models\OrderProductStatus;
 use App\Services\Inventory\InventoryExportService;
 use App\Services\Inventory\GetInventoryDataTableService;
@@ -81,13 +82,15 @@ class InventoryController extends Controller
         $order = $inventory->order;
         $areas = Area::all();
         $employees = Employee::all();
+        $documentTypes = DocumentType::active()->orderBy('name')->get();
 
         return view('inventories.show')
             ->with('inventory', $inventory)
             ->with('order', $order)
             ->with('areas', $areas)
             ->with('assignments', $assignments)
-            ->with('employees', $employees);
+            ->with('employees', $employees)
+            ->with('documentTypes', $documentTypes);
     }
 
     /**

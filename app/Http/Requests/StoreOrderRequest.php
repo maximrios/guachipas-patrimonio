@@ -46,9 +46,9 @@ class StoreOrderRequest extends FormRequest
             'character' => 'min:1',
             'institution' => 'min:1',
             'organization_name' => 'min:1',
-            "user_id" => 'required',
-            "status_id" => 'required',
-            "organization_id" => 'required',
+            "user_id" => 'sometimes',
+            "status_id" => 'sometimes',
+            "organization_id" => 'sometimes',
             "file" => '',
         ];
 

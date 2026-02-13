@@ -15,6 +15,9 @@ class CreateAssignmentsTable extends Migration
     {
         Schema::create('assignments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('area_id')->nullable();
+            $table->foreignId('inventory_id')->nullable();
+            $table->foreignId('employee_id')->nullable();
             $table->foreignId('organization_id');
             $table->string('assign_to', 191);
             $table->text('observation')->nullable();
