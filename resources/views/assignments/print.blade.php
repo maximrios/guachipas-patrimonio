@@ -141,7 +141,7 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td class="align-left">JEFE/PNAL. DEL SEC: {{ $assignment->organization->name }} - {{ $assignment->organization->name }}</td>
+                <td class="align-left">JEFE/PNAL. DEL SEC: {{ $assignment->area->name }} - {{ $assignment->area->name }}</td>
             </tr>
             <tr></tr>
         </table>

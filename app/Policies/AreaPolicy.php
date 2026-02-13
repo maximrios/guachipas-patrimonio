@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Organization;
+use App\Models\Area;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class OrganizationPolicy
+class AreaPolicy
 {
     use HandlesAuthorization;
 
@@ -18,17 +18,17 @@ class OrganizationPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->can('organization-index');
+        return $user->can('area-index');
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Organization  $organization
+     * @param  \App\Models\Area  $area
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Organization $organization)
+    public function view(User $user, Area $area)
     {
         //
     }
@@ -48,10 +48,10 @@ class OrganizationPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Organization  $organization
+     * @param  \App\Models\Area  $area
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Organization $organization)
+    public function update(User $user, Area $area)
     {
         //
     }
@@ -60,10 +60,10 @@ class OrganizationPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Organization  $organization
+     * @param  \App\Models\Area  $area
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Organization $organization)
+    public function delete(User $user, Area $area)
     {
         //
     }
@@ -72,10 +72,10 @@ class OrganizationPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Organization  $organization
+     * @param  \App\Models\Area  $area
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Organization $organization)
+    public function restore(User $user, Area $area)
     {
         //
     }
@@ -84,10 +84,10 @@ class OrganizationPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Organization  $organization
+     * @param  \App\Models\Area  $area
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Organization $organization)
+    public function forceDelete(User $user, Area $area)
     {
         //
     }

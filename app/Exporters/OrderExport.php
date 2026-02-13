@@ -31,7 +31,7 @@ class OrderExport implements FromCollection, WithHeadings, WithMapping, ShouldAu
     {
         return [
             '#',
-            'Unidad organizacional',
+            'Area',
             'Expediente',
             'Fecha de creación',
             'Fecha de emisión',
@@ -50,7 +50,7 @@ class OrderExport implements FromCollection, WithHeadings, WithMapping, ShouldAu
 
             return [
                 $row->id,
-                $row->organization->name,
+                $row->area->name,
                 $row->file,
                 $row->created_at,
                 $row->generated_at,

@@ -16,13 +16,12 @@ class CreateInventoriesTable extends Migration
         Schema::create('inventories', function (Blueprint $table) {
             $table->bigInteger('id', true)->unsigned();
             $table->integer('order_product_id')->nullable();
-            $table->foreignId('organization_id');
+            $table->foreignId('area_id')->nullable();
             $table->foreignId('product_id');
             $table->foreignId('status_id');
             $table->foreignId('order_id')->nullable();
             $table->foreignId('sale_id')->nullable();
             $table->integer('registration');
-            $table->integer('current_organization')->nullable();
             $table->text('description')->nullable();
             $table->text('observations')->nullable();
             $table->timestamps();

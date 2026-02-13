@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             OrderProductOriginSeeder::class,
             OrderProductStatusSeeder::class,
             OrderStatusSeeder::class,
-            OrganizationSeeder::class
+            AreaSeeder::class
         ]);
 
     }

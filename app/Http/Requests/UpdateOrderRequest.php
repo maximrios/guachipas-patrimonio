@@ -26,7 +26,7 @@ class UpdateOrderRequest extends FormRequest
         return [
             'user_id' => 'Usuario',
             'status_id' => 'Estado',
-            'organization_id' => 'Organismo',
+            'area_id' => 'Organismo',
             "file" => 'Expediente',
         ];
     }
@@ -42,7 +42,7 @@ class UpdateOrderRequest extends FormRequest
         $rules = [
             "user_id" => 'required',
             "status_id" => 'required',
-            "organization_id" => 'required',
+            "area_id" => 'required',
             "file" => 'required|min:4|max:100',
         ];
 

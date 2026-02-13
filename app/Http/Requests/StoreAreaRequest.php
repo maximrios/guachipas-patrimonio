@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreOrganizationRequest extends FormRequest
+class StoreAreaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,9 @@ class StoreOrganizationRequest extends FormRequest
     public function attributes()
     {
         return [
-            'parent_id' => 'Organismo',
-            'code' => 'Código',
-            'sector' => 'Sector',
-            "name" => 'Unidad Organizacional',
+            'parent_id' => 'Area padre',
+            'code' => 'Codigo',
+            "name" => 'Area',
         ];
     }
 
@@ -38,11 +37,9 @@ class StoreOrganizationRequest extends FormRequest
      */
     public function rules()
     {
-        
         $rules = [
             "parent_id" => 'required',
             'code' => 'required',
-            'sector' => 'required',
             "name" => 'required|min:4|max:100',
         ];
 

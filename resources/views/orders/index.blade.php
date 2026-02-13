@@ -19,7 +19,7 @@
                     </span>
                 </h3>
                 <div>
-                    <label>Unidad Organizacional:</label> {{ $order->organization->name }} {{ $order->organization->responsible?->profile?->full_name }}<br>
+                    <label>Area:</label> {{ $order->area->name }} {{ $order->area->responsible?->profile?->full_name }}<br>
                     <label>Expediente:</label> {{ $order->file }}<br>
                     <label>Fecha de alta:</label> {{ $order->created_at->format('d/m/Y') }}<br><br>
                     <label>Bienes cargados:</label> {{ $order->assets_count }}<br>

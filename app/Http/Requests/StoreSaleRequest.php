@@ -26,10 +26,10 @@ class StoreSaleRequest extends FormRequest
         return [
             'character' => 'Caracter',
             'institution' => 'Institucion',
-            'organization' => 'Jurisdicción',
+            'area_name' => 'Jurisdiccion',
             'user_id' => 'Usuario',
             'status_id' => 'Estado',
-            'organization_id' => 'Organismo',
+            'area_id' => 'Area',
             "file" => 'Expediente',
         ];
     }
@@ -45,10 +45,10 @@ class StoreSaleRequest extends FormRequest
         $rules = [
             'character' => 'min:1',
             'institution' => 'min:1',
-            'organization' => 'min:1',
+            'area_name' => 'min:1',
             "user_id" => 'required',
             "status_id" => 'required',
-            "organization_id" => 'required',
+            "area_id" => 'required',
             "file" => 'required|min:4|max:100',
         ];
 

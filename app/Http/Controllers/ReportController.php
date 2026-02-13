@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProviderRequest;
 use App\Http\Requests\UpdateProviderRequest;
 use App\Models\Area;
-use App\Models\Organization;
 use App\Models\Provider;
 use Illuminate\Http\Request;
 

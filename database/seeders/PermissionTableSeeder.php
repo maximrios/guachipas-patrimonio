@@ -40,10 +40,10 @@ class PermissionTableSeeder extends Seeder
             'assignment-edit',
             'assignment-delete',
 
-            'organization-index',
-            'organization-create',
-            'organization-edit',
-            'organization-delete',
+            'area-index',
+            'area-create',
+            'area-edit',
+            'area-delete',
 
             'provider-index',
             'provider-create',

@@ -79,7 +79,7 @@
                                         
                                         {{ $inventory->employee?->profile?->full_name }}
                                     @else
-                                        {{ $inventory->organization->name }}    
+                                        {{ $inventory->area->name }}
                                     @endif
                                 </td>
                                 <td>

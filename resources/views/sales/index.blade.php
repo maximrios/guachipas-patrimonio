@@ -28,7 +28,7 @@
                                 <th>Número</th>
                                 <th>Ejercicio</th>
                                 <th>Institución</th>
-                                <th>Unidad Organizacional</th>
+                                <th>Area</th>
                                 <th>Expediente</th>
                                 <th>Fecha de emisión</th>
                                 <th width="75px"></th>
@@ -42,7 +42,7 @@
                                     <td>{{ $sale->institution }}</td>
                                     <td>
                                         <strong>Sindicatura General de la Provincia de Salta</strong><br>
-                                        {{ $sale->organization_name }}
+                                        {{ $sale->area_name }}
                                     </td>
                                     <td>{{ $sale->file }}</td>
                                     <td>{{ $sale->generated_at }}</td>

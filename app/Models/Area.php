@@ -13,8 +13,6 @@ class Area extends Model
     use NodeTrait;
     use SoftDeletes;
 
-    protected $connection = 'core';
-    
     //TODO add this value on .env file
     public const PARENTUSI = 68;
     public const DESKTOP = 42;

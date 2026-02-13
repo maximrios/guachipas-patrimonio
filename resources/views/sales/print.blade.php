@@ -210,9 +210,9 @@
                     <!-- Clasificacion Institucional 9-->
                     <td class="separator-left">5</td>
                     <td>6</td>
-                    <td class="separator-left">{{ $product->inventory->organization?->code[0] }}</td>
-                    <td>{{ $product->inventory->organization?->code[1] }}</td>
-                    <td>{{ $product->inventory->organization?->code[2] }}</td>
+                    <td class="separator-left">{{ $product->inventory->area?->code[0] }}</td>
+                    <td>{{ $product->inventory->area?->code[1] }}</td>
+                    <td>{{ $product->inventory->area?->code[2] }}</td>
                     <td class="separator-left">0</td>
                     <td>0</td>
                     <td>0</td>

@@ -18,7 +18,6 @@ class CreateAssignmentsTable extends Migration
             $table->foreignId('area_id')->nullable();
             $table->foreignId('inventory_id')->nullable();
             $table->foreignId('employee_id')->nullable();
-            $table->foreignId('organization_id');
             $table->string('assign_to', 191);
             $table->text('observation')->nullable();
             $table->date('approved_at')->nullable();

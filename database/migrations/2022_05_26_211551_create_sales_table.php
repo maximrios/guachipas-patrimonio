@@ -17,10 +17,10 @@ class CreateSalesTable extends Migration
             $table->bigInteger('id', true)->unsigned();
             $table->foreignId('user_id');
             $table->foreignId('status_id')->default(1);
-            $table->foreignId('organization_id');
+            $table->foreignId('area_id')->nullable();
             $table->string('character', 191)->nullable();
             $table->string('institution', 191)->nullable();
-            $table->string('organization', 191)->nullable();
+            $table->string('area_name', 191)->nullable();
 			$table->string('file', 191)->nullable();
             $table->integer('number')->nullable();
             $table->integer('year')->nullable();

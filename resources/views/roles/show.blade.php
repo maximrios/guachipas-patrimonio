@@ -37,13 +37,13 @@
                           		Gerencia<br>
                           		<strong>{{ $audit->area->name ?? '' }}</strong><br>
                                   {{ $audit->subarea->name ?? '' }}<br><br>
-                          		Organismo<br>
+                          		Area<br>
                           		<strong>
-									@foreach ($audit->organization->ancestors as $ancestor)
+									@foreach ($audit->area->ancestors as $ancestor)
 										{{ $ancestor->name }}<br>
 									@endforeach
 								</strong>
-								{{ $audit->suborganization }}
+								{{ $audit->subarea }}
                         	</div>
                         	<!-- /.col -->
                         	<div class="col-sm-4 invoice-col">

@@ -22,11 +22,6 @@ class CustomRole extends Role
     public const CAN_EDIT_PLAN = 'plan-edit';
     public const CAN_DESTROY_PLAN = 'plan-destroy';
 
-    public const CAN_INDEX_ORGANIZATION = 'organization-index';
-    public const CAN_CREATE_ORGANIZATION = 'organization-create';
-    public const CAN_EDIT_ORGANIZATION = 'organization-edit';
-    public const CAN_DESTROY_ORGANIZATION = 'organization-destroy';
-
     public const CAN_INDEX_TEMPLATE = 'template-index';
     public const CAN_CREATE_TEMPLATE = 'template-create';
     public const CAN_EDIT_TEMPLATE = 'template-edit';

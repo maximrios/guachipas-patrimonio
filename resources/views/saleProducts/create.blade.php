@@ -49,8 +49,8 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <label class="control-label" for="organization">Unidad de organización</label>
-                                <input type="text" id="organization" name="organization" value="" class="form-control" readonly />
+                                <label class="control-label" for="area">Area</label>
+                                <input type="text" id="area" name="area" value="" class="form-control" readonly />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -119,7 +119,7 @@
                     console.log(data.data);
                     $('#registration').val(data.data.registration);
                     $('#name').val(data.data.product);
-                    $('#organization').val(data.data.organization);
+                    $('#area').val(data.data.area);
                     $('#description_product').val(data.data.description);
                 }
             });

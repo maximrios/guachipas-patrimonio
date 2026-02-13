@@ -12,9 +12,9 @@ class Sale extends Model
     protected $fillable = [
         'character',
         'institution',
-        'organization',
+        'area_name',
         'user_id',
-        'organization_id',
+        'area_id',
         'file',
         'status_id',
     ];

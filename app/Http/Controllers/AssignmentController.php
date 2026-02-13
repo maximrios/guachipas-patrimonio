@@ -7,7 +7,6 @@ use App\Models\Area;
 use App\Models\Employee;
 use App\Models\Inventory;
 use App\Models\Assignment;
-use App\Models\Organization;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreAssignmentRequest;
 use App\Services\Assignment\AssignmentExportService;
@@ -22,10 +21,10 @@ class AssignmentController extends Controller
     public function index()
     {
         $assignments = Assignment::orderBy('created_at', 'desc')->get();
-        $organizations = Organization::all();
+        $areas = Area::all();
         return view('assignments.index')
             ->with('assignments', $assignments)
-            ->with('organizations', $organizations);
+            ->with('areas', $areas);
     }
 
     /**
@@ -36,10 +35,10 @@ class AssignmentController extends Controller
     public function create()
     {
         $employees = Employee::all();
-        $organizations = Area::all();
+        $areas = Area::all();
         return view('assignments.create')
             ->with('employees', $employees)
-            ->with('organizations', $organizations);
+            ->with('areas', $areas);
     }
 
     /**
@@ -54,7 +53,7 @@ class AssignmentController extends Controller
 dd($data);
         $assignment = new Assignment([
             'assign_to' => $data['employee_id'],
-            'organization_id' => $data['organization_id'],
+            'area_id' => $data['area_id'],
             'observation' => $data['observation'],
         ]);
         $assignment->save();
@@ -144,8 +143,7 @@ dd($data);
         foreach($products as $product) {
             if($product->inventory_id) {
                 $inventory = Inventory::find($product->inventory_id);
-                $inventory->organization_id = $assignment->organization_id;
-                $inventory->current_organization = $assignment->organization_id;
+                $inventory->area_id = $assignment->area_id;
                 $inventory->save();
             }
         }
@@ -159,9 +157,8 @@ dd($data);
     {
         $from = $request->input('date_from');
         $to = $request->input('date_to');
-        $organization_id = $request->input('organization_id');
+        $area_id = $request->input('area_id');
 
-
-        return (new AssignmentExportService($from, $to, $organization_id))->execute();
+        return (new AssignmentExportService($from, $to, $area_id))->execute();
     }
 }

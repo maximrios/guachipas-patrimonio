@@ -16,17 +16,17 @@ class OrderExportService
 
     private string $date_from;
     private string $date_to;
-    private int $organization_id;
+    private int $area_id;
 
     public function __construct(
         string $date_from,
         string $date_to,
-        int $organization_id
+        int $area_id
     )
     {
         $this->date_from = $date_from;
         $this->date_to = $date_to;
-        $this->organization_id = $organization_id;
+        $this->area_id = $area_id;
     }
 
     public function execute()
@@ -38,8 +38,8 @@ class OrderExportService
 
         $query = Order::whereDate('created_at', '>=', $this->date_from)
             ->whereDate('created_at', '<=', $this->date_to);
-        if($this->organization_id !== 1) {
-            $query->where('organization_id', $this->organization_id);
+        if($this->area_id !== 1) {
+            $query->where('area_id', $this->area_id);
         }
         $orders = $query->get();
         //$user = Auth::user();

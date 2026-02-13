@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Organization;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,10 +14,10 @@ class Order extends Model
     protected $fillable = [
         'character',
         'institution',
-        'organization_name',
+        'area_name',
         'user_id',
         'status_id',
-        'organization_id',
+        'area_id',
         'file',
         'number',
         'year',
@@ -29,9 +28,9 @@ class Order extends Model
     public const STATUS_APPROVED = 3;
     public const STATUS_CANCELLED = 4;
 
-    public function organization()
+    public function area()
     {
-        return $this->belongsTo(Area::class, 'organization_id', 'id');
+        return $this->belongsTo(Area::class, 'area_id', 'id');
     }
 
     public function status()

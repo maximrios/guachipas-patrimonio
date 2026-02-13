@@ -71,7 +71,6 @@ class AssignmentProductController extends Controller
         $assignment = new Assignment();
         $assignment->inventory_id = $inventory->id;
         $assignment->assign_to = 'N/A';
-        $assignment->organization_id = 1;
         $assignment->area_id = $request->input('area_id');
         $assignment->employee_id = $request->input('employee_id');
         $assignment->observation = $request->input('observation');

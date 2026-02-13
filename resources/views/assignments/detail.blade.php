@@ -31,7 +31,7 @@
                                 <div>
                                     <strong>Dirigido a: </strong><span>{{ $assignment->assign_to }}</span>
                                     <br>
-                                    <strong>Unid. de Organización: </strong><span>{{ $assignment->organization->name }}</span>
+                                    <strong>Area: </strong><span>{{ $assignment->area->name }}</span>
                                 </div>
                             </div>
                             <div class="col-sm-4 invoice-col">

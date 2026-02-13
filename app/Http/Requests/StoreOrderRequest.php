@@ -26,10 +26,10 @@ class StoreOrderRequest extends FormRequest
         return [
             'character' => 'Caracter',
             'institution' => 'Institucion',
-            'organization_name' => 'Jurisdicción',
+            'area_name' => 'Jurisdicción',
             'user_id' => 'Usuario',
             'status_id' => 'Estado',
-            'organization_id' => 'Organismo',
+            'area_id' => 'Organismo',
             "file" => 'Expediente',
         ];
     }
@@ -45,10 +45,10 @@ class StoreOrderRequest extends FormRequest
         $rules = [
             'character' => 'min:1',
             'institution' => 'min:1',
-            'organization_name' => 'min:1',
+            'area_name' => 'min:1',
             "user_id" => 'sometimes',
             "status_id" => 'sometimes',
-            "organization_id" => 'sometimes',
+            "area_id" => 'sometimes',
             "file" => '',
         ];
 

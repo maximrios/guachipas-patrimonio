@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Organization;
+use App\Models\Area;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use DB;
@@ -31,9 +31,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        $organizations = Organization::all();
+        $areas = Area::all();
         $roles = Role::pluck('name','name')->all();
-        return view('users.create', compact('roles', 'organizations'));
+        return view('users.create', compact('roles', 'areas'));
     }
 
     /**

@@ -43,10 +43,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <label for="organization_id" class="control-label">Unidad de Organización</label>
-                                <select id="organization_id" name="organization_id" class="form-control">
-                                    @foreach ($organizations as $organization)
-                                        <option value="{{ $organization->id }}">{{ $organization->name }}</option>
+                                <label for="area_id" class="control-label">Area</label>
+                                <select id="area_id" name="area_id" class="form-control">
+                                    @foreach ($areas as $area)
+                                        <option value="{{ $area->id }}">{{ $area->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

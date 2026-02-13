@@ -13,16 +13,14 @@ class Inventory extends Model
     protected $fillable = [
         'order_product_id',
         'product_id',
-        'organization_id',
+        'area_id',
         'registration',
         'order_id',
         'sale_id',
-        'current_organization',
         'description',
         'observations',
         'status_id',
         'available',
-        'area_id',
     ];
 
     public const AVAILABLE = [
@@ -35,9 +33,9 @@ class Inventory extends Model
         return str_pad($registration, 4, '0', STR_PAD_LEFT);
     }
 
-    public function organization()
+    public function area()
     {
-        return $this->belongsTo(Organization::class, 'organization_id', 'id');
+        return $this->belongsTo(Area::class, 'area_id', 'id');
     }
 
     public function product()
@@ -58,12 +56,6 @@ class Inventory extends Model
     public function attributeValues()
     {
         return $this->hasMany(ProductAttributeValue::class, 'inventory_id', 'id');
-    }
-
-    //last assignment
-    public function area()
-    {
-        return $this->belongsTo(Area::class, 'area_id', 'id');
     }
 
     public function employee()

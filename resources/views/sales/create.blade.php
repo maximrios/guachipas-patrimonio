@@ -36,15 +36,15 @@
                         <div class="form-group row">
                             <label class="control-label col-md-3 col-sm-3 ">Jurisdicción</label>
                             <div class="col-md-9 col-sm-9 ">
-                                <input type="text" id="organization_name" name="organization_name" class="form-control" placeholder="Jurisdicción" value="Sindicatura General de la Provincia de Salta" readonly>
+                                <input type="text" id="area_name" name="area_name" class="form-control" placeholder="Jurisdicción" value="Sindicatura General de la Provincia de Salta" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="control-label col-md-3 col-sm-3 ">Unidad de Organización</label>
+                            <label class="control-label col-md-3 col-sm-3 ">Area</label>
                             <div class="col-md-9 col-sm-9 ">
-                                <select id="organization_id" name="organization_id" class="form-control">
-                                    @foreach ($organizations as $organization)
-                                        <option value="{{ $organization->id }}">{{ $organization->name }}</option>
+                                <select id="area_id" name="area_id" class="form-control">
+                                    @foreach ($areas as $area)
+                                        <option value="{{ $area->id }}">{{ $area->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

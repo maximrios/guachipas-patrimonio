@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use PhpParser\Node\Expr\Assign;
 
 class Assignment extends Model
 {
@@ -12,7 +11,6 @@ class Assignment extends Model
 
     protected $fillable = [
         'assign_to',
-        'organization_id',
         'inventory_id',
         'observation',
         'approved_at',
@@ -37,9 +35,9 @@ class Assignment extends Model
         });
     }
 
-    public function organization()
+    public function area()
     {
-        return $this->belongsTo(Organization::class, 'organization_id', 'id');
+        return $this->belongsTo(Area::class, 'area_id', 'id')->withTrashed();
     }
 
     public function products()
@@ -50,11 +48,6 @@ class Assignment extends Model
     public function inventory()
     {
         return $this->belongsTo(Inventory::class, 'inventory_id', 'id');
-    }
-
-    public function area()
-    {
-        return $this->belongsTo(Area::class, 'area_id', 'id')->withTrashed();
     }
 
     public function employee()

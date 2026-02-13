@@ -20,7 +20,7 @@ class InventoryResource extends JsonResource
             'nomenclator' => $this->product->nomenclator,
             'product' => $this->product->name,
             'description' => $this->description,
-            'organization' => $this->organization->name,
+            'area' => $this->area->name,
             'status' => $this->status->name,
             'order' => $this->order,
             'saleId' => $this->sale->id ?? 0,

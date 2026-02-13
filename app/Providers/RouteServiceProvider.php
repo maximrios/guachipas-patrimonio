@@ -61,7 +61,7 @@ class RouteServiceProvider extends ServiceProvider
             'products',
             'productAttributes',
             'productAttributeValues',
-            'organizations',
+            'areas',
             'inventories',
             'providers',
             'reports',

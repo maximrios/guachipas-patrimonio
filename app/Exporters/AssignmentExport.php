@@ -25,7 +25,7 @@ class AssignmentExport implements FromCollection, WithHeadings, WithMapping, Sho
     {
         return [
             '#',
-            'Unidad organizacional',
+            'Area',
             'Asignado a',
             'Fecha de creación',
             'Fecha de aprobación',
@@ -44,7 +44,7 @@ class AssignmentExport implements FromCollection, WithHeadings, WithMapping, Sho
 
             return [
                 $row->id,
-                $row->organization->name,
+                $row->area->name,
                 $row->assign_to,
                 $row->created_at,
                 $row->approved_at,

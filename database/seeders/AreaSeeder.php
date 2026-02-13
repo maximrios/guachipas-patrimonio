@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class OrganizationSeeder extends Seeder
+class AreaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class OrganizationSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('organizations')->insert(
+        DB::table('areas')->insert(
             array (
                 'id' => 1,
                 'code' => '5',

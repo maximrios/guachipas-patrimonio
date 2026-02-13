@@ -29,10 +29,10 @@ class Permission extends Model
     public const CAN_EDIT_ASSIGNMENT = 'assignment-edit';
     public const CAN_DESTROY_ASSIGNMENT = 'assignment-destroy';
 
-    public const CAN_INDEX_ORGANIZATION = 'organization-index';
-    public const CAN_CREATE_ORGANIZATION = 'organization-create';
-    public const CAN_EDIT_ORGANIZATION = 'organization-edit';
-    public const CAN_DESTROY_ORGANIZATION = 'organization-destroy';
+    public const CAN_INDEX_AREA = 'area-index';
+    public const CAN_CREATE_AREA = 'area-create';
+    public const CAN_EDIT_AREA = 'area-edit';
+    public const CAN_DESTROY_AREA = 'area-destroy';
 
     public const CAN_INDEX_PRODUCT = 'product-index';
     public const CAN_CREATE_PRODUCT = 'product-create';

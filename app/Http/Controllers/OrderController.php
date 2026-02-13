@@ -9,7 +9,6 @@ use App\Models\Provider;
 use Barryvdh\DomPDF\PDF;
 use App\Models\Inventory;
 use App\Models\OrderProduct;
-use App\Models\Organization;
 use Illuminate\Http\Request;
 use App\Exporters\OrderExport;
 use Illuminate\Support\Facades\Log;
@@ -52,11 +51,11 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $organizations = Area::all();
+        $areas = Area::all();
         $providers = Provider::all();
         return view('orders.create')
             ->with('providers', $providers)
-            ->with('organizations', $organizations);
+            ->with('areas', $areas);
     }
 
     /**
@@ -102,10 +101,10 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        $organizations = Organization::all();
+        $areas = Area::all();
         return view('orders.edit')
             ->with('order', $order)
-            ->with('organizations', $organizations);
+            ->with('areas', $areas);
     }
 
     /**
@@ -194,11 +193,10 @@ class OrderController extends Controller
                 $inventory->order_product_id = $product->id;
                 $inventory->product_id = $product->product_id;
                 $inventory->description = $product->description;
-                $inventory->organization_id = $order->organization_id;
+                $inventory->area_id = $order->area_id;
                 $inventory->registration = $registration + 1;
                 $inventory->order_id = $order->id;
                 $inventory->sale_id = 0;
-                $inventory->current_organization = $order->organization_id;
                 $inventory->status_id = $product->order_product_status_id;
                 $inventory->save();
 
@@ -229,9 +227,8 @@ class OrderController extends Controller
     {
         $from = $request->input('date_from');
         $to = $request->input('date_to');
-        $organization_id = $request->input('area_id');
+        $area_id = $request->input('area_id');
 
-
-        return (new OrderExportService($from, $to, $organization_id))->execute();
+        return (new OrderExportService($from, $to, $area_id))->execute();
     }
 }

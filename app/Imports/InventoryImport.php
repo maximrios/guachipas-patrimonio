@@ -33,10 +33,10 @@ class InventoryImport implements ToModel
             $order = Order::create([
                 'character' => 'ADMINISTRACIÓN CENTRAL',
                 'institution' => 'PODER EJECUTIVO',
-                'organization_name' => 'SINDICATURA GENERAL DE LA PROVINCIA DE SALTA',
+                'area_name' => 'SINDICATURA GENERAL DE LA PROVINCIA DE SALTA',
                 'user_id' => 1,
                 'status_id' => 2,
-                'organization_id' => 1,
+                'area_id' => 1,
                 'number' => $number,
                 'year' => $year,
             ]);
@@ -97,11 +97,10 @@ class InventoryImport implements ToModel
         $inventory = new Inventory([
             'order_product_id' => $orderProduct->id,
             'product_id' => $product->id,
-            'organization_id' => 1,
+            'area_id' => 1,
             'registration' => str_pad($row[15], 9, '0', STR_PAD_LEFT),
             'order_id' => $order->id,
             'sale_id' => null,
-            'current_organization' => 1,
             'description' => $row[16],
             'observations' => $row[17] . ' ' . $row[18] . ' ' . $row[19] . ' ' . $row[20] . ' ' . $row[21] . ' ' . $row[22],
             'status_id' => 1,

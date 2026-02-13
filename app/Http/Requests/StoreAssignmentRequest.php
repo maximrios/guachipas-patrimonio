@@ -25,7 +25,7 @@ class StoreAssignmentRequest extends FormRequest
     {
         return [
             "employees[]" => 'Dirigido',
-            'organization_id' => 'Organismo',
+            'area_id' => 'Area',
             "observation" => 'Observacion',
         ];
     }
@@ -40,7 +40,7 @@ class StoreAssignmentRequest extends FormRequest
         
         $rules = [
             'employees[]' => 'min:1',
-            "organization_id" => 'required',
+            "area_id" => 'required',
             "observation" => 'sometimes',
         ];
 

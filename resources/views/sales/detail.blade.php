@@ -33,7 +33,7 @@
                                     <br>
                                     <strong>Institución: </strong><span>{{ $sale->institution }}</span>
                                     <br>
-                                    <strong>Jurisdicción: </strong><span>{{ $sale->organization_name }}</span>
+                                    <strong>Jurisdicción: </strong><span>{{ $sale->area_name }}</span>
                                     <br>
                                 </div>
                             </div>
@@ -94,7 +94,7 @@
                                     <tr>
                                         <th>Nombre</th>
                                         <th>Cantidad</th>
-                                        <th>Unidad organizacional</th>
+                                        <th>Area</th>
                                         <th>Motivo</th>
                                         <th></th>
                                     </tr>
@@ -107,7 +107,7 @@
                                             <p>{{ $saleProduct->inventory?->product->name }}</p>
                                         </td>
                                         <td>{{ $saleProduct->quantity }}</td>
-                                        <td>{{ $saleProduct->inventory?->organization->name }}</td>
+                                        <td>{{ $saleProduct->inventory?->area->name }}</td>
                                         <td>{{ $saleProduct->reason->name }}</td>
                                         <td>
                                             <form action="#">

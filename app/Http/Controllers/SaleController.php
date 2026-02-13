@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Sale;
-use App\Models\Organization;
+use App\Models\Area;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreSaleRequest;
 use App\Models\Inventory;
@@ -30,9 +30,9 @@ class SaleController extends Controller
      */
     public function create()
     {
-        $organizations = Organization::all();
+        $areas = Area::all();
         return view('sales.create')
-            ->with('organizations', $organizations);
+            ->with('areas', $areas);
     }
 
     /**

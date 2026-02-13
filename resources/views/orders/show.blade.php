@@ -37,9 +37,9 @@
                                     <br>
                                     <strong>Institución: </strong><span>{{ $order->institution }}</span>
                                     <br>
-                                    <strong>Jurisdicción: </strong><span>{{ $order->organization_name }}</span>
+                                    <strong>Jurisdicción: </strong><span>{{ $order->area_name }}</span>
                                     <br>
-                                    <strong>Unid. de Organización: </strong><span>{{ $order->organization->name }}</span>
+                                    <strong>Area: </strong><span>{{ $order->area->name }}</span>
                                 </div>
                             </div>
                             <div class="col-sm-4 invoice-col">

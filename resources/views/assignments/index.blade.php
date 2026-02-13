@@ -24,7 +24,7 @@
                             <th width="40px" class="text-center">#</th>
                             <th width="140px">Fecha</th>
                             <th>Asignado</th>
-                            <th>Unidad organizacional</th>
+                            <th>Area</th>
                             <th width="75px"></th>
                         </tr>
                     </thead>
@@ -34,7 +34,7 @@
                                 <td class="text-center">{{ $assignment->id }}</td>
                                 <td>{{ $assignment->created_at }}</td>
                                 <td>{{ $assignment->assign_to }}</td>
-                                <td>{{ $assignment->organization->name }}</td>
+                                <td>{{ $assignment->area->name }}</td>
                                 <td>
                                     <a class="btn btn-info btn-sm" href="{{ route('assignments.show', ['assignment' => $assignment->id])}}">Detalle</a>
                                 </td>

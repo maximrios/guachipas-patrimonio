@@ -13,7 +13,7 @@ class GetIndexOrganizationCapabilityBySessionService
     {
         $user = Auth::user();
         
-        if(!$user->can(Permission::CAN_INDEX_ORGANIZATION)) {
+        if(!$user->can(Permission::CAN_INDEX_AREA)) {
             return false;
         }
         
