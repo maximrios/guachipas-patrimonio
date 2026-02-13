@@ -84,7 +84,7 @@
                                 <hr>
                             </div>
                         </div>
-                        @if($order->status_id === 1)
+                        @if($order->status_id === 2)
                             <div class="row">
                                 <div class="col-sm-12">
                                     <a id="addProducto" href="{{ route('orderProducts.create', [$order]) }}" class="btn btn-primary pull-right" data-target=".bs-example-modal-lg">Agregar registro</a>

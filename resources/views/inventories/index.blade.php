@@ -110,15 +110,13 @@ $( document ).ready(function() {
         const inventory = $('#inventory-search').val()?.toLowerCase().trim();
         const area = $('#area-search').val()?.toLowerCase().trim();
 
-        const statusFila = data[3]?.trim();         // ajustá índice según el orden de tus columnas
-        const inventoryFila = data[1]?.toLowerCase().trim();  // idem
-        const areaFila = data[2]?.toLowerCase().trim();  // idem
+        const inventoryFila = data[1]?.toLowerCase().trim();
+        const areaFila = data[3]?.toLowerCase().trim();
 
-        const pasaFiltroStatus = !statusSeleccionado || statusFila === statusSeleccionado;
         const pasaFiltroInventory = !inventory || inventoryFila.includes(inventory);
         const pasaFiltroArea = !area || areaFila.includes(area);
 
-        return pasaFiltroStatus && pasaFiltroInventory && pasaFiltroArea;
+        return pasaFiltroInventory && pasaFiltroArea;
         
     });
 

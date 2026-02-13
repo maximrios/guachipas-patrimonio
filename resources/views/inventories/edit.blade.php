@@ -41,16 +41,22 @@
                         @method('PUT')
                         @csrf
                         <input type="hidden" name="id" value="{{ $inventory->id }}">
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label class="control-label" for="registration">Matrícula N°</label>
+                                <input type="number" class="form-control" name="registration" id="registration" value="{{ old('registration', $inventory->getRawOriginal('registration')) }}">
+                            </div>
+                        </div>
 						<div class="form-group row">
                             <div class="col-sm-12">
                                 <label class="control-label" for="description">Descripción</label>
-                                <textarea class="form-control" name="description" id="description" rows="3" readonly>{{ $inventory->description }}</textarea>
+                                <textarea class="form-control" name="description" id="description" rows="3">{{ old('description', $inventory->description) }}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-12">
                                 <label class="control-label" for="observations">Observación</label>
-							    <textarea class="form-control" name="observations" id="observations" rows="3">{{ $inventory->observations }}</textarea>
+							    <textarea class="form-control" name="observations" id="observations" rows="3">{{ old('observations', $inventory->observations) }}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">

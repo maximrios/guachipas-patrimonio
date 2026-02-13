@@ -101,10 +101,12 @@ class OrderProductController extends Controller
         $statuses = OrderProductStatus::all();
         $origins = OrderProductOrigin::all();
         $products = Product::all();
+        $providers = Provider::all();
 
         return view('orderProducts.edit')
             ->with('order', $order)
             ->with('products', $products)
+            ->with('providers', $providers)
             ->with('statuses', $statuses)
             ->with('origins', $origins)
             ->with('founds', $founds)

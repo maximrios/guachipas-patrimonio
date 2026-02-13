@@ -50,7 +50,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="quantity">Cantidad</label>
-                            <input type="number" id="quantity" name="quantity" class="form-control" placeholder="Cantidad" value="{{ old('quantity') }}">
+                            <input type="number" id="quantity" name="quantity" class="form-control" value="1" placeholder="Cantidad" value="{{ old('quantity') }}">
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="order_product_found_id">Fondos</label>

@@ -116,6 +116,16 @@ class InventoryController extends Controller
      */
     public function update(Request $request, Inventory $inventory)
     {
+        $request->validate([
+            'registration' => 'required|integer',
+            'description' => 'nullable|string',
+            'observations' => 'nullable|string',
+            'status_id' => 'required|exists:order_product_statuses,id',
+            'available' => 'required|in:0,1',
+        ]);
+
+        $inventory->registration = $request->input('registration');
+        $inventory->description = $request->input('description');
         $inventory->status_id = $request->input('status_id');
         $inventory->observations = $request->input('observations');
         $inventory->available = $request->input('available');
