@@ -2,13 +2,6 @@
 
 @section('content')
 <div class="">
-    <div class="page-title">
-        <div class="title_left">
-            <h3>Altas patrimoniales</h3>
-        </div>
-        <div class="title_right">
-        </div>
-    </div>
     <div class="clearfix"></div>
     @if(session('message'))
         <div class="alert alert-{{ session('type') }} show" role="alert">
@@ -23,13 +16,6 @@
             <div class="x_panel">
                 <div class="x_content">
                     <section class="content invoice">
-                        <div class="row">
-                            <div class="invoice-header">
-                                <h1>
-                                    Planilla de Alta N° {{ $order->number }} / {{ $order->year }}
-                                </h1>
-                            </div>
-                        </div>
                         <div class="row invoice-info">
                             <div class="col-sm-4 invoice-col">
                                 <div>
@@ -64,7 +50,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <a href="{{ url('orders') }}" class="btn btn-default">Volver</a>
-                                @if($products->count() > 0 && $order->status_id === 2)
+                                @if($products->count() > 0 && $order->status_id === 3)
                                     <a href="{{ route('inventories.order', ['order' => $order]) }}" class="btn btn-primary pull-right" style="margin-right: 5px;" target="_blank"><i class="fa fa-barcode"></i> Imprimir etiquetas</a>
                                 @endif
 

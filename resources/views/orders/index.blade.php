@@ -12,12 +12,12 @@
     @forelse ($orders as $order)
         <div class="col-sm-3">
             <x-card>
-                <h3>
+                <h4>
                     Alta # {{ $order->id }}
                     <span class="badge badge-{{$order->status->slug }} pull-right">
                         {{ $order->status->name }}
                     </span>
-                </h3>
+                </h4>
                 <div>
                     <label>Area:</label> {{ $order->area->name }} {{ $order->area->responsible?->profile?->full_name }}<br>
                     <label>Expediente:</label> {{ $order->file }}<br>
@@ -45,5 +45,19 @@
             />
         </x-card>    
     @endforelse
+
+    @if ($orders->count() > 0)
+        <div class="col-sm-3">
+            <x-card>
+                <x-empty-state 
+                    icon="fa fa-inbox"
+                    title="Agrega una nueva alta patrimonial"
+                    description="Registra una nueva alta patrimonial para seguir llevando el control de los bienes"
+                    actionText="Generar nueva alta patrimonial"
+                    actionUrl="{{ url('orders/create') }}"
+                />
+            </x-card>
+        </div>
+    @endif
 </div>
 @endsection
